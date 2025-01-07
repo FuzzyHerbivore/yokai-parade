@@ -27,10 +27,10 @@ position = Vector2(65, 578)
 position = Vector2(600, 656)
 
 [node name="Enemy Air" parent="." instance=ExtResource("6_ssfpt")]
-position = Vector2(434, 186)
+position = Vector2(189, 389)
 
 [node name="Enemy Fire" parent="." instance=ExtResource("7_la1fj")]
-position = Vector2(743, 256)
+position = Vector2(365, 130)
 
 [node name="Ground Wood" parent="." instance=ExtResource("9_ieeo4")]
 position = Vector2(923, 740)

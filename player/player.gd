@@ -1,10 +1,18 @@
 extends CharacterBody2D
 
 
+const ENEMY_SCRIPT = preload("res://enemies/enemy.gd")
+const COLOR_PLAIN = Color("#949494")
+const COLOR_AIR = Color("#dbdbdb")
+const COLOR_FIRE = Color("#b05a5a")
+const COLOR_WATER = Color("#5a8cb0")
+
 @export var speed = 300.0
 @export var jump_velocity = 600.0
 
 var body_in_catch_radius = null
+var current_ability = null:
+	set = _set_current_ability
 
 
 func _physics_process(delta: float) -> void:
@@ -40,4 +48,22 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("abililty") \
 	and body_in_catch_radius != null \
 	and body_in_catch_radius.has_method("caught"):
-		body_in_catch_radius.caught()
+		current_ability = body_in_catch_radius.caught()
+
+
+func _set_current_ability(ability):
+	current_ability = ability
+	var color = COLOR_PLAIN
+	
+	match ability:
+		ENEMY_SCRIPT.EnemyType.AIR:
+			print("caught air power")
+			color = COLOR_AIR
+		ENEMY_SCRIPT.EnemyType.FIRE:
+			print("caught fire power")
+			color = COLOR_FIRE
+		ENEMY_SCRIPT.EnemyType.WATER:
+			print("caught water power")
+			color = COLOR_WATER
+		
+	$MeshInstance2D.self_modulate = color

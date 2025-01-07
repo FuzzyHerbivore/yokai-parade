@@ -11,7 +11,6 @@
 script = ExtResource("1_qbrnr")
 
 [node name="Ground Neutral" parent="." instance=ExtResource("1_u0l32")]
-position = Vector2(80, 710)
 
 [node name="Ground Fire" parent="." instance=ExtResource("2_jujb4")]
 position = Vector2(239, 710)

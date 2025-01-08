@@ -71,4 +71,4 @@ use_power={
 
 [physics]
 
-2d/default_gravity=2000.0
+2d/default_gravity=1750.0

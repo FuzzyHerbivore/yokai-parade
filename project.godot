@@ -68,3 +68,7 @@ use_power={
 
 2d_physics/layer_1="Obstacle"
 2d_physics/layer_2="Destruction"
+
+[physics]
+
+2d/default_gravity=2000.0

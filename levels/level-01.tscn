@@ -137,3 +137,5 @@ position = Vector2(413, -581)
 
 [node name="PlayerSpawnPoint" parent="." instance=ExtResource("5_c8oug")]
 position = Vector2(52, 511)
+
+[connection signal="body_entered" from="Grounds & Walls/DespawnArea" to="." method="_on_despawn_area_body_entered"]

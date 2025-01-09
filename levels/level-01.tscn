@@ -107,8 +107,8 @@ position = Vector2(2379, -1235)
 scale = Vector2(32.32, 1)
 
 [node name="Ground Neutral20" parent="Grounds & Walls/Neutral" instance=ExtResource("1_je3ns")]
-position = Vector2(2455, 1355)
-scale = Vector2(31.362, 1)
+position = Vector2(2383, 1355)
+scale = Vector2(32.242, 1)
 
 [node name="Ground Neutral2" parent="Grounds & Walls/Neutral" instance=ExtResource("1_je3ns")]
 position = Vector2(663, 449)
@@ -180,7 +180,7 @@ position = Vector2(679, -149)
 position = Vector2(353, -466)
 
 [node name="Enemy Fire" parent="Enemies" instance=ExtResource("7_la1fj")]
-position = Vector2(120, 395)
+position = Vector2(120, 389)
 
 [node name="Enemy Fire3" parent="Enemies" instance=ExtResource("7_la1fj")]
 position = Vector2(1867, 122)

@@ -119,5 +119,5 @@ func _on_deal_damage_area_body_entered(body):
 	_body_in_damage_radius = body
 
 
-func _on_deal_dash_damage_area_body_exited(body: Node2D) -> void:
+func _on_deal_dash_damage_area_body_exited(_body):
 	_body_in_damage_radius = null

@@ -21,18 +21,12 @@ var _body_in_catch_radius = null
 var _current_power = null:
 	set = _set_current_power
 
-var _is_dashing = false:
-	set(new_value):
-		_is_dashing = new_value
-		if _is_dashing == true:
-			%DealDamageArea.set_collision_layer_value(2, true)
-		else:
-			%DealDamageArea.set_collision_layer_value(2, false)
+var _body_in_damage_radius = null
+var _is_dashing = false
 var _dash_direction = null
 
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
+func _physics_process(delta):
 	if !_is_dashing:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
@@ -49,20 +43,24 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
+	else:
+		if _body_in_damage_radius != null \
+		and _body_in_damage_radius.has_method("take_damage"):
+			_body_in_damage_radius.take_damage()
 
 	move_and_slide()
 
 
-func _on_catch_radius_body_entered(body: Node2D) -> void:
+func _on_catch_radius_body_entered(body):
 	_body_in_catch_radius = body
 
 
-func _on_catch_radius_body_exited(body: Node2D) -> void:
+func _on_catch_radius_body_exited(body):
 	if body == _body_in_catch_radius:
 		_body_in_catch_radius = null
 
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("catch_power") \
 	and _body_in_catch_radius != null \
 	and _body_in_catch_radius.has_method("caught"):
@@ -115,3 +113,11 @@ func _use_fire_power():
 func despawn():
 	player_despawned.emit()
 	queue_free()
+
+
+func _on_deal_damage_area_body_entered(body):
+	_body_in_damage_radius = body
+
+
+func _on_deal_dash_damage_area_body_exited(body: Node2D) -> void:
+	_body_in_damage_radius = null

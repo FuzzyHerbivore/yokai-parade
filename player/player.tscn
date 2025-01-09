@@ -41,13 +41,14 @@ shape = SubResource("CapsuleShape2D_82728")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="DealDamageArea" type="Area2D" parent="."]
-unique_name_in_owner = true
+[node name="DealDashDamageArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DealDamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DealDashDamageArea"]
 shape = SubResource("RectangleShape2D_ltaai")
 
 [connection signal="body_entered" from="CatchRadius" to="." method="_on_catch_radius_body_entered"]
 [connection signal="body_exited" from="CatchRadius" to="." method="_on_catch_radius_body_exited"]
+[connection signal="body_entered" from="DealDashDamageArea" to="." method="_on_deal_damage_area_body_entered"]
+[connection signal="body_exited" from="DealDashDamageArea" to="." method="_on_deal_dash_damage_area_body_exited"]

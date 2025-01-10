@@ -1,32 +1,21 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=4 format=3 uid="uid://w7srany1jy50"]
-
-[ext_resource type="PackedScene" uid="uid://dyumet0q0u0ew" path="res://levels/ground-neutral.tscn" id="1_1gvy1"]
-[ext_resource type="Script" path="res://levels/level.gd" id="1_ubpj7"]
-=======
 [gd_scene load_steps=14 format=3 uid="uid://dmxf5jucqf3tn"]
 
 [ext_resource type="PackedScene" uid="uid://dyumet0q0u0ew" path="res://levels/ground-neutral.tscn" id="1_1gvy1"]
 [ext_resource type="PackedScene" uid="uid://cfnhlackt0u25" path="res://levels/wall-wood.tscn" id="1_6vgqt"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_t51mk"]
->>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://bxb7rgxfvtxf2" path="res://levels/player-spawn-point.tscn" id="2_uayi1"]
 [ext_resource type="PackedScene" uid="uid://dfjkroxbqv577" path="res://levels/wall-neutral.tscn" id="3_qn0ki"]
 [ext_resource type="PackedScene" uid="uid://c4sff4auhgxi8" path="res://enemies/enemy-air.tscn" id="4_1wujq"]
 [ext_resource type="PackedScene" uid="uid://bh0c2087eabtb" path="res://enemies/enemy-fire.tscn" id="5_ygh8d"]
 [ext_resource type="PackedScene" uid="uid://cijdb50pj3jc7" path="res://levels/despawn_area.tscn" id="6_o1lke"]
-[ext_resource type="Texture2D" uid="uid://cnr0u46o8642r" path="res://images/Screenshot 2025-01-10 152952.png" id="9_7hu8u"]
-[ext_resource type="Texture2D" uid="uid://c5p8mtb76r6ks" path="res://images/Screenshot 2025-01-10 153053.png" id="10_032bk"]
-[ext_resource type="Texture2D" uid="uid://fy0cyfkd4tn6" path="res://images/mouse-left-click-icon-15055.png" id="11_fhac1"]
-[ext_resource type="Texture2D" uid="uid://bu250nrax8pjb" path="res://images/PngItem_2422859.png" id="12_evu7d"]
-[ext_resource type="Texture2D" uid="uid://opch05b3c1nb" path="res://images/Screenshot 2025-01-10 153837.png" id="13_fsax3"]
+[ext_resource type="Texture2D" uid="uid://cnr0u46o8642r" path="res://images/D_Key.png" id="9_7hu8u"]
+[ext_resource type="Texture2D" uid="uid://c5p8mtb76r6ks" path="res://images/A_Key.png" id="10_032bk"]
+[ext_resource type="Texture2D" uid="uid://fy0cyfkd4tn6" path="res://images/Left_MouseClick.png" id="11_fhac1"]
+[ext_resource type="Texture2D" uid="uid://bu250nrax8pjb" path="res://images/Right_MouseClick.png" id="12_evu7d"]
+[ext_resource type="Texture2D" uid="uid://opch05b3c1nb" path="res://images/Space_Key.png" id="13_fsax3"]
 
 [node name="Tutorial Level" type="Node2D"]
-<<<<<<< Updated upstream
-script = ExtResource("1_ubpj7")
-=======
 script = ExtResource("1_t51mk")
->>>>>>> Stashed changes
 
 [node name="Ground & Walls" type="Node2D" parent="."]
 
@@ -136,9 +125,6 @@ scale = Vector2(1.11189, 4.28)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-<<<<<<< Updated upstream
-[node name="PlayerSpawnPoint" parent="." instance=ExtResource("2_uayi1")]
-=======
 [node name="Enemy Air" parent="Enemies" instance=ExtResource("4_1wujq")]
 position = Vector2(1700, 761)
 
@@ -266,5 +252,31 @@ scale = Vector2(1.24863, 1.24)
 text = "JUMP
 "
 
+[node name="Text" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Text"]
+offset_left = 373.0
+offset_top = 475.0
+offset_right = 796.0
+offset_bottom = 498.0
+scale = Vector2(1.36, 1.36)
+text = "With a fire charge, you can dash through wooden walls"
+
+[node name="Label2" type="Label" parent="Text"]
+offset_left = 1708.0
+offset_top = 499.0
+offset_right = 2131.0
+offset_bottom = 522.0
+scale = Vector2(1.36, 1.36)
+text = "With an air charge, you can make a doublejump"
+
+[node name="Label3" type="Label" parent="Text"]
+offset_left = 3146.0
+offset_top = 93.0
+offset_right = 3678.0
+offset_bottom = 142.0
+scale = Vector2(1.52, 1.52)
+text = "There are two ways to pass the level, at the top always easy but long, 
+at the bottom difficult but fast"
+
 [connection signal="body_entered" from="DespawnArea" to="." method="_on_despawn_area_body_entered"]
->>>>>>> Stashed changes

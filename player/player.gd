@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 signal player_despawned
+signal player_reached_goal
 
 
 const ENEMY_SCRIPT = preload("res://enemies/enemy.gd")
@@ -118,9 +119,13 @@ func _use_fire_power():
 	_is_dashing = false
 
 
-func despawn():
+func on_despawn():
 	player_despawned.emit()
 	queue_free()
+
+
+func on_goal_reached():
+	player_reached_goal.emit()
 
 
 func _on_deal_damage_area_body_entered(body):

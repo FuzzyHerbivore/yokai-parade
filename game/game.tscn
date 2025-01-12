@@ -29,7 +29,7 @@ theme = ExtResource("4_k85dl")
 [node name="CenterContainer" type="CenterContainer" parent="UI Layer/TopUI"]
 layout_mode = 2
 
-[node name="TimerLabel" type="Label" parent="UI Layer/TopUI/CenterContainer"]
+[node name="PlayTimeLabel" type="Label" parent="UI Layer/TopUI/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "00:00"

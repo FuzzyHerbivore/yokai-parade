@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmxf5jucqf3tn"]
+[gd_scene load_steps=15 format=3 uid="uid://dmxf5jucqf3tn"]
 
-[ext_resource type="PackedScene" path="res://levels/ground_neutral.tscn" id="1_1gvy1"]
-[ext_resource type="PackedScene" path="res://levels/wall_wood.tscn" id="1_6vgqt"]
+[ext_resource type="PackedScene" uid="uid://dyumet0q0u0ew" path="res://levels/ground_neutral.tscn" id="1_1gvy1"]
+[ext_resource type="PackedScene" uid="uid://cfnhlackt0u25" path="res://levels/wall_wood.tscn" id="1_6vgqt"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_t51mk"]
-[ext_resource type="PackedScene" path="res://levels/player_spawn_point.tscn" id="2_uayi1"]
-[ext_resource type="PackedScene" path="res://levels/wall_neutral.tscn" id="3_qn0ki"]
-[ext_resource type="PackedScene" path="res://enemies/enemy_air.tscn" id="4_1wujq"]
-[ext_resource type="PackedScene" path="res://enemies/enemy_fire.tscn" id="5_ygh8d"]
+[ext_resource type="PackedScene" uid="uid://bxb7rgxfvtxf2" path="res://levels/player_spawn_point.tscn" id="2_uayi1"]
+[ext_resource type="PackedScene" uid="uid://dfjkroxbqv577" path="res://levels/wall_neutral.tscn" id="3_qn0ki"]
+[ext_resource type="PackedScene" uid="uid://c4sff4auhgxi8" path="res://enemies/enemy_air.tscn" id="4_1wujq"]
+[ext_resource type="PackedScene" uid="uid://bh0c2087eabtb" path="res://enemies/enemy_fire.tscn" id="5_ygh8d"]
 [ext_resource type="PackedScene" uid="uid://cijdb50pj3jc7" path="res://levels/despawn_area.tscn" id="6_o1lke"]
 [ext_resource type="Texture2D" uid="uid://cnr0u46o8642r" path="res://assets/images/Screenshot 2025-01-10 152952.png" id="9_7hu8u"]
+[ext_resource type="PackedScene" uid="uid://dnq2l128u47ma" path="res://levels/goal.tscn" id="9_d43iy"]
 [ext_resource type="Texture2D" uid="uid://c5p8mtb76r6ks" path="res://assets/images/Screenshot 2025-01-10 153053.png" id="10_032bk"]
 [ext_resource type="Texture2D" uid="uid://fy0cyfkd4tn6" path="res://assets/images/mouse-left-click-icon-15055.png" id="11_fhac1"]
 [ext_resource type="Texture2D" uid="uid://bu250nrax8pjb" path="res://assets/images/PngItem_2422859.png" id="12_evu7d"]
@@ -168,6 +169,9 @@ position = Vector2(170, 730)
 position = Vector2(4348, 1302)
 scale = Vector2(43, 1)
 
+[node name="Goal" parent="." instance=ExtResource("9_d43iy")]
+position = Vector2(7640, 525)
+
 [node name="Controls" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Controls"]
@@ -278,5 +282,3 @@ offset_bottom = 142.0
 scale = Vector2(1.52, 1.52)
 text = "There are two ways to pass the level, at the top always easy but long, 
 at the bottom difficult but fast"
-
-[connection signal="body_entered" from="DespawnArea" to="." method="_on_despawn_area_body_entered"]

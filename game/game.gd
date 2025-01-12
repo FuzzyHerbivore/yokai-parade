@@ -2,11 +2,21 @@ extends Node
 
 
 var _current_level_index = 0
+var _is_play_timer_running = false
+var _play_time = 0.0:
+	set(new_value):
+		_play_time = new_value
+		%PlayTimeLabel.text = "%5.2f" % _play_time
 
 
 func _ready() -> void:
 	var desired_level_index = 0
 	_load_level(desired_level_index)
+
+
+func _process(delta):
+	if _is_play_timer_running:
+		_play_time += delta
 
 
 func _unhandled_input(_event):
@@ -33,6 +43,12 @@ func _load_level(desired_level_index):
 	var loaded_successfully = %LevelManager.load_level(desired_level_index)
 	if loaded_successfully:
 		_current_level_index = desired_level_index
+		_start_level()
+
+
+func _start_level():
+	_play_time = 0.0
+	_is_play_timer_running = true
 
 
 func _spawn_player(player_position):
@@ -45,7 +61,8 @@ func _spawn_player(player_position):
 
 	var player = player_scene.instantiate()
 	player.position = player_position
-	player.player_despawned.connect(_on_player_despawn)
+	player.player_despawned.connect(_on_player_despawned)
+	player.player_reached_goal.connect(_on_player_reached_goal)
 
 	var camera_node = get_tree().root.get_node_or_null("Game/Camera2D")
 
@@ -56,8 +73,12 @@ func _spawn_player(player_position):
 	add_child(player)
 
 
-func _on_player_despawn():
+func _on_player_despawned():
 	_load_level(_current_level_index)
+
+
+func _on_player_reached_goal():
+	_is_play_timer_running = false
 
 
 func _on_level_manager_level_loaded(player_spawn_position):

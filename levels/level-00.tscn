@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bxb7rgxfvtxf2" path="res://levels/player-spawn-point.tscn" id="5_xftf8"]
 [ext_resource type="PackedScene" uid="uid://cijdb50pj3jc7" path="res://levels/despawn_area.tscn" id="9_yaf32"]
 
-[node name="Level 00" type="Node2D"]
+[node name="Level00" type="Node2D"]
 script = ExtResource("1_qbrnr")
 
 [node name="Ground Neutral" parent="." instance=ExtResource("1_u0l32")]

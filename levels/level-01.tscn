@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sff4auhgxi8" path="res://enemies/enemy-air.tscn" id="6_ssfpt"]
 [ext_resource type="PackedScene" uid="uid://bh0c2087eabtb" path="res://enemies/enemy-fire.tscn" id="7_la1fj"]
 
-[node name="Level 01" type="Node2D"]
+[node name="Level01" type="Node2D"]
 script = ExtResource("1_l58d4")
 
 [node name="Grounds & Walls" type="Node2D" parent="."]

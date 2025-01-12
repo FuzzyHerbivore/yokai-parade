@@ -8,13 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://c4sff4auhgxi8" path="res://enemies/enemy-air.tscn" id="4_1wujq"]
 [ext_resource type="PackedScene" uid="uid://bh0c2087eabtb" path="res://enemies/enemy-fire.tscn" id="5_ygh8d"]
 [ext_resource type="PackedScene" uid="uid://cijdb50pj3jc7" path="res://levels/despawn_area.tscn" id="6_o1lke"]
-[ext_resource type="Texture2D" uid="uid://cnr0u46o8642r" path="res://images/D_Key.png" id="9_7hu8u"]
-[ext_resource type="Texture2D" uid="uid://c5p8mtb76r6ks" path="res://images/A_Key.png" id="10_032bk"]
-[ext_resource type="Texture2D" uid="uid://fy0cyfkd4tn6" path="res://images/Left_MouseClick.png" id="11_fhac1"]
-[ext_resource type="Texture2D" uid="uid://bu250nrax8pjb" path="res://images/Right_MouseClick.png" id="12_evu7d"]
-[ext_resource type="Texture2D" uid="uid://opch05b3c1nb" path="res://images/Space_Key.png" id="13_fsax3"]
+[ext_resource type="Texture2D" uid="uid://cnr0u46o8642r" path="res://assets/images/Screenshot 2025-01-10 152952.png" id="9_7hu8u"]
+[ext_resource type="Texture2D" uid="uid://c5p8mtb76r6ks" path="res://assets/images/Screenshot 2025-01-10 153053.png" id="10_032bk"]
+[ext_resource type="Texture2D" uid="uid://fy0cyfkd4tn6" path="res://assets/images/mouse-left-click-icon-15055.png" id="11_fhac1"]
+[ext_resource type="Texture2D" uid="uid://bu250nrax8pjb" path="res://assets/images/PngItem_2422859.png" id="12_evu7d"]
+[ext_resource type="Texture2D" uid="uid://opch05b3c1nb" path="res://assets/images/Screenshot 2025-01-10 153837.png" id="13_fsax3"]
 
-[node name="Tutorial Level" type="Node2D"]
+[node name="LevelTutorial" type="Node2D"]
 script = ExtResource("1_t51mk")
 
 [node name="Ground & Walls" type="Node2D" parent="."]

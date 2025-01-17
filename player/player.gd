@@ -40,6 +40,7 @@ func _physics_process(delta):
 		handle_coyote_time(delta)
 		handle_jump()
 		calc_dash_direction()
+		handle_gravity(delta)
 	
 	move_and_slide()
 
@@ -56,8 +57,6 @@ func handle_coyote_time(delta):
 		coyote_timer = 0.0
 	else:
 		coyote_timer += delta
-		velocity += get_gravity() * delta
-
 
 func handle_jump():
 	if Input.is_action_just_pressed("jump") \
@@ -77,6 +76,9 @@ func calc_dash_direction():
 	if move_direction != 0.0:
 			dash_direction = move_direction
 
+
+func handle_gravity(delta):
+	velocity += get_gravity() * delta
 
 
 func _on_catch_radius_body_entered(body):

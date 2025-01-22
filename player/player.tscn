@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnxi2gyvo83ec"]
+[gd_scene load_steps=10 format=3 uid="uid://dnxi2gyvo83ec"]
 
 [ext_resource type="Script" path="res://player/player_manager.gd" id="1_rsfs1"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
@@ -17,6 +17,10 @@ height = 120.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltaai"]
 size = Vector2(150, 100)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4pm2j"]
+radius = 18.0
+height = 74.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_uybn7")
@@ -44,6 +48,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CatchRadius"]
 shape = SubResource("CapsuleShape2D_82728")
+debug_color = Color(0.595658, 0.545411, 0, 0.42)
 
 [node name="DashTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -58,6 +63,12 @@ shape = SubResource("RectangleShape2D_ltaai")
 
 [node name="PlayerManager" type="Node2D" parent="."]
 script = ExtResource("1_rsfs1")
+
+[node name="TakeDamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TakeDamageArea"]
+shape = SubResource("CapsuleShape2D_4pm2j")
+debug_color = Color(0.976648, 0, 0.410241, 0.42)
 
 [connection signal="body_entered" from="CatchRadius" to="." method="_on_catch_radius_body_entered"]
 [connection signal="body_exited" from="CatchRadius" to="." method="_on_catch_radius_body_exited"]

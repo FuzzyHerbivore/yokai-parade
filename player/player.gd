@@ -21,7 +21,7 @@ const COLOR_WATER = Color("#5a8cb0")
 var coyote_timer = 0.15
 var jump_buffer_timer = 0.0
 var body_in_catch_radius
-var dash_direction
+var look_direction
 var move_direction
 
 var velocity_outer_sources := Vector2(0,0)
@@ -34,11 +34,8 @@ var player_control := true
 
 
 func _physics_process(delta):
-	calc_move_dir()
 	handle_run()
-	reset_y_vel_on_ground()
 	handle_jump(delta)
-	calc_dash_direction()
 	handle_gravity(delta)
 	
 	velocity = player_input_vel
@@ -47,34 +44,37 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func calc_move_dir():
-	move_direction = sign(Input.get_axis("left", "right"))
-
-
 func handle_run():
+	calc_move_dir()
+	calc_look_direction()
+	
 	if move_direction:
 		player_input_vel.x = move_toward(player_input_vel.x, move_direction * speed, acceleration)
 	else:
 		player_input_vel.x = move_toward(player_input_vel.x, 0, deceleration)
 
 
+func calc_move_dir():
+	move_direction = sign(Input.get_axis("left", "right"))
+
+
+func calc_look_direction():
+	if move_direction != 0.0:
+			look_direction = move_direction
+
+
+func handle_jump(delta):
+	reset_y_vel_on_ground()
+	
+	handle_coyote_time(delta)
+	jump_logic()
+	handle_jump_buffer_time(delta)
+
+
 func reset_y_vel_on_ground():
 	if !is_on_floor(): return
 	
 	player_input_vel.y = 0
-
-
-func handle_jump_buffer_time(delta):
-	var jump_input = Input.is_action_just_pressed("jump")
-	
-	if jump_input || jump_buffer_timer > 0:
-		jump_buffer_timer += delta
-		
-	if jump_input && jump_buffer_timer > 0:
-		jump_buffer_timer = delta
-		
-	if is_on_floor():
-		jump_buffer_timer = 0.0
 
 
 func handle_coyote_time(delta):
@@ -84,16 +84,26 @@ func handle_coyote_time(delta):
 		coyote_timer += delta
 
 
-func handle_jump(delta):
-	handle_coyote_time(delta)
-	
+func jump_logic():
 	var should_jump = Input.is_action_just_pressed("jump") || can_use_jump_buffer()
 	var can_jump = should_jump && is_on_floor() || can_use_coyote_time(should_jump)
+	if !can_jump: return
 	
-	if can_jump:
-		player_input_vel.y = -jump_velocity
+	player_input_vel.y = -jump_velocity
+
+
+func handle_jump_buffer_time(delta):
+	var jump_input = Input.is_action_just_pressed("jump")
 	
-	handle_jump_buffer_time(delta)
+	if jump_input && jump_buffer_timer > 0:
+		jump_buffer_timer = delta
+		
+	elif jump_input || jump_buffer_timer > 0:
+		jump_buffer_timer += delta
+		
+		
+	if is_on_floor():
+		jump_buffer_timer = 0.0
 
 
 func can_use_coyote_time(should_jump):
@@ -110,11 +120,6 @@ func can_use_jump_buffer():
 	return jump_buffer_timer < jump_buffer_time
 
 
-func calc_dash_direction():
-	if move_direction != 0.0:
-			dash_direction = move_direction
-
-
 func handle_gravity(delta):
 	clamp_fall_speed()
 	player_input_vel.y += get_gravity().y * delta
@@ -126,8 +131,6 @@ func clamp_fall_speed():
 
 
 func add_velocity_modifier(velocity_mod):
-	#if velocity_mod.get_property_list().find("amount"):
-		#print("exists")
 	velocity_mod_instigator.append(velocity_mod)
 	calc_vel_mod(velocity_mod, false)
 	create_vel_duration_timer(velocity_mod)
@@ -154,7 +157,6 @@ func calc_vel_mod(velocity_mod, clear_mod):
 		
 		if clear_mod && velocity_mod == velocity_mod_instigator[i]:
 			velocity_mod_instigator.remove_at(i)
-
 
 
 func delete_timer(given_timer):

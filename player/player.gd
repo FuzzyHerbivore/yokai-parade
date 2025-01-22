@@ -25,9 +25,11 @@ var is_dashing := false
 var dash_direction
 var move_direction
 
+var velocity_outer_sources 
+
 @onready var ability_manager: Node2D = $AbilityManager
 
-
+var velocity_mod_instigator = []
 var player_control
 
 
@@ -117,6 +119,54 @@ func handle_gravity(delta):
 	velocity += get_gravity() * delta
 
 
+func add_velocity_modifier(velocity_mod):
+	#if velocity_mod.get_property_list().find("amount"):
+		#print("exists")
+	velocity_mod_instigator.append(velocity_mod)
+	
+	#velocity_outer_sources = velocity_mod.amount
+	
+	create_vel_duration_timer(velocity_mod)
+
+
+func create_vel_duration_timer(velocity_mod):
+	var duration_timer = Timer.new()
+	duration_timer.wait_time = velocity_mod.duration
+	duration_timer.one_shot = true
+	add_child(duration_timer)
+	duration_timer.timeout.connect(on_vel_mod_ended.bind(duration_timer, velocity_mod))
+	duration_timer.start()
+
+
+func on_vel_mod_ended(duration_timer, velocity_mod):
+	duration_timer.queue_free()
+	
+	var highest_prioty = 5
+	var a = velocity_mod_instigator.size()
+	for i in range(velocity_mod_instigator.size() -1, -1, -1):
+		highest_prioty = reapply_velocity_mods(velocity_mod, highest_prioty)
+		
+		if velocity_mod == velocity_mod_instigator[i]:
+			velocity_mod_instigator.remove_at(i)
+
+
+func reapply_velocity_mods(velocity_mod, current_priority):
+	if velocity_mod.priority <= current_priority: return current_priority
+	
+	velocity_outer_sources = velocity_mod.amount
+	player_control = !velocity_mod_instigator.disable_player_movement
+	return velocity_mod.priority
+
+
+func set_current_ability(ability_resource):
+	ability_manager.set_current_ability(ability_resource)
+	
+	if ability_resource != null:
+		$MeshInstance2D.self_modulate = ability_resource.color
+	else:
+		$MeshInstance2D.self_modulate = COLOR_PLAIN
+
+
 func _on_catch_radius_body_entered(body):
 	body_in_catch_radius = body
 
@@ -134,16 +184,7 @@ func _unhandled_input(_event):
 
 	if Input.is_action_just_pressed("use_ability") \
 	and ability_manager != null:
-		ability_manager.use_ability()
-
-
-func set_current_ability(ability_resource):
-	ability_manager.set_current_ability(ability_resource)
-	
-	if ability_resource != null:
-		$MeshInstance2D.self_modulate = ability_resource.color
-	else:
-		$MeshInstance2D.self_modulate = COLOR_PLAIN
+		ability_manager.use_ability(self)
 
 
 func on_despawn():

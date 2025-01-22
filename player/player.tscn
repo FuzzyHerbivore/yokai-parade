@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dnxi2gyvo83ec"]
 
+[ext_resource type="Script" path="res://player/player_manager.gd" id="1_rsfs1"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
 [ext_resource type="Script" path="res://abilities/abilities.gd" id="2_es05j"]
 [ext_resource type="PackedScene" uid="uid://cqo5hhva3su4r" path="res://abilities/dash.tscn" id="3_tw2ks"]
-[ext_resource type="PackedScene" uid="uid://cc0wce22gon55" path="res://abilities/double_jump.tscn" id="4_78l4g"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_idevo"]
 
@@ -29,8 +29,6 @@ jump_buffer_time = 0.25
 script = ExtResource("2_es05j")
 
 [node name="Dash" parent="AbilityManager" instance=ExtResource("3_tw2ks")]
-
-[node name="DoubleJump" parent="AbilityManager" instance=ExtResource("4_78l4g")]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 self_modulate = Color(0.58, 0.58, 0.58, 1)
@@ -59,6 +57,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_ltaai")
 
 [node name="PlayerManager" type="Node2D" parent="."]
+script = ExtResource("1_rsfs1")
 
 [connection signal="body_entered" from="CatchRadius" to="." method="_on_catch_radius_body_entered"]
 [connection signal="body_exited" from="CatchRadius" to="." method="_on_catch_radius_body_exited"]

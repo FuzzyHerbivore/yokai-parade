@@ -3,7 +3,7 @@ extends PathFollow2D
 
 @export var easing_curve: Curve
 @export var max_speed = 200.0
-@export var element_type = EnemyElementType
+@export var element_type: EnemyElementType
 
 var speed = 0.0
 var is_path_closed = false
@@ -12,10 +12,13 @@ var progress_ratio_raw = 0.0
 
 var path_length = 0.0
 
+
 func _ready():
 	check_is_path_closed()
 	speed = max_speed
 	path_length = get_parent().curve.get_baked_length()
+	if element_type != null:
+		%MeshInstance2D.modulate = element_type.get_color()
 
 
 func _physics_process(delta):

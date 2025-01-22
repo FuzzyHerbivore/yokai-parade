@@ -17,6 +17,7 @@ script = ExtResource("1_ckp3m")
 speed = 200.0
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(0.226683, 0.485519, 0.375443, 1)
 position = Vector2(0, 6.4373e-06)
 scale = Vector2(68.0771, 68.0771)

@@ -16,7 +16,7 @@ var direction
 func _ready():
 	direction = initial_direction
 	if element_type != null:
-		$MeshInstance2D.modulate = element_type.get_color()
+		%MeshInstance2D.modulate = element_type.get_color()
 
 
 func _physics_process(delta):

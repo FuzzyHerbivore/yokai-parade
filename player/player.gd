@@ -134,20 +134,22 @@ func create_vel_duration_timer(velocity_mod):
 	duration_timer.wait_time = velocity_mod.duration
 	duration_timer.one_shot = true
 	add_child(duration_timer)
-	duration_timer.timeout.connect(on_vel_mod_ended.bind(duration_timer, velocity_mod))
+	duration_timer.timeout.connect(on_vel_mod_ended.bind(velocity_mod))
+	duration_timer.timeout.connect(delete_timer.bind(duration_timer))
 	duration_timer.start()
 
 
-func on_vel_mod_ended(duration_timer, velocity_mod):
-	duration_timer.queue_free()
-	
+func on_vel_mod_ended(velocity_mod):
 	var highest_prioty = 5
-	var a = velocity_mod_instigator.size()
 	for i in range(velocity_mod_instigator.size() -1, -1, -1):
 		highest_prioty = reapply_velocity_mods(velocity_mod, highest_prioty)
 		
 		if velocity_mod == velocity_mod_instigator[i]:
 			velocity_mod_instigator.remove_at(i)
+
+
+func delete_timer(given_timer):
+	given_timer.queue_free()
 
 
 func reapply_velocity_mods(velocity_mod, current_priority):

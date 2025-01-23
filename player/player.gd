@@ -25,6 +25,7 @@ var velocity_outer_sources := Vector2(0,0)
 var player_input_vel := Vector2(0,0)
 
 @onready var ability_manager: Node2D = $AbilityManager
+@onready var ability_vel_delay_timer: Timer = $AbilityVelDelay
 
 var velocity_mod_instigator = []
 var player_control := true
@@ -33,14 +34,12 @@ var player_control := true
 func _physics_process(delta):
 	if player_control:
 		handle_run()
-		handle_jump(delta)
 		handle_gravity(delta)
+		handle_jump(delta)
 
-	if no_movement_mods_active():
-		velocity_outer_sources.x = move_toward(velocity_outer_sources.x, 0, deceleration)
-		velocity_outer_sources.y = move_toward(velocity_outer_sources.y, 0, deceleration)
+	handle_ability_smoothing()
 	velocity = player_input_vel + velocity_outer_sources
-
+	clamp_fall_speed()
 	move_and_slide()
 
 
@@ -64,8 +63,6 @@ func calc_look_direction():
 
 
 func handle_jump(delta):
-	reset_y_vel_on_ground()
-
 	handle_coyote_time(delta)
 	jump_logic()
 	handle_jump_buffer_time(delta)
@@ -121,14 +118,19 @@ func can_use_jump_buffer():
 
 
 func handle_gravity(delta):
-	clamp_fall_speed()
 	player_input_vel.y += get_gravity().y * delta
+	reset_y_vel_on_ground()
 
 
 func clamp_fall_speed():
 	if fall_speed_clamp == 0: return;
-	player_input_vel.y = clampf(player_input_vel.y, -INFINITY, fall_speed_clamp)
+	velocity.y = clampf(velocity.y, -INFINITY, fall_speed_clamp)
 
+
+func handle_ability_smoothing():
+	if no_movement_mods_active():
+		velocity_outer_sources.x = move_toward(velocity_outer_sources.x, 0, deceleration)
+		velocity_outer_sources.y = move_toward(velocity_outer_sources.y, 0, deceleration / 3)
 
 func add_velocity_modifier(velocity_mod):
 	velocity_mod_instigator.append(velocity_mod)

@@ -7,12 +7,19 @@ const ELEMENT_TYPE = ELEMENTS.ElementType.FIRE
 @export var dash_duration = 1.0
 @export var dash_curve : Curve
 
+var isDashing := false
 var body_in_damage_radius
+
+
+func _physics_process(delta):
+	if isDashing:
+		apply_dash_damage()
 
 
 func use(player_manager):
 	var vel_modifier = VelocityModifier.new(Vector2(dash_velocity, 0), dash_duration, 1, true)
 	player_manager.add_velocity_modifier(vel_modifier)
+	isDashing = true
 
 
 func exit_ability():
@@ -30,9 +37,9 @@ func get_color():
 	return ELEMENTS.get_color(ELEMENT_TYPE)
 
 
-#func _on_deal_damage_area_body_entered(body):
-	#body_in_damage_radius = body
-#
-#
-#func _on_deal_dash_damage_area_body_exited(_body):
-	#body_in_damage_radius = null
+func _on_deal_dash_damage_area_body_exited(body):
+	body_in_damage_radius = null
+
+
+func _on_deal_dash_damage_area_body_entered(body):
+	body_in_damage_radius = body

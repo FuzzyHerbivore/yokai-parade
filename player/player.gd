@@ -179,8 +179,13 @@ func reapply_velocity_mods(velocity_mod, current_priority):
 	if velocity_mod.priority > current_priority: return current_priority
 
 	velocity_outer_sources = velocity_mod.amount
+
 	player_input_vel = Vector2(0,0)
 	player_control = !velocity_mod.disable_player_movement
+
+	if look_direction < 0:
+		velocity_outer_sources.x = -velocity_outer_sources.x
+
 	return velocity_mod.priority
 
 

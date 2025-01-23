@@ -32,10 +32,11 @@ var player_control := true
 
 
 func _physics_process(delta):
-	handle_run()
-	handle_jump(delta)
-	handle_gravity(delta)
-
+	if player_control:
+		handle_run()
+		handle_jump(delta)
+		handle_gravity(delta)
+	
 	velocity = player_input_vel + velocity_outer_sources
 
 	move_and_slide()
@@ -151,12 +152,18 @@ func calc_vel_mods(velocity_mod, clear_mod):
 	var highest_prioty = 5
 	for i in range(velocity_mod_instigator.size() -1, -1, -1):
 		highest_prioty = reapply_velocity_mods(velocity_mod, highest_prioty)
-
+	
 		if clear_mod && velocity_mod == velocity_mod_instigator[i]:
 			velocity_mod_instigator.remove_at(i)
-
+	
 	if velocity_mod_instigator.size() == 0:
-		velocity_outer_sources = Vector2(0,0)
+		reset_velocity_mod_effects()
+
+
+func reset_velocity_mod_effects():
+	velocity_outer_sources = Vector2(0,0)
+	player_control = true
+	reset_color()
 
 
 func delete_timer(given_timer):
@@ -165,7 +172,7 @@ func delete_timer(given_timer):
 
 func reapply_velocity_mods(velocity_mod, current_priority):
 	if velocity_mod.priority > current_priority: return current_priority
-
+	
 	velocity_outer_sources = velocity_mod.amount
 	player_control = !velocity_mod.disable_player_movement
 	return velocity_mod.priority
@@ -182,7 +189,11 @@ func set_current_ability(ability_scene):
 	and ability.has_method("get_color"):
 		$MeshInstance2D.self_modulate = ability.get_color()
 	else:
-		$MeshInstance2D.self_modulate = COLOR_PLAIN
+		reset_color()
+
+
+func reset_color():
+	$MeshInstance2D.self_modulate = COLOR_PLAIN
 
 
 func _unhandled_input(_event):
@@ -194,11 +205,6 @@ func _unhandled_input(_event):
 			and parent.has_method("got_caught"):
 				var ability = parent.got_caught()
 				set_current_ability(ability)
-
-	if Input.is_action_just_pressed("use_ability") \
-	and ability_manager != null:
-		ability_manager.use_ability(self)
-
 
 func on_despawn():
 	player_despawned.emit()

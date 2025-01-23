@@ -4,3 +4,5 @@
 
 [node name="DoubleJump" type="Node2D"]
 script = ExtResource("1_c33vj")
+double_jump_vel = 1300.0
+double_jump_duration = 0.3

@@ -1,10 +1,12 @@
 extends Node2D
 
 var current_ability
+@onready var player: CharacterBody2D = $".."
 
 
-func _process(delta: float) -> void:
-	pass
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("use_ability"):
+		use_ability(player)
 
 
 func use_ability(player_manager):

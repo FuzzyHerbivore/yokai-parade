@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal enemy_caught
 
 enum Direction {
 	LEFT = -1,
@@ -8,12 +9,15 @@ enum Direction {
 
 @export var speed = 100.0
 @export var initial_direction = Direction.RIGHT
+@export var element_type: EnemyElementType
 
 var direction
 
 
 func _ready():
 	direction = initial_direction
+	if element_type != null:
+		%MeshInstance2D.modulate = element_type.get_color()
 
 
 func _physics_process(delta):
@@ -51,3 +55,9 @@ func is_on_cliff():
 
 func on_despawn():
 	queue_free()
+
+
+func got_caught():
+	enemy_caught.emit()
+	# TODO: Stun enemy, start timer for recovery
+	return element_type.spawning_ability

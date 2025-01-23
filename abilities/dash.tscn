@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqo5hhva3su4r"]
 
-[ext_resource type="Script" path="res://player/dash.gd" id="1_708yo"]
+[ext_resource type="Script" path="res://abilities/dash.gd" id="1_708yo"]
 
 [sub_resource type="Curve" id="Curve_856f1"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]

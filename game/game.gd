@@ -4,10 +4,12 @@ extends Node
 var current_level_index = 0
 var is_play_timer_running = false
 var play_time = 0.0
+var player_spawn_position = null
 
 
 func _ready() -> void:
 	load_level(0)
+	spawn_player()
 	start_timer()
 
 
@@ -18,18 +20,23 @@ func _process(delta):
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("reset_level"):
+		player_spawn_position = null
 		load_level(current_level_index)
+		spawn_player()
 		start_timer()
 
 	if Input.is_action_just_pressed("reset_checkpoint"):
 		load_level(current_level_index)
+		spawn_player()
 
 	if Input.is_action_just_pressed("load_next_level"):
 		var desired_level_index = current_level_index + 1
 		if desired_level_index >= %LevelManager.get_number_of_levels():
 			print("Already at last level.")
 		else:
+			player_spawn_position = null
 			load_level(desired_level_index)
+			spawn_player()
 			start_timer()
 
 	if Input.is_action_just_pressed("load_previous_level"):
@@ -37,14 +44,17 @@ func _unhandled_input(_event):
 		if desired_level_index < 0:
 			print("Already at first level.")
 		else:
+			player_spawn_position = null
 			load_level(desired_level_index)
+			spawn_player()
 			start_timer()
 
 
 func load_level(desired_level_index):
 	var loaded_successfully = %LevelManager.load_level(desired_level_index)
-	if loaded_successfully:
-		current_level_index = desired_level_index
+	if not loaded_successfully:
+		print("Error: Level could not be loaded!")
+	current_level_index = desired_level_index
 
 
 func set_play_time(new_time):
@@ -61,12 +71,13 @@ func stop_timer():
 	is_play_timer_running = false
 
 
-func spawn_player(player_position):
+func spawn_player():
 	if get_node_or_null("Player") != null:
 		var old_player = $Player
 		remove_child(old_player)
 		old_player.queue_free()
 
+	var player_position = get_player_spawn_position()
 	var player_scene = preload("res://player/player.tscn")
 
 	var player = player_scene.instantiate()
@@ -84,6 +95,13 @@ func spawn_player(player_position):
 	add_child.call_deferred(player)
 
 
+func get_player_spawn_position():
+	if player_spawn_position == null:
+		player_spawn_position = %LevelManager.get_player_spawn_position_of_level()
+
+	return player_spawn_position
+
+
 func on_player_despawned():
 	load_level(current_level_index)
 
@@ -93,14 +111,4 @@ func on_player_reached_goal():
 
 
 func on_player_reached_checkpoint(position):
-	%LevelManager.set_player_spawn_position(position)
-
-
-func on_level_manager_level_loaded():
-	var player_position = %LevelManager.get_player_spawn_position()
-
-	if player_position == null:
-		print("Error: Player spawn position could not be found!")
-		return
-
-	spawn_player(player_position)
+	player_spawn_position = position

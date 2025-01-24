@@ -1,13 +1,8 @@
 extends Node
 
 
-signal level_loaded()
-
-
 @export var levels: Array[PackedScene]
 
-
-var player_spawn_position = null
 var current_level = null
 
 
@@ -33,23 +28,15 @@ func load_level(level_index):
 		set_current_level(level)
 		success = true
 
-	level_loaded.emit()
 	return success
 
 
-func set_player_spawn_position(position):
-	player_spawn_position = position
-
-
-func get_player_spawn_position():
+func get_player_spawn_position_of_level():
 	if current_level == null:
 		print("Error: Current level not set!")
 		return null
 
-	if player_spawn_position == null \
-	and current_level.player_spawn_position == null:
+	if current_level.player_spawn_position == null:
 		print("Error: Level is missing PlayerSpawnPoint!")
 
-	player_spawn_position = current_level.player_spawn_position
-
-	return player_spawn_position
+	return current_level.player_spawn_position

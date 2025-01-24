@@ -92,7 +92,7 @@ func stop_timer():
 
 func spawn_player():
 	var player = null
-	if get_node_or_null("Player") != null:
+	if $Player != null:
 		player = $Player
 	else:
 		var player_scene = preload("res://player/player.tscn")
@@ -121,7 +121,11 @@ func get_player_spawn_position():
 
 
 func on_player_despawned():
+	if $Player != null:
+		await $Player.tree_exited
+
 	load_level(current_level_index)
+	spawn_player()
 
 
 func on_player_reached_goal():

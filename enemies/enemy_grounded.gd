@@ -19,6 +19,8 @@ enum Direction {
 @export var initial_direction = Direction.RIGHT
 @export var element_type: EnemyElementType
 
+@onready var deal_damage_area: Area2D = $DealDamageArea
+
 var state
 var direction
 
@@ -77,10 +79,12 @@ func enter_state(new_state):
 
 func enter_state_idling():
 	set_alpha(1.0)
+	deal_damage_area.monitoring = true
 	state = EnemyState.IDLING
 
 
 func enter_state_moving():
+	deal_damage_area.monitoring = true
 	set_alpha(1.0)
 	state = EnemyState.MOVING
 
@@ -89,6 +93,7 @@ func enter_state_recovering():
 	var last_state = state
 	set_alpha(0.1)
 	state = EnemyState.RECOVERING
+	deal_damage_area.monitoring = false
 	var recovery_timer = get_tree().create_timer(recovery_time)
 	recovery_timer.timeout.connect(enter_state.bind(last_state))
 

@@ -34,6 +34,7 @@ func _unhandled_input(_event):
 		load_level(current_level_index)
 		spawn_player()
 		start_timer()
+		await get_tree().create_timer(1.0).timeout
 		state = GameState.PLAYING_LEVEL
 
 
@@ -110,8 +111,7 @@ func spawn_player():
 
 		add_child.call_deferred(player)
 
-	var player_position = get_player_spawn_position()
-	player.position = player_position
+	player.position = get_player_spawn_position()
 
 
 func get_player_spawn_position():

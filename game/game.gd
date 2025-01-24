@@ -96,5 +96,11 @@ func on_player_reached_checkpoint(position):
 	%LevelManager.set_player_spawn_position(position)
 
 
-func on_level_manager_level_loaded(player_spawn_position):
-	spawn_player(player_spawn_position)
+func on_level_manager_level_loaded():
+	var player_position = %LevelManager.get_player_spawn_position()
+
+	if player_position == null:
+		print("Error: Player spawn position could not be found!")
+		return
+
+	spawn_player(player_position)

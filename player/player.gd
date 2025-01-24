@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal player_despawned
+signal player_reached_checkpoint(position)
 signal player_reached_goal
 
 const INFINITY = 1e20
@@ -222,6 +223,11 @@ func on_despawn():
 
 func on_goal_reached():
 	player_reached_goal.emit()
+
+
+func on_reached_checkpoint(position):
+	if position != null:
+		player_reached_checkpoint.emit(position)
 
 
 func on_took_damage(source):

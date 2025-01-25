@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
+signal enemy_caught
+
 enum EnemyState {
 	IDLING = 100,
 	MOVING = 200,
 	RECOVERING = 300,
 }
-
-signal enemy_caught
 
 enum Direction {
 	LEFT = -1,
@@ -18,6 +18,8 @@ enum Direction {
 @export var speed = 100.0
 @export var initial_direction = Direction.RIGHT
 @export var element_type: EnemyElementType
+
+@onready var deal_damage_area: Area2D = $DealDamageArea
 
 var state
 var direction
@@ -44,7 +46,7 @@ func handle_gravity(delta):
 
 
 func handle_turn():
-	if direction:
+	if direction != null:
 		if is_on_wall() \
 		or is_on_cliff():
 			flip_horizontally()
@@ -65,6 +67,7 @@ func flip_horizontally():
 func is_on_cliff():
 	return not %RayCast2D.is_colliding()
 
+
 func enter_state(new_state):
 	match new_state:
 		EnemyState.IDLING:
@@ -73,6 +76,8 @@ func enter_state(new_state):
 			enter_state_moving()
 		EnemyState.RECOVERING:
 			enter_state_recovering()
+
+	refresh_hitbox()
 
 
 func enter_state_idling():
@@ -106,3 +111,7 @@ func got_caught():
 	enemy_caught.emit()
 	enter_state(EnemyState.RECOVERING)
 	return element_type.spawning_ability
+
+
+func refresh_hitbox():
+	deal_damage_area.monitoring = state != EnemyState.RECOVERING

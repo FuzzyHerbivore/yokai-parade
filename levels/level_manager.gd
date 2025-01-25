@@ -1,41 +1,42 @@
 extends Node
 
 
-signal level_loaded(player_spawn_position)
-
-
 @export var levels: Array[PackedScene]
 
-
-var _current_level = null:
-	set = _set_current_level
-
-var number_of_levels:
-	get:
-		return levels.size()
+var current_level = null
 
 
-func _set_current_level(new_value):
-	if _current_level != null:
-		_current_level.queue_free()
-
-	_current_level = new_value
-
-	add_child.call_deferred(_current_level)
+func get_number_of_levels():
+	return levels.size()
 
 
-func load_level(level_index) -> bool:
+func set_current_level(new_level):
+	if current_level != null:
+		current_level.queue_free()
+
+	current_level = new_level
+
+	add_child.call_deferred(current_level)
+
+
+func load_level(level_index):
 	var success = false
 
 	if level_index < levels.size() \
 	and levels[level_index] != null:
 		var level = levels[level_index].instantiate()
-		_current_level = level
-		var player_spawn_position = level.player_spawn_position
-		if player_spawn_position != null:
-			level_loaded.emit(player_spawn_position)
-		else:
-			print("Player spawn position for level not found!")
+		set_current_level(level)
 		success = true
 
 	return success
+
+
+func get_player_spawn_position_of_level():
+	if current_level == null:
+		printerr("Error: Current level not set!")
+		return null
+
+	if current_level.get_player_spawn_position() == null:
+		printerr("Error: Level is missing PlayerSpawnPoint!")
+
+	return current_level.get_player_spawn_position()

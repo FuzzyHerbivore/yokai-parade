@@ -12,13 +12,8 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("use_ability"):
 		use_ability(player)
 
-	if Input.is_action_just_pressed("catch_power") \
-	and target_area != null:
-		var targetParent = target_area.get_parent()
-		if targetParent.has_method("got_caught"):
-			var ability = targetParent.got_caught()
-			set_current_ability(ability)
-
+	if Input.is_action_just_pressed("catch_power"):
+		catch_power()
 
 func use_ability(player):
 	if current_ability == null: return
@@ -30,6 +25,16 @@ func use_ability(player):
 	current_ability = null
 
 
+func catch_power():
+	if target_area == null: return
+
+	var target_parent = target_area.get_parent()
+	if !target_parent.has_method("got_caught"): return
+
+	var ability = target_parent.got_caught()
+	set_current_ability(ability)
+
+
 func set_current_ability(ability_scene):
 	if ability_scene == null: return
 
@@ -37,8 +42,7 @@ func set_current_ability(ability_scene):
 	add_child(ability)
 	current_ability = ability
 
-	if ability != null \
-	and ability.has_method("get_color"):
+	if ability.has_method("get_color"):
 		visual.self_modulate = ability.get_color()
 
 

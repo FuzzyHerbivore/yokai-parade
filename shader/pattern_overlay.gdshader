@@ -7,6 +7,12 @@ uniform vec2 tilemap_offset = vec2(0.0, 0.0);
 uniform bool tint;
 varying vec2 world_position;
 
+vec4 soft_light_blend(vec4 base, vec4 blend, float alpha){
+	return mix(2.0 * base * blend + base * base * (1.0 - 2.0 * blend), 
+	sqrt(base) * (2.0 * blend - 1.0) + (2.0 * base) * (1.0 - blend), 
+	alpha);
+}
+
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
 }
@@ -20,24 +26,17 @@ void fragment() {
 
 	vec4 texture_color = texture(TEXTURE, UV);
 
-
-	vec4 filtered_alpha = mix(texture_color, pattern_color, pattern_color.x);
+	float filtered_alpha = mix(texture_color, pattern_color, pattern_color.x).a;
 	
-	vec4 pattern = mix(texture_color, pattern_color, filtered_alpha.a);
+	vec4 pattern = mix(texture_color, pattern_color, filtered_alpha);
 	
-	vec4 applied_texture = mix(texture_color, pattern, -pattern_color.a);
+	vec4 soft_light_blend = soft_light_blend(texture_color,pattern,-pattern.a);
 	
-	vec4 soft_light_result = mix(2.0 * texture_color * pattern + texture_color * texture_color * (1.0 - 2.0 * pattern), 
-	sqrt(texture_color) * (2.0 * pattern - 1.0) + (2.0 * texture_color) * (1.0 - pattern), -pattern.a);
-	
-	vec4 final_color = mix(texture_color, soft_light_result, overlay_alpha * pattern_color.a);
+	vec4 final_color = mix(texture_color, soft_light_blend, overlay_alpha * pattern_color.a);
 	
 	if (tint)
-	COLOR = soft_light_result;
+	COLOR = soft_light_blend;
 	
 	else
 	COLOR = final_color;
 }
-
-
-

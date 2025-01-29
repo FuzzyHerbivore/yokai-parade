@@ -20,12 +20,12 @@
 [ext_resource type="PackedScene" uid="uid://dotrddyc18eeh" path="res://levels/checkpoint.tscn" id="12_t17iw"]
 [ext_resource type="Texture2D" uid="uid://m1tnyobaeawn" path="res://levels/foreground.png" id="16_cdrmb"]
 
-[sub_resource type="Gradient" id="Gradient_ee1f0"]
+[sub_resource type="Gradient" id="Gradient_afmm7"]
 interpolation_color_space = 1
 colors = PackedColorArray(0.658824, 0.835294, 0.847059, 1, 0.752941, 0.85098, 0.921569, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0as6y"]
-gradient = SubResource("Gradient_ee1f0")
+gradient = SubResource("Gradient_afmm7")
 width = 1920
 height = 1080
 fill_from = Vector2(0, 1)

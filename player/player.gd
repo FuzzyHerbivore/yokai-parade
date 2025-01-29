@@ -17,6 +17,7 @@ const INFINITY = 1e20
 @export_range(0.0, 1.0, 0.01) var jump_buffer_time = 0.15
 @export_category("Enemey Push")
 @export var push_back = 500.0
+@export_range(0.0, 1.5, 0.1) var push_heigth_percentage = .75
 
 @onready var ability_manager: Node2D = $AbilityManager
 
@@ -60,6 +61,9 @@ func run():
 
 func update_gravity(delta):
 	local_velocity.y += get_gravity().y * delta
+
+	fall_on_ceiling(delta)
+
 	reset_vertical_velocity()
 
 
@@ -85,6 +89,14 @@ func calc_look_direction():
 	if move_direction == 0.0: return
 
 	look_direction = move_direction
+
+
+func fall_on_ceiling(delta):
+	if velocity.y: return
+
+	if local_velocity.y or outer_velocity_sources.y:
+		local_velocity.y = get_gravity().y * delta
+		outer_velocity_sources.y = 0
 
 
 func handle_coyote_time(delta):
@@ -246,8 +258,10 @@ func on_reached_checkpoint(checkpoint_position):
 func on_took_damage(source):
 	if source != null \
 	and source != $DealDamageArea:
-		add_velocity_modifier(VelocityModifier.new(-(source.global_position - position).normalized() * push_back, .2, 3, true))
+		var push_vel = -(source.global_position - position).normalized() * push_back
+		push_vel.y *= push_heigth_percentage
+		add_velocity_modifier(VelocityModifier.new(push_vel, .2, 3, true))
 		# TODO: Stumble back and make invincible for a while, see GDD
-		#note: temporary implementation, just moves you in the flipped look_dir rn
+		#note: temporary implementation
 		if Input.get_connected_joypads().size() > 0:
 			Input.start_joy_vibration(0, 0.5, 0.0, 0.5)

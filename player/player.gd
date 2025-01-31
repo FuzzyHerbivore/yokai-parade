@@ -13,11 +13,12 @@ const INFINITY = 1e20
 @export var jump_velocity = 600.0
 @export var fall_speed_clamp = 600.0
 @export_category("Movement extras")
-@export_range(0.0, 1.0, 0.01) var jump_coyote_time = 0.15
-@export_range(0.0, 1.0, 0.01) var jump_buffer_time = 0.15
+@export_range(.0, 1.0, .01) var jump_coyote_time = .15
+@export_range(.0, 1.0, .01) var jump_buffer_time = .15
+@export_range(.0, .7, .01) var jump_heigth_smooth = .6
 @export_category("Enemey Push")
 @export var push_back = 500.0
-@export_range(0.0, 1.5, 0.1) var push_heigth_percentage = .75
+@export_range(.0, 1.5, .1) var push_heigth_percentage = .75
 
 @onready var ability_manager: Node2D = $AbilityManager
 
@@ -78,6 +79,7 @@ func ability_smoothing():
 func jump(delta):
 	handle_coyote_time(delta)
 	jump_logic()
+	variable_jump_heigth()
 	handle_jump_buffer_time(delta)
 
 
@@ -116,6 +118,12 @@ func jump_logic():
 	if !can_jump: return
 
 	local_velocity.y = -jump_velocity
+
+
+func variable_jump_heigth():
+	if jump_heigth_smooth == 0: return
+	if Input.is_action_just_released("jump") && player_control && local_velocity.y < 0:
+		local_velocity.y *= jump_heigth_smooth
 
 
 func handle_jump_buffer_time(delta):

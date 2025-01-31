@@ -15,7 +15,8 @@ const INFINITY = 1e20
 @export_category("Movement extras")
 @export_range(.0, 1.0, .01) var jump_coyote_time = .15
 @export_range(.0, 1.0, .01) var jump_buffer_time = .15
-@export_range(.0, .7, .01) var jump_heigth_smooth = .6
+@export_range(.0, 1, .01) var initial_jump_heigth_smooth = .7
+@export_range(.0, .9, .01) var jump_heigth_smooth = .6
 @export_category("Enemey Push")
 @export var push_back = 500.0
 @export_range(.0, 1.5, .1) var push_heigth_percentage = .75
@@ -34,6 +35,7 @@ var outer_velocity_sources := Vector2(0,0)
 
 var velocity_mod_instigator = []
 var player_control := true
+var is_cancelling_jump := false
 
 
 func _physics_process(delta):
@@ -121,9 +123,17 @@ func jump_logic():
 
 
 func variable_jump_heigth():
-	if jump_heigth_smooth == 0: return
 	if Input.is_action_just_released("jump") && player_control && local_velocity.y < 0:
-		local_velocity.y *= jump_heigth_smooth
+		if initial_jump_heigth_smooth != 0:
+			local_velocity.y *= initial_jump_heigth_smooth
+		is_cancelling_jump = true
+
+	if is_on_floor():
+		is_cancelling_jump = false
+
+	if is_cancelling_jump && local_velocity.y < 0:
+		if jump_heigth_smooth != 0:
+			local_velocity.y *= jump_heigth_smooth
 
 
 func handle_jump_buffer_time(delta):

@@ -30,6 +30,7 @@ script = ExtResource("1_uybn7")
 speed = 325.0
 acceleration = 100.0
 deceleration = 70.0
+outer_deceleration = 70.0
 jump_velocity = 750.0
 fall_speed_clamp = 950.0
 jump_coyote_time = 0.2
@@ -51,7 +52,7 @@ region_rect = Rect2(0, 0, 160, 120)
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("2_es05j")
 
-[node name="Attack" type="Node2D" parent="."]
+[node name="AttackVisualizer" type="Node2D" parent="."]
 position = Vector2(51, -76)
 script = ExtResource("4_iki6t")
 trail_points_max = 20
@@ -62,9 +63,12 @@ position = Vector2(86, 21)
 [node name="AbilityVisual" type="MeshInstance2D" parent="."]
 unique_name_in_owner = true
 self_modulate = Color(0.580392, 0.580392, 0.580392, 1)
-position = Vector2(30, 14)
+position = Vector2(36, -61)
 scale = Vector2(32.1261, 32.1261)
 mesh = SubResource("SphereMesh_046n8")
+
+[node name="AbilityTarget" type="Node2D" parent="."]
+position = Vector2(29, 16)
 
 [node name="AttackLine" type="Line2D" parent="."]
 width_curve = SubResource("Curve_nsbbi")

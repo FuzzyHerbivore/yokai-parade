@@ -1,29 +1,30 @@
 extends Node2D
 
+#Note: Temporary implementation, just for visualisation
+
 @export var trail_points_max = 4
 @onready var attack_line: Line2D = $"../AttackLine"
 @onready var attack_target: Node2D = $"../AttackTarget"
+@onready var ability_visual: MeshInstance2D = %AbilityVisual
+@onready var ability_target: Node2D = $"../AbilityTarget"
+
 var hit_progress = .0
 var is_attacking
+var is_using_ability
+var ability_progress = .0
 var initial_pos
+var initial_ability_pos
 
 func _ready():
 	initial_pos = position
-
+	position = attack_target.position
+	initial_ability_pos = ability_visual.position
 
 func _process(delta):
 	update_trail()
 	flip()
-
-	var is_in_reset_range = attack_target.position.length() - position.length() > 1.0
-	if Input.is_action_just_pressed("catch_power") && !is_in_reset_range:
-		position = initial_pos
-		hit_progress = .0
-		is_attacking = true
-
-	elif is_attacking:
-		hit_progress += delta
-		position = position.slerp(attack_target.position, hit_progress)
+	attack(delta)
+	ability(delta)
 
 
 
@@ -36,3 +37,29 @@ func update_trail():
 
 func flip():
 	attack_line.scale.x = $"..".look_direction
+
+
+func attack(delta):
+	var is_in_reset_range = check_is_in_reset_range(attack_target, self)
+	if Input.is_action_just_pressed("catch_power") && !is_in_reset_range:
+		position = initial_pos
+		hit_progress = .0
+
+	else:
+		hit_progress += delta
+		position = position.slerp(attack_target.position, hit_progress)
+
+
+func ability(delta):
+	var is_in_reset_range = check_is_in_reset_range(ability_target, ability_visual)
+	if Input.is_action_just_pressed("use_ability") && !is_in_reset_range:
+		ability_visual.position = initial_ability_pos
+		ability_progress = .0
+
+	else:
+		ability_progress += delta
+		ability_visual.position = ability_visual.position.lerp(ability_target.position, ability_progress)
+
+
+func check_is_in_reset_range(a, b):
+	return a.position.length() - b.position.length() > 1.0

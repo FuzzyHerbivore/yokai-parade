@@ -10,6 +10,7 @@ const INFINITY = 1e20
 @export var speed = 300.0
 @export var acceleration = 80.0
 @export var deceleration = 50.0
+@export var outer_deceleration = 50.0
 @export var jump_velocity = 600.0
 @export var fall_speed_clamp = 600.0
 @export_category("Movement extras")
@@ -74,7 +75,7 @@ func update_gravity(delta):
 
 func ability_smoothing():
 	if check_movement_mods_empty():
-		outer_velocity_sources.x = move_toward(outer_velocity_sources.x, 0, deceleration)
+		outer_velocity_sources.x = move_toward(outer_velocity_sources.x, 0, outer_deceleration)
 
 		if is_on_floor():
 			outer_velocity_sources.y = 0

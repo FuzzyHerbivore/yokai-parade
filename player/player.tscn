@@ -1,16 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnxi2gyvo83ec"]
+[gd_scene load_steps=12 format=3 uid="uid://dnxi2gyvo83ec"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
 [ext_resource type="Script" path="res://abilities/ability_manager.gd" id="2_es05j"]
 [ext_resource type="PackedScene" uid="uid://cp6b4v14u8stv" path="res://components/deal_damage_area.tscn" id="4_cn11c"]
+[ext_resource type="Script" path="res://player/attack.gd" id="4_iki6t"]
 [ext_resource type="PackedScene" uid="uid://bpccb0pqmr7r5" path="res://components/take_damage_area.tscn" id="4_y0ly5"]
 [ext_resource type="Texture2D" uid="uid://dylr0e5cupavl" path="res://player/player.png" id="5_eow6v"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_idevo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mi2e"]
 radius = 25.0
 height = 100.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_046n8"]
+
+[sub_resource type="Curve" id="Curve_nsbbi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82728"]
 radius = 73.3333
@@ -19,8 +24,6 @@ height = 168.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4pm2j"]
 radius = 18.0
 height = 74.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_046n8"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_uybn7")
@@ -36,17 +39,35 @@ jump_heigth_smooth = 0.8
 push_back = 800.0
 push_heigth_percentage = 0.4
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_1mi2e")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(32, -10)
+texture = ExtResource("5_eow6v")
+region_enabled = true
+region_rect = Rect2(0, 0, 160, 120)
+
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("2_es05j")
 
-[node name="Visual" type="MeshInstance2D" parent="."]
-visible = false
-self_modulate = Color(0.58, 0.58, 0.58, 1)
-scale = Vector2(50, 50)
-mesh = SubResource("CapsuleMesh_idevo")
+[node name="Attack" type="Node2D" parent="."]
+position = Vector2(81, -62)
+script = ExtResource("4_iki6t")
+trail_points_max = 20
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_1mi2e")
+[node name="AttackTarget" type="Node2D" parent="."]
+position = Vector2(61, 62)
+
+[node name="AbilityVisual" type="MeshInstance2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.580392, 0.580392, 0.580392, 1)
+position = Vector2(30, 14)
+scale = Vector2(32.1261, 32.1261)
+mesh = SubResource("SphereMesh_046n8")
+
+[node name="AttackLine" type="Line2D" parent="."]
+width_curve = SubResource("Curve_nsbbi")
 
 [node name="DealDamageArea" parent="." instance=ExtResource("4_cn11c")]
 collision_mask = 4
@@ -62,19 +83,6 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TakeDamageArea"]
 shape = SubResource("CapsuleShape2D_4pm2j")
 debug_color = Color(0.976648, 0, 0.410241, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(32, -10)
-texture = ExtResource("5_eow6v")
-region_enabled = true
-region_rect = Rect2(0, 0, 160, 120)
-
-[node name="AbilityVisual" type="MeshInstance2D" parent="."]
-unique_name_in_owner = true
-self_modulate = Color(0.580392, 0.580392, 0.580392, 1)
-position = Vector2(28, 14)
-scale = Vector2(32.1261, 32.1261)
-mesh = SubResource("SphereMesh_046n8")
 
 [connection signal="area_entered" from="DealDamageArea" to="." method="on_deal_damage_area_entered"]
 [connection signal="area_entered" from="DealDamageArea" to="AbilityManager" method="_on_deal_damage_area_entered"]

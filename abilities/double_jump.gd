@@ -9,7 +9,11 @@ const ELEMENT_TYPE = ELEMENTS.ElementType.AIR
 
 
 func use(player_manager):
-	var vel_modifier = VelocityModifier.new(Vector2(0, -double_jump_vel), double_jump_duration, 1, disable_player_movement)
+	if Input.get_connected_joypads().size() > 0:
+		Input.start_joy_vibration(0, 0.0, 1.0, 0.5)
+	var vel_modifier = VelocityModifier.new(Vector2(0, -double_jump_vel), \
+	double_jump_duration, 1, disable_player_movement, true)
+
 	vel_modifier.set_ability( $".")
 	player_manager.add_velocity_modifier(vel_modifier)
 

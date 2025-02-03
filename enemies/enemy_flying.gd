@@ -1,18 +1,20 @@
 extends PathFollow2D
 
+signal enemy_caught
+
 enum EnemyState {
 	IDLING = 100,
 	MOVING = 200,
 	RECOVERING = 300,
 }
 
-signal enemy_caught
-
 @export var starting_state: EnemyState = EnemyState.MOVING
 @export var recovery_time = 3.0
 @export var easing_curve: Curve
 @export var max_speed = 200.0
 @export var element_type: EnemyElementType
+
+@onready var deal_damage_area: Area2D = $DealDamageArea
 
 var state
 var speed = 0.0
@@ -51,7 +53,7 @@ func _physics_process(delta):
 			process_moving(delta)
 
 
-func process_idling(delta):
+func process_idling(_delta):
 	pass
 
 
@@ -86,6 +88,8 @@ func enter_state(new_state):
 		EnemyState.RECOVERING:
 			enter_state_recovering()
 
+	refresh_hitbox()
+
 
 func enter_state_idling():
 	set_alpha(1.0)
@@ -118,3 +122,7 @@ func got_caught():
 	enemy_caught.emit()
 	enter_state(EnemyState.RECOVERING)
 	return element_type.spawning_ability
+
+
+func refresh_hitbox():
+	deal_damage_area.monitoring = state != EnemyState.RECOVERING

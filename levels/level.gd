@@ -1,11 +1,14 @@
 extends Node2D
 
 
-var player_spawn_position:
-	get:
-		return $PlayerSpawnPoint.position
+func get_player_spawn_position():
+	if get_node_or_null("PlayerSpawnPoint") == null:
+		printerr("Error: No PlayerSpawnPoint in this level!")
+	return $PlayerSpawnPoint.global_position
 
 
-func _on_despawn_area_body_entered(body):
-	if body.has_method("despawn"):
-		body.despawn()
+func set_player_spawn_position(new_position):
+	if get_node_or_null("PlayerSpawnPoint") != null:
+		$PlayerSpawnPoint.global_position = new_position
+	else:
+		printerr("Error: No PlayerSpawnPoint in this level!")

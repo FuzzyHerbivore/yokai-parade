@@ -12,13 +12,17 @@ var is_dashing := false
 var body_in_damage_radius
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_dashing:
 		apply_dash_damage()
 
 
 func use(player_manager):
-	var vel_modifier = VelocityModifier.new(Vector2(dash_velocity, 0), dash_duration, 1, disable_player_movement)
+	if Input.get_connected_joypads().size() > 0:
+		Input.start_joy_vibration(0, 1.0, 0.0, dash_duration)
+	var vel_modifier = VelocityModifier.new(Vector2(dash_velocity, 0), dash_duration, 1, \
+	disable_player_movement, true)
+
 	vel_modifier.set_ability( $".")
 	player_manager.add_velocity_modifier(vel_modifier)
 	is_dashing = true
@@ -39,7 +43,7 @@ func get_color():
 	return ELEMENTS.get_color(ELEMENT_TYPE)
 
 
-func _on_deal_dash_damage_area_body_exited(body):
+func _on_deal_dash_damage_area_body_exited(_body):
 	body_in_damage_radius = null
 
 

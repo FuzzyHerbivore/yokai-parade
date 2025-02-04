@@ -8,7 +8,7 @@ var current_ability
 var target_in_damage_radius
 
 @onready var player: CharacterBody2D = $".."
-@onready var visual: MeshInstance2D = $"../Visual"
+@onready var visual: MeshInstance2D = %AbilityVisual
 
 
 func _unhandled_input(_event):
@@ -72,3 +72,7 @@ func on_deal_damage_area_entered(other):
 func on_deal_damage_area_exited(other):
 	if other == target_in_damage_radius:
 		target_in_damage_radius = null
+
+
+func _on_deal_damage_area_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

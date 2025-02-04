@@ -36,7 +36,7 @@ func update_trail():
 
 
 func flip():
-	attack_line.scale.x = $"..".look_direction
+	attack_line.scale.x = $"../..".look_direction
 
 
 func attack(delta):

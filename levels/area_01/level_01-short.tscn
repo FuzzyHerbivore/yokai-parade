@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://c0wwjpu8qrub0"]
+[gd_scene load_steps=27 format=4 uid="uid://due8dl5rogldq"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_455ds"]
 [ext_resource type="Texture2D" uid="uid://b66gcqiak8txp" path="res://levels/area_01/mountains_far.png" id="2_7nuu0"]

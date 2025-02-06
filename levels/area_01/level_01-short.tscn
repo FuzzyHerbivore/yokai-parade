@@ -234,7 +234,6 @@ curve = SubResource("Curve2D_c6ivu")
 
 [node name="EnemyFlying" parent="2nd-3rdCheckpoint/Enemies/FireFlyingIdling" instance=ExtResource("11_pkx78")]
 position = Vector2(11811, -210)
-starting_state = 100
 element_type = ExtResource("10_c74wk")
 
 [node name="WoodenWalls" type="Node2D" parent="2nd-3rdCheckpoint"]

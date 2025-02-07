@@ -12,15 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://cty3pypmnw01w" path="res://ui/ui_placeholder_topright_front.png" id="9_suwya"]
 [ext_resource type="Texture2D" uid="uid://cgnkxtqnxqyp1" path="res://ui/ui_placeholder_topright_frontII.png" id="11_0766i"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkq5m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7ves"]
 shader = ExtResource("9_3dgjy")
-shader_parameter/mix_amount = 0.0
+shader_parameter/darkness_modifier = 1.0
 shader_parameter/color_a = Color(0.32549, 0.301961, 0.854902, 1)
 shader_parameter/color_b = Color(0.141176, 0.541176, 0.866667, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7ves"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkq5m"]
 shader = ExtResource("9_3dgjy")
-shader_parameter/mix_amount = 0.0
+shader_parameter/darkness_modifier = 1.0
 shader_parameter/color_a = Color(0.32549, 0.301961, 0.854902, 1)
 shader_parameter/color_b = Color(0.141176, 0.541176, 0.866667, 1)
 
@@ -53,14 +53,20 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00:00"
 
-[node name="UiPlaceholderToprightBack" type="Sprite2D" parent="."]
+[node name="UITests" type="Node2D" parent="."]
+
+[node name="UiPlaceholderToprightFrontIi" type="Sprite2D" parent="UITests"]
+material = SubResource("ShaderMaterial_p7ves")
+position = Vector2(546, -296)
+texture = ExtResource("11_0766i")
+
+[node name="UIBackDrop" type="Node2D" parent="UITests"]
+
+[node name="UiPlaceholderToprightBack" type="Sprite2D" parent="UITests/UIBackDrop"]
+position = Vector2(-548.5, -294.5)
 texture = ExtResource("8_ltg2l")
 
-[node name="UiPlaceholderToprightFront" type="Sprite2D" parent="."]
+[node name="UiPlaceholderToprightFront" type="Sprite2D" parent="UITests/UIBackDrop"]
 material = SubResource("ShaderMaterial_gkq5m")
+position = Vector2(-548.5, -294.5)
 texture = ExtResource("9_suwya")
-
-[node name="UiPlaceholderToprightFrontIi" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_p7ves")
-position = Vector2(834, 1)
-texture = ExtResource("11_0766i")

@@ -1,4 +1,4 @@
-extends "res://components/damage_area.gd"
+extends "res://components/damage/damage_area.gd"
 
 
 signal deal_damage_area_entered(target)

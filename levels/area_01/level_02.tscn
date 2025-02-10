@@ -143,7 +143,6 @@ curve = SubResource("Curve2D_nxnq1")
 
 [node name="EnemyFlying" parent="1st-2ndCheckpoint/Enemies/AirFlyingIdling" instance=ExtResource("11_o4jt2")]
 position = Vector2(8841, -556)
-starting_state = 100
 element_type = ExtResource("9_5kbpl")
 
 [node name="FireFlyingIdling" type="Path2D" parent="1st-2ndCheckpoint/Enemies"]
@@ -152,7 +151,6 @@ curve = SubResource("Curve2D_57x0w")
 
 [node name="EnemyFlying" parent="1st-2ndCheckpoint/Enemies/FireFlyingIdling" instance=ExtResource("11_o4jt2")]
 position = Vector2(9456, -784)
-starting_state = 100
 element_type = ExtResource("10_3y1es")
 
 [node name="WoodenWalls" type="Node2D" parent="1st-2ndCheckpoint"]
@@ -198,7 +196,6 @@ curve = SubResource("Curve2D_nxnq1")
 
 [node name="EnemyFlying" parent="2nd-3rdCheckpoint/Enemies/AirFlyingIdling2" instance=ExtResource("11_o4jt2")]
 position = Vector2(8841, -556)
-starting_state = 100
 element_type = ExtResource("9_5kbpl")
 
 [node name="AirFlyingMoving" type="Path2D" parent="2nd-3rdCheckpoint/Enemies"]

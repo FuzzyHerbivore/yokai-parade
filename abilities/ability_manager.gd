@@ -40,7 +40,7 @@ func catch_power():
 	catch_grace()
 
 	if target_in_damage_radius == null: return
-	var target_parent = target_in_damage_radius.get_parent()
+	var target_parent = target_in_damage_radius.get_damage_subject()
 	if target_parent == null: return
 	if not target_parent.has_method("got_caught"): return
 

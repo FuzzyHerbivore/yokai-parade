@@ -27,6 +27,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Player" type="CharacterBody2D"]
+top_level = true
 collision_layer = 2
 script = ExtResource("1_uybn7")
 speed = 450.0

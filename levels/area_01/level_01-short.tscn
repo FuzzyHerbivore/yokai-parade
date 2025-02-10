@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bomxlv8ndomnc" path="res://enemies/enemy_grounded.tscn" id="8_8a46a"]
 [ext_resource type="Resource" uid="uid://tvyt8dx4csl5" path="res://enemies/types/enemy_element_type_air.tres" id="9_qkkl1"]
 [ext_resource type="Resource" uid="uid://be56k4m11w44j" path="res://enemies/types/enemy_element_type_fire.tres" id="10_c74wk"]
-[ext_resource type="PackedScene" path="res://enemies/enemy_flying.tscn" id="11_pkx78"]
+[ext_resource type="PackedScene" uid="uid://b5s4b6xdudwso" path="res://enemies/enemy_flying.tscn" id="11_pkx78"]
 [ext_resource type="Material" uid="uid://wyxyitttdya3" path="res://shader/TilemapShader.tres" id="11_wyjbl"]
 [ext_resource type="PackedScene" uid="uid://cfnhlackt0u25" path="res://levels/modules/wall_destructible.tscn" id="12_dw2od"]
 [ext_resource type="PackedScene" uid="uid://cijdb50pj3jc7" path="res://levels/modules/despawn_area.tscn" id="13_tyune"]
@@ -115,7 +115,6 @@ curve = SubResource("Curve2D_u3p0n")
 
 [node name="EnemyFlying" parent="1st-2ndCheckpoint/Enemies/AirFlyingIdling" instance=ExtResource("11_pkx78")]
 position = Vector2(457, -91)
-element_type = ExtResource("9_qkkl1")
 
 [node name="WoodenWalls" type="Node2D" parent="1st-2ndCheckpoint"]
 
@@ -200,7 +199,6 @@ curve = SubResource("Curve2D_u3p0n")
 
 [node name="EnemyFlying" parent="2nd-3rdCheckpoint/Enemies/AirFlyingIdling" instance=ExtResource("11_pkx78")]
 position = Vector2(1125, -162)
-element_type = ExtResource("9_qkkl1")
 
 [node name="FireFlyingIdling" type="Path2D" parent="2nd-3rdCheckpoint/Enemies"]
 position = Vector2(539, -61)
@@ -277,7 +275,6 @@ curve = SubResource("Curve2D_u3p0n")
 
 [node name="EnemyFlying" parent="3rd-4thCheckpoint/Enemies/AirFlyingIdling2" instance=ExtResource("11_pkx78")]
 position = Vector2(3701, -32)
-element_type = ExtResource("9_qkkl1")
 
 [node name="AirFlyingIdling" type="Path2D" parent="3rd-4thCheckpoint/Enemies"]
 position = Vector2(10329, 79)
@@ -285,7 +282,6 @@ curve = SubResource("Curve2D_u3p0n")
 
 [node name="EnemyFlying" parent="3rd-4thCheckpoint/Enemies/AirFlyingIdling" instance=ExtResource("11_pkx78")]
 position = Vector2(4582, -484)
-element_type = ExtResource("9_qkkl1")
 
 [node name="FireFlyingMoving" type="Path2D" parent="3rd-4thCheckpoint/Enemies"]
 position = Vector2(2601, -93)
@@ -301,7 +297,6 @@ curve = SubResource("Curve2D_u3p0n")
 
 [node name="EnemyFlying" parent="3rd-4thCheckpoint/Enemies/AirFlyingIdling3" instance=ExtResource("11_pkx78")]
 position = Vector2(6785, -868)
-element_type = ExtResource("9_qkkl1")
 
 [node name="FireFlyingMoving2" type="Path2D" parent="3rd-4thCheckpoint/Enemies"]
 position = Vector2(4224, -449)
@@ -350,7 +345,6 @@ curve = SubResource("Curve2D_u3p0n")
 
 [node name="EnemyFlying" parent="4th-Finish/Enemies/AirFlyingIdling" instance=ExtResource("11_pkx78")]
 position = Vector2(12392, -714)
-element_type = ExtResource("9_qkkl1")
 
 [node name="WoodenWalls" type="Node2D" parent="4th-Finish"]
 

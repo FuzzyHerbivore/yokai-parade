@@ -9,9 +9,16 @@ var damage_subject
 
 @onready var player: CharacterBody2D = $".."
 @onready var visual: MeshInstance2D = %AbilityVisual
-@export var hit_cooldown : float = .6
+@export var hit_cooldown_time : float = .6
 @export var hit_grace_time : float = .2
+var hit_cooldown_timer
 var hit_grace_timer
+
+@onready var visualizer: Node2D = $"../Visuals/Visualizer"
+
+
+func _ready():
+	hit_cooldown_timer = create_timer(0.1)
 
 
 func _unhandled_input(_event):
@@ -34,14 +41,31 @@ func use_ability():
 
 func catch_power():
 	catch_grace_time()
+	if hit_cooldown(): return
+	visualizer.attack_command()
 
+	absorb_ability()
+
+
+func absorb_ability():
 	if damage_subject == null: return
-	var target_parent = damage_subject.get_damage_subject()
-	if target_parent == null: return
-	if not target_parent.has_method("got_caught"): return
+	var subject_parent = damage_subject.get_damage_subject()
+	if subject_parent == null: return
+	if not subject_parent.has_method("got_caught"): return
 
-	var ability = target_parent.got_caught(self)
+	var ability = subject_parent.got_caught(self)
 	set_current_ability(ability)
+
+
+func hit_cooldown():
+	if is_hit_on_cooldown(): return true
+
+	hit_cooldown_timer = create_timer(hit_cooldown_time)
+	return false
+
+
+func is_hit_on_cooldown():
+	return hit_cooldown_timer.time_left > 0
 
 
 func catch_grace_time():
@@ -91,7 +115,7 @@ func on_deal_damage_area_entered(other):
 	damage_subject = other
 
 	if hit_timer_active():
-		catch_power()
+		absorb_ability()
 
 
 func on_deal_damage_area_exited(other):

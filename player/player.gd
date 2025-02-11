@@ -22,7 +22,7 @@ const INFINITY = 1e20
 @export var push_back = 500.0
 @export_range(.0, 1.5, .1) var push_height_percentage = .75
 
-@onready var ability_manager: Node2D = $AbilityManager
+@onready var abilities: Node2D = $Abilities
 
 
 var coyote_timer = 0.15
@@ -200,14 +200,8 @@ func add_velocity_modifier(velocity_mod):
 
 
 func create_vel_duration_timer(velocity_mod):
-	var duration_timer = Timer.new()
-	add_child(duration_timer)
-
-	duration_timer.wait_time = velocity_mod.duration
-	duration_timer.one_shot = true
+	var duration_timer = create_timer(velocity_mod.duration)
 	duration_timer.timeout.connect(on_vel_mod_ended.bind(velocity_mod))
-	duration_timer.timeout.connect(duration_timer.queue_free)
-	duration_timer.start()
 
 
 func on_vel_mod_ended(velocity_mod):
@@ -232,12 +226,12 @@ func delete_vel_mod(velocity_mod):
 
 func reset_velocity_mod_effects(velocity_mod):
 	player_control = true
-	if velocity_mod.ability != null:
-		velocity_mod.ability.queue_free()
+	if velocity_mod.ability != null && velocity_mod.ability.has_method("exit"):
+		velocity_mod.ability.exit()
 
 
 func clear_abilities():
-	ability_manager.clear_abilities()
+	abilities.clear_abilities()
 
 
 func check_movement_mods_empty():
@@ -302,6 +296,10 @@ func on_took_damage(source):
 		#note: temporary implementation
 		if Input.get_connected_joypads().size() > 0:
 			Input.start_joy_vibration(0, 0.5, 0.0, 0.5)
+
+
+func create_timer(time):
+	return get_tree().create_timer(time)
 
 
 func toggle_debug():

@@ -222,6 +222,11 @@ position = Vector2(13207, 1035)
 initial_state = 200
 element_type = ExtResource("10_o7ka8")
 
+[node name="FireGroundedMoving10" parent="2nd-3rdCheckpoint/Enemies" instance=ExtResource("8_d6tq4")]
+position = Vector2(13330, 1353)
+initial_state = 200
+element_type = ExtResource("10_o7ka8")
+
 [node name="AirGroundedMoving6" parent="2nd-3rdCheckpoint/Enemies" instance=ExtResource("8_d6tq4")]
 position = Vector2(10313, 590)
 initial_state = 200

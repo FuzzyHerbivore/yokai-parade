@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://daq0ts878ltif"]
+[gd_scene load_steps=16 format=3 uid="uid://daq0ts878ltif"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_g4chm"]
 [ext_resource type="PackedScene" uid="uid://dxgxdinu0kjs8" path="res://levels/level_01.tscn" id="1_i7bh5"]
@@ -6,9 +6,15 @@
 [ext_resource type="Script" path="res://levels/level_manager.gd" id="3_6riac"]
 [ext_resource type="PackedScene" uid="uid://c725ohihulje0" path="res://levels/level-01-01.tscn" id="4_5v7ek"]
 [ext_resource type="Theme" uid="uid://bqdlc5vw8gpa5" path="res://assets/theme/theme.tres" id="4_k85dl"]
-[ext_resource type="Texture2D" uid="uid://ypqr6ijmg3u4" path="res://ui/ui_placeholder_bottomleft.png" id="7_46wpu"]
-[ext_resource type="Texture2D" uid="uid://d0wexbvsj1h6t" path="res://ui/suck_my_dick.png" id="8_10r5m"]
-[ext_resource type="Texture2D" uid="uid://b8p1sx8g5vyww" path="res://ui/ui_placeholder_topright.png" id="8_m5s8q"]
+[ext_resource type="Texture2D" uid="uid://deamof6wk7rii" path="res://ui/ui_temp_ingame_topright_bg.png" id="7_0b8hu"]
+[ext_resource type="Texture2D" uid="uid://cu8145mbillq7" path="res://ui/ui_temp_ingame_topright_main.png" id="8_64m3r"]
+[ext_resource type="Texture2D" uid="uid://dy473cfis2wyf" path="res://ui/ui_temp_ingame_clock.png" id="9_32rt1"]
+[ext_resource type="Texture2D" uid="uid://cq6ew1rj7i5xf" path="res://ui/ui_temp_ingame_topright_line.png" id="9_sx365"]
+[ext_resource type="Texture2D" uid="uid://cqbl0stgs86k1" path="res://ui/ui_temp_ingame_bottomleft__bg.png" id="11_f2xfa"]
+[ext_resource type="Texture2D" uid="uid://dx00l7ajc4io6" path="res://ui/ui_temp_ingame_bottomleft__main.png" id="12_sckdn"]
+[ext_resource type="Texture2D" uid="uid://blcmkd8j63hby" path="res://ui/ui_temp_ingame_bottomleft__line.png" id="13_yog8w"]
+[ext_resource type="Texture2D" uid="uid://bsi2owtjdi83n" path="res://ui_temp_ingame_ability_bg.png" id="14_i55oj"]
+[ext_resource type="Texture2D" uid="uid://cajispq8sq8cp" path="res://ui_temp_ingame_ability_line.png" id="16_aq85m"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_g4chm")
@@ -23,30 +29,132 @@ position_smoothing_enabled = true
 
 [node name="UI Layer" type="CanvasLayer" parent="."]
 
-[node name="UiPlaceholderBottomleft" type="Sprite2D" parent="UI Layer"]
-position = Vector2(960, 540)
-texture = ExtResource("7_46wpu")
+[node name="Control" type="Control" parent="UI Layer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 
-[node name="UiPlaceholderTopright" type="Sprite2D" parent="UI Layer"]
-position = Vector2(960, 540)
-texture = ExtResource("8_m5s8q")
+[node name="TopRight bg" type="TextureRect" parent="UI Layer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -817.0
+offset_top = -1.0
+offset_bottom = 483.0
+texture = ExtResource("7_0b8hu")
 
-[node name="SuckMyDick" type="Sprite2D" parent="UI Layer"]
-position = Vector2(1643, 135)
-texture = ExtResource("8_10r5m")
+[node name="TopRight main" type="TextureRect" parent="UI Layer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.002
+anchor_right = 1.0
+anchor_bottom = -0.002
+offset_left = -817.0
+offset_top = 0.09
+offset_bottom = 484.09
+texture = ExtResource("8_64m3r")
 
-[node name="TopUI" type="MarginContainer" parent="UI Layer"]
+[node name="TopRight line" type="TextureRect" parent="UI Layer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.002
+anchor_right = 1.0
+anchor_bottom = -0.002
+offset_left = -817.0
+offset_top = 0.09
+offset_bottom = 484.09
+texture = ExtResource("9_sx365")
+
+[node name="Clock" type="TextureRect" parent="UI Layer/Control"]
+layout_mode = 0
+offset_left = -471.0
+offset_top = 7.0
+offset_right = -12.0
+offset_bottom = 229.0
+texture = ExtResource("9_32rt1")
+
+[node name="TopUI" type="MarginContainer" parent="UI Layer/Control"]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 1586.0
-offset_top = 90.0
-offset_right = -90.0
-offset_bottom = 169.0
+offset_left = -307.0
+offset_top = 58.0
+offset_right = -177.0
+offset_bottom = 176.0
 grow_horizontal = 2
+pivot_offset = Vector2(128, 37)
 theme = ExtResource("4_k85dl")
 
-[node name="PlayTimeLabel" type="Label" parent="UI Layer/TopUI"]
+[node name="PlayTimeLabel" type="Label" parent="UI Layer/Control/TopUI"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00:00"
+
+[node name="Control2" type="Control" parent="UI Layer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="BottomLeft bg" type="TextureRect" parent="UI Layer/Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.002
+anchor_right = 1.0
+anchor_bottom = -0.002
+offset_left = -40.0
+offset_top = -1039.92
+offset_right = 1036.0
+offset_bottom = 40.08
+texture = ExtResource("11_f2xfa")
+
+[node name="BottomLeft main" type="TextureRect" parent="UI Layer/Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.002
+anchor_right = 1.0
+anchor_bottom = -0.002
+offset_left = -40.0
+offset_top = -1039.92
+offset_right = 1036.0
+offset_bottom = 40.08
+texture = ExtResource("12_sckdn")
+
+[node name="BottomLeft line" type="TextureRect" parent="UI Layer/Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.002
+anchor_right = 1.0
+anchor_bottom = -0.002
+offset_left = -40.0
+offset_top = -1039.92
+offset_right = 1036.0
+offset_bottom = 40.08
+texture = ExtResource("13_yog8w")
+
+[node name="Ability bg" type="TextureRect" parent="UI Layer/Control2"]
+layout_mode = 0
+offset_top = -373.0
+offset_right = 452.0
+offset_bottom = 40.0
+texture = ExtResource("14_i55oj")
+
+[node name="Ability line" type="TextureRect" parent="UI Layer/Control2"]
+layout_mode = 0
+offset_top = -373.0
+offset_right = 452.0
+offset_bottom = 40.0
+texture = ExtResource("16_aq85m")

@@ -24,7 +24,6 @@ func use_ability(player):
 	reset_color()
 	current_ability = null
 
-
 func catch_power():
 	if target_area == null: return
 
@@ -34,16 +33,19 @@ func catch_power():
 	var ability = target_parent.got_caught()
 	set_current_ability(ability)
 
-
 func set_current_ability(ability_scene):
 	if ability_scene == null: return
-
 	var ability = ability_scene.instantiate()
 	add_child(ability)
 	current_ability = ability
-
+	
 	if ability.has_method("get_color"):
-		visual.self_modulate = ability.get_color()
+		var ability_color: Color = ability.get_color()
+		visual.self_modulate = ability_color
+		if AbilityUI:
+			var ability_ui = AbilityUI.get_node("CanvasLayer/AbilityUI")
+			if ability_ui:
+				ability_ui.modulate = ability_color
 
 
 func clear_abilities():
@@ -51,19 +53,20 @@ func clear_abilities():
 		child.queue_free()
 	reset_color()
 
-
 func reset_color():
 	visual.self_modulate = COLOR_PLAIN
+	if AbilityUI:
+		var ability_ui = AbilityUI.get_node("CanvasLayer/AbilityUI")
+		if ability_ui:
+			ability_ui.modulate = COLOR_PLAIN
 
 
 func get_current_ability():
 	return current_ability
 
-
 func _on_deal_damage_area_entered(other):
 	if other.has_method("take_damage"):
 		target_area = other
-
 
 func _on_deal_damage_area_exited(other):
 	if other == target_area:

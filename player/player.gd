@@ -21,7 +21,6 @@ const INFINITY = 1e20
 
 @onready var ability_manager: Node2D = $AbilityManager
 
-
 var coyote_timer = 0.15
 var jump_buffer_timer = 0.0
 

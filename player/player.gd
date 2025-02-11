@@ -24,7 +24,6 @@ const INFINITY = 1e20
 
 @onready var abilities: Node2D = $Abilities
 
-
 var coyote_timer = 0.15
 var jump_buffer_timer = 0.0
 
@@ -53,11 +52,14 @@ func _physics_process(delta):
 		jump(delta)
 
 	ability_smoothing()
-
-	velocity = local_velocity + outer_velocity_sources
-
+	calc_vel_mods()
+	apply_velocity()
 	clamp_fall_speed()
 	move_and_slide()
+
+
+func apply_velocity():
+	velocity = local_velocity + outer_velocity_sources
 
 
 func run():
@@ -200,14 +202,9 @@ func add_velocity_modifier(velocity_mod):
 
 
 func create_vel_duration_timer(velocity_mod):
-	var duration_timer = Timer.new()
-	add_child(duration_timer)
-
-	duration_timer.wait_time = velocity_mod.duration
-	duration_timer.one_shot = true
+	var duration_timer = create_timer(velocity_mod.duration)
 	duration_timer.timeout.connect(on_vel_mod_ended.bind(velocity_mod))
-	duration_timer.timeout.connect(duration_timer.queue_free)
-	duration_timer.start()
+	velocity_mod.set_timer(duration_timer)
 
 
 func on_vel_mod_ended(velocity_mod):
@@ -232,8 +229,8 @@ func delete_vel_mod(velocity_mod):
 
 func reset_velocity_mod_effects(velocity_mod):
 	player_control = true
-	if velocity_mod.ability != null:
-		velocity_mod.ability.queue_free()
+	if velocity_mod.ability != null && velocity_mod.ability.has_method("exit"):
+		velocity_mod.ability.exit()
 
 
 func clear_abilities():
@@ -258,7 +255,7 @@ func refresh_velocity_mods(velocity_mod, current_priority):
 
 func apply_vel_mod(velocity_mod):
 	player_control = !velocity_mod.disable_player_movement
-	outer_velocity_sources = velocity_mod.amount
+	outer_velocity_sources = velocity_mod.amount * velocity_mod.sample_curve()
 
 
 func refresh_needed_local_vel(velocity_mod):
@@ -302,6 +299,10 @@ func on_took_damage(source):
 		#note: temporary implementation
 		if Input.get_connected_joypads().size() > 0:
 			Input.start_joy_vibration(0, 0.5, 0.0, 0.5)
+
+
+func create_timer(time):
+	return get_tree().create_timer(time)
 
 
 func toggle_debug():

@@ -22,8 +22,8 @@ func _ready():
 
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("catch_power"):
-		catch_power()
+	if Input.is_action_just_pressed("catch_ability"):
+		catch_ability()
 
 	if Input.is_action_just_pressed("use_ability"):
 		use_ability()
@@ -39,9 +39,9 @@ func use_ability():
 	current_ability = null
 
 
-func catch_power():
-	catch_grace_time()
+func catch_ability():
 	if hit_cooldown(): return
+	catch_grace_time()
 	visualizer.attack_command()
 
 	absorb_ability()
@@ -90,7 +90,12 @@ func set_current_ability(ability_scene):
 	current_ability = ability
 
 	if ability.has_method("get_color"):
-		visual.self_modulate = ability.get_color()
+		var ability_color: Color = ability.get_color()
+		visual.self_modulate = ability_color
+		if AbilityUI:
+			var ability_ui = AbilityUI.get_node("CanvasLayer/AbilityUI")
+			if ability_ui:
+				ability_ui.modulate = ability_color
 
 
 func clear_abilities():
@@ -105,6 +110,10 @@ func create_timer(time):
 
 func reset_color():
 	visual.self_modulate = COLOR_PLAIN
+	if AbilityUI:
+		var ability_ui = AbilityUI.get_node("CanvasLayer/AbilityUI")
+		if ability_ui:
+			ability_ui.modulate = COLOR_PLAIN
 
 
 func get_current_ability():

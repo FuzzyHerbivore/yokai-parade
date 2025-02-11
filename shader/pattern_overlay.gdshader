@@ -5,6 +5,7 @@ uniform float overlay_alpha : hint_range(0.0, 1.0);
 uniform float pattern_scale = 1.0;
 uniform vec2 tilemap_offset = vec2(0.0, 0.0);
 uniform bool flip_alpha = true;
+uniform bool use_local = true;
 varying vec2 world_position;
 varying vec2 local_position;
 
@@ -29,7 +30,8 @@ void vertex() {
 }
 
 void fragment() {
-	vec2 scaled_position = local_position * vec2(1.0 / 1920.0, 1.0 / 1080.0) * vec2(pattern_scale) - tilemap_offset;
+	vec2 position_type = use_local ? local_position : world_position;
+	vec2 scaled_position = position_type * vec2(1.0 / 1920.0, 1.0 / 1080.0) * vec2(pattern_scale) - tilemap_offset;
 
 	vec2 pattern_uv = fract(scaled_position);
 

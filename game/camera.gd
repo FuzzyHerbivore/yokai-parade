@@ -10,17 +10,20 @@ var position_cache
 var lerp_time = 0.0
 var cached_direction = -1
 var distance_since_flipped = 0.0
-var flipped_position = Vector2(0,0)
+var flipped_last_position = Vector2(0,0)
 
 func _ready():
-	position_cache = position
-	cached_direction = sign(position.x - position_cache.x)
-	current_offset = offset_value
+	initialize_values()
 
 
 func _physics_process(delta):
 	look_offset(delta)
-	distance_since_flipped
+
+
+func initialize_values():
+	position_cache = position
+	cached_direction = sign(position.x - position_cache.x)
+	current_offset = offset_value
 
 
 func look_offset(delta):
@@ -44,8 +47,8 @@ func look_offset(delta):
 
 func calc_distance_flip(current_direction):
 	if current_direction != cached_direction:
-		distance_since_flipped = position.x - flipped_position.x
+		distance_since_flipped = position.x - flipped_last_position.x
 
 	elif current_direction == cached_direction:
-		flipped_position = position
+		flipped_last_position = position
 		distance_since_flipped = 0.0

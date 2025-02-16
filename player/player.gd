@@ -28,10 +28,10 @@ var coyote_timer = 0.15
 var jump_buffer_timer = 0.0
 
 var look_direction = 1.0
-var move_direction
+var move_dir
 
-var local_velocity := Vector2(0,0)
-var outer_velocity_sources := Vector2(0,0)
+var local_velocity := Vector2.ZERO
+var outer_velocity_sources := Vector2.ZERO
 
 var velocity_mod_instigator = []
 var player_control := true
@@ -66,8 +66,8 @@ func run():
 	calc_move_dir()
 	calc_look_direction()
 
-	if move_direction:
-		local_velocity.x = move_toward(local_velocity.x, move_direction * speed, acceleration)
+	if move_dir:
+		local_velocity.x = move_toward(local_velocity.x, move_dir * speed, acceleration)
 	else:
 		local_velocity.x = move_toward(local_velocity.x, 0, deceleration)
 	flip()
@@ -93,17 +93,17 @@ func jump(delta):
 	handle_coyote_time(delta)
 	jump_logic()
 	variable_jump_height()
-	handle_jump_buffer_time(delta)
+	update_jump_buffer(delta)
 
 
 func calc_move_dir():
-	move_direction = sign(Input.get_axis("left", "right"))
+	move_dir = sign(Input.get_axis("left", "right"))
 
 
 func calc_look_direction():
-	if move_direction == 0.0: return
+	if move_dir == 0.0: return
 
-	look_direction = move_direction
+	look_direction = move_dir
 
 
 func flip():
@@ -115,7 +115,6 @@ func flip():
 
 func fall_on_ceiling(delta):
 	if velocity.y: return
-
 	if local_velocity.y or receives_outer_vertical_velocity():
 		local_velocity.y = get_gravity().y * delta
 		outer_velocity_sources.y = 0
@@ -169,7 +168,7 @@ func cut_continuos_jump(is_falling):
 	local_velocity.y *= jump_height_continuous_cut_percentage
 
 
-func handle_jump_buffer_time(delta):
+func update_jump_buffer(delta):
 	var jump_input = Input.is_action_just_pressed("jump")
 
 	if jump_input:

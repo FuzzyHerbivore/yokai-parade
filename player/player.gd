@@ -14,10 +14,10 @@ const INFINITY = 1e20
 @export var jump_velocity = 600.0
 @export var fall_speed_clamp = 600.0
 @export_category("Movement extras")
-@export_range(.0, 1.0, .01) var jump_coyote_time = .15
-@export_range(.0, 1.0, .01) var jump_buffer_time = .15
-@export_range(.0, 1, .01) var variable_jump_height_min_percentage = .7
-@export_range(.0, .99, .01) var jump_height_continuous_cut_percentage = .6
+@export_range(0.0, 1.0, .01) var jump_coyote_time = .15
+@export_range(0.0, 1.0, .01) var jump_buffer_time = .15
+@export_range(0.0, 1.0, .01) var variable_jump_height_min_percentage = .7
+@export_range(0.0, .99, .01) var jump_height_continuous_cut_percentage = 1.0
 @export_category("Enemey Push")
 @export var push_back = 500.0
 @export_range(.0, 1.5, .1) var push_height_percentage = .75
@@ -35,7 +35,6 @@ var outer_velocity_sources := Vector2(0,0)
 
 var velocity_mod_instigator = []
 var player_control := true
-var is_cancelling_jump := false
 var buffer_cancel_jump := false
 var debug_mode = false
 var debug_speed_modifier = 3
@@ -93,7 +92,7 @@ func ability_smoothing():
 func jump(delta):
 	handle_coyote_time(delta)
 	jump_logic()
-	variable_jump_heigth()
+	variable_jump_height()
 	handle_jump_buffer_time(delta)
 
 
@@ -123,7 +122,7 @@ func fall_on_ceiling(delta):
 
 
 func handle_coyote_time(delta):
-	if is_on_floor() || receives_outer_vertical_velocity() || is_cancelling_jump:
+	if is_on_floor() || receives_outer_vertical_velocity():
 		coyote_timer = 0.0
 	else:
 		coyote_timer += delta
@@ -141,27 +140,28 @@ func jump_logic():
 	local_velocity.y = -jump_velocity
 
 
-func variable_jump_heigth():
+func variable_jump_height():
 	var is_falling = local_velocity.y < 0
-	var is_canceling_jump = Input.is_action_just_released("jump")
+	var cancel_pressed = Input.is_action_just_released("jump")
+	var use_cancel_buffer = buffer_cancel_jump && is_on_floor()
+	var will_cancel = cancel_pressed && is_falling
 
-	if can_use_jump_buffer() && is_canceling_jump:
-		buffer_cancel_jump = true
-
-	if (is_canceling_jump && player_control && is_falling) || (buffer_cancel_jump && is_on_floor()):
-		is_cancelling_jump = true
+	if  will_cancel || use_cancel_buffer:
 		buffer_cancel_jump = false
 		if variable_jump_height_min_percentage != 0:
 			local_velocity.y *= variable_jump_height_min_percentage
 
+	if can_use_jump_buffer() && cancel_pressed:
+		buffer_cancel_jump = true
 
-	if is_on_floor():
-		is_cancelling_jump = false
+	cut_continuos_jump(is_falling)
 
-	if is_cancelling_jump && is_falling:
-		if jump_height_continuous_cut_percentage != 0:
-			local_velocity.y *= jump_height_continuous_cut_percentage
 
+func cut_continuos_jump(is_falling):
+	if !is_falling: return
+	if jump_height_continuous_cut_percentage != 0: return
+
+	local_velocity.y *= jump_height_continuous_cut_percentage
 
 
 func handle_jump_buffer_time(delta):
@@ -175,6 +175,7 @@ func handle_jump_buffer_time(delta):
 
 	if is_on_floor():
 		jump_buffer_timer = 0.0
+
 
 func can_use_coyote_time(should_jump):
 	if jump_coyote_time == 0: return false

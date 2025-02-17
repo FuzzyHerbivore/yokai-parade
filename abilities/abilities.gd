@@ -96,7 +96,7 @@ func hit_timer_active():
 func set_current_ability(ability_scene):
 	if ability_scene == null: return
 
-	if current_ability:
+	if current_ability != null:
 		current_ability.exit()
 
 	var ability = ability_scene.instantiate()

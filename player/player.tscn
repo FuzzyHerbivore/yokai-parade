@@ -74,6 +74,10 @@ tracks/0/keys = {
 }
 tracks/0/use_blend = true
 
+[sub_resource type="Animation" id="Animation_qskf8"]
+resource_name = "falling"
+step = 0.125
+
 [sub_resource type="Animation" id="Animation_ykyju"]
 resource_name = "got_hit"
 length = 0.4
@@ -261,10 +265,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [-13.506]
 }
-
-[sub_resource type="Animation" id="Animation_qskf8"]
-resource_name = "falling"
-step = 0.125
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x7y5v"]
 _data = {

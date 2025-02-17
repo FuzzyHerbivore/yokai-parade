@@ -242,8 +242,6 @@ func delete_vel_mod(velocity_mod):
 
 func reset_velocity_mod_effects(velocity_mod):
 	player_control = true
-	if velocity_mod.ability != null && velocity_mod.ability.has_method("exit"):
-		velocity_mod.ability.exit()
 
 
 func clear_abilities():

@@ -154,6 +154,18 @@ scale = Vector2(0.8, 1.96)
 position = Vector2(8270, 481)
 scale = Vector2(0.8, 1.96)
 
+[node name="WallWood4" parent="Start-1stCheckpoint/WoodenWalls" instance=ExtResource("7_6c2mo")]
+position = Vector2(7699, 76)
+scale = Vector2(0.8, 1.96)
+
+[node name="WallWood5" parent="Start-1stCheckpoint/WoodenWalls" instance=ExtResource("7_6c2mo")]
+position = Vector2(7740, 76)
+scale = Vector2(0.8, 1.96)
+
+[node name="WallWood6" parent="Start-1stCheckpoint/WoodenWalls" instance=ExtResource("7_6c2mo")]
+position = Vector2(7781, 76)
+scale = Vector2(0.8, 1.96)
+
 [node name="Controls_Signs" type="Node2D" parent="."]
 
 [node name="Attack_sign" type="Sprite2D" parent="Controls_Signs"]

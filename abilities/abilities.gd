@@ -96,6 +96,9 @@ func hit_timer_active():
 func set_current_ability(ability_scene):
 	if ability_scene == null: return
 
+	if current_ability:
+		current_ability.exit()
+
 	var ability = ability_scene.instantiate()
 	add_child.call_deferred(ability)
 	current_ability = ability

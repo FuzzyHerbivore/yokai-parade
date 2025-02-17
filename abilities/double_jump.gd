@@ -22,6 +22,7 @@ func use(player_manager):
 	if animation_player:
 		animation_player.play("on_ability")
 	contoller_rumble()
+	create_timer(double_jump_duration).timeout.connect(exit)
 
 
 func exit():
@@ -35,3 +36,7 @@ func get_color():
 func contoller_rumble():
 	if Input.get_connected_joypads().size() <= 0: return
 	Input.start_joy_vibration(0, 0.0, 1.0, 0.5)
+
+
+func create_timer(time):
+	return get_tree().create_timer(time)

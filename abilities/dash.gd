@@ -32,6 +32,7 @@ func use(player_manager):
 	player_manager.add_velocity_modifier(vel_modifier)
 	is_dashing = true
 	animation_player.play("on_ability")
+	create_timer(dash_duration).timeout.connect(exit)
 
 func exit():
 	if damage_linger_duration == 0.0:

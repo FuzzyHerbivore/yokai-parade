@@ -3,17 +3,11 @@ extends Node2D
 
 @onready var player: CharacterBody2D = $".."
 @onready var collision_shape: CollisionShape2D = $"../CollisionShape2D"
-@export var debug_speed_steps = 1
-
-@export var trail_points_max = 4
 @onready var movement_line: Line2D = $MovementLine
+@export var debug_speed_steps = 1
 
 var debug_speed
 var debug_mode
-
-
-func _physics_process(delta):
-	update_trail()
 
 
 func _unhandled_input(_event):
@@ -22,6 +16,7 @@ func _unhandled_input(_event):
 	if Input.is_action_just_pressed("DebugMode"):
 		debug_mode = player.toggle_debug()
 		collision_shape.disabled = debug_mode
+		movement_line.visible = true
 
 	set_debug_speed()
 
@@ -39,10 +34,3 @@ func set_debug_speed():
 		player.set_debug_speed_modifier(debug_speed + debug_speed_steps)
 	else:
 		player.set_debug_speed_modifier(debug_speed - debug_speed_steps)
-
-
-func update_trail():
-	movement_line.add_point(global_position - movement_line.global_position)
-
-	if movement_line.get_point_count() > trail_points_max:
-		movement_line.remove_point(0)

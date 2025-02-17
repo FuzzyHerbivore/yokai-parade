@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dnxi2gyvo83ec"]
+[gd_scene load_steps=45 format=3 uid="uid://dnxi2gyvo83ec"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
 [ext_resource type="Script" path="res://abilities/abilities.gd" id="2_es05j"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dgk7beqkylhis" path="res://sounds/player_landing.wav" id="9_2d4ee"]
 [ext_resource type="AudioStream" uid="uid://g4orwxysi14l" path="res://sounds/player_got_hit.wav" id="10_5urda"]
 [ext_resource type="AudioStream" uid="uid://cojwru8qh7oh8" path="res://sounds/player_dying.wav" id="11_keeyg"]
+[ext_resource type="Script" path="res://player/movement_line.gd" id="14_p1m7a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mi2e"]
 radius = 25.0
@@ -261,10 +262,15 @@ tracks/2/keys = {
 "values": [-13.506]
 }
 
+[sub_resource type="Animation" id="Animation_qskf8"]
+resource_name = "falling"
+step = 0.125
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x7y5v"]
 _data = {
 "RESET": SubResource("Animation_1fs6i"),
 "dying": SubResource("Animation_hhc52"),
+"falling": SubResource("Animation_qskf8"),
 "got_hit": SubResource("Animation_ykyju"),
 "hit": SubResource("Animation_v1rfk"),
 "idling": SubResource("Animation_ko40m"),
@@ -272,6 +278,9 @@ _data = {
 "landing": SubResource("Animation_uoss2"),
 "walking": SubResource("Animation_2eqfq")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q240u"]
+animation = &"falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o53j2"]
 animation = &"idling"
@@ -315,6 +324,8 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h8ooh"]
+states/falling/node = SubResource("AnimationNodeAnimation_q240u")
+states/falling/position = Vector2(741, -83)
 states/idling/node = SubResource("AnimationNodeAnimation_o53j2")
 states/idling/position = Vector2(441, -13)
 states/jump/node = SubResource("AnimationNodeAnimation_ukipm")
@@ -324,7 +335,7 @@ states/landing/position = Vector2(515, -107)
 states/walking/node = SubResource("AnimationNodeAnimation_l41dg")
 states/walking/position = Vector2(537, 114)
 transitions = ["Start", "idling", SubResource("AnimationNodeStateMachineTransition_i4wgy"), "idling", "walking", SubResource("AnimationNodeStateMachineTransition_egflg"), "walking", "idling", SubResource("AnimationNodeStateMachineTransition_1r4x0"), "walking", "jump", SubResource("AnimationNodeStateMachineTransition_87uy6"), "idling", "jump", SubResource("AnimationNodeStateMachineTransition_p4mgk"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_47fet"), "landing", "idling", SubResource("AnimationNodeStateMachineTransition_71yb5")]
-graph_offset = Vector2(-70, -141)
+graph_offset = Vector2(-35, -118)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ovhno"]
 
@@ -337,7 +348,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_hcowl"]
-colors = PackedColorArray(0.952941, 0.298039, 0.490196, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.384314, 0.823529, 0.878431, 1, 0.952941, 0.298039, 0.490196, 1)
 
 [node name="Player" type="CharacterBody2D"]
 top_level = true
@@ -424,10 +435,14 @@ script = ExtResource("7_3jai0")
 
 [node name="MovementLine" type="Line2D" parent="Debug"]
 visible = false
-position = Vector2(77, -1)
+top_level = true
+z_index = -1
+position = Vector2(1, 33)
 width_curve = SubResource("Curve_3tghh")
 default_color = Color(0.952941, 0.298039, 0.490196, 1)
 gradient = SubResource("Gradient_hcowl")
+script = ExtResource("14_p1m7a")
+trail_points_max = 300
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = 9.455

@@ -14,10 +14,10 @@ const INFINITY = 1e20
 @export var jump_velocity = 600.0
 @export var fall_speed_clamp = 600.0
 @export_category("Movement extras")
-@export_range(.0, 1.0, .01) var jump_coyote_time = .15
-@export_range(.0, 1.0, .01) var jump_buffer_time = .15
-@export_range(.0, 1, .01) var variable_jump_height_min_percentage = .7
-@export_range(.0, .99, .01) var jump_height_continuous_cut_percentage = .6
+@export_range(0.0, 1.0, .01) var jump_coyote_time = .15
+@export_range(0.0, 1.0, .01) var jump_buffer_time = .15
+@export_range(0.0, 1.0, .01) var variable_jump_height_min_percentage = .7
+@export_range(0.0, .99, .01) var jump_height_continuous_cut_percentage = 1.0
 @export_category("Enemey Push")
 @export var push_back = 500.0
 @export_range(.0, 1.5, .1) var push_height_percentage = .75
@@ -28,14 +28,14 @@ var coyote_timer = 0.15
 var jump_buffer_timer = 0.0
 
 var look_direction = 1.0
-var move_direction
+var move_dir
 
-var local_velocity := Vector2(0,0)
-var outer_velocity_sources := Vector2(0,0)
+var local_velocity := Vector2.ZERO
+var outer_velocity_sources := Vector2.ZERO
 
 var velocity_mod_instigator = []
 var player_control := true
-var is_cancelling_jump := false
+var buffer_cancel_jump := false
 var debug_mode = false
 var debug_speed_modifier = 3
 
@@ -66,8 +66,8 @@ func run():
 	calc_move_dir()
 	calc_look_direction()
 
-	if move_direction:
-		local_velocity.x = move_toward(local_velocity.x, move_direction * speed, acceleration)
+	if move_dir:
+		local_velocity.x = move_toward(local_velocity.x, move_dir * speed, acceleration)
 	else:
 		local_velocity.x = move_toward(local_velocity.x, 0, deceleration)
 	flip()
@@ -92,18 +92,18 @@ func ability_smoothing():
 func jump(delta):
 	handle_coyote_time(delta)
 	jump_logic()
-	variable_jump_heigth()
-	handle_jump_buffer_time(delta)
+	variable_jump_height()
+	update_jump_buffer(delta)
 
 
 func calc_move_dir():
-	move_direction = sign(Input.get_axis("left", "right"))
+	move_dir = sign(Input.get_axis("left", "right"))
 
 
 func calc_look_direction():
-	if move_direction == 0.0: return
+	if move_dir == 0.0: return
 
-	look_direction = move_direction
+	look_direction = move_dir
 
 
 func flip():
@@ -115,14 +115,13 @@ func flip():
 
 func fall_on_ceiling(delta):
 	if velocity.y: return
-
 	if local_velocity.y or receives_outer_vertical_velocity():
 		local_velocity.y = get_gravity().y * delta
 		outer_velocity_sources.y = 0
 
 
 func handle_coyote_time(delta):
-	if is_on_floor() || receives_outer_vertical_velocity() || is_cancelling_jump:
+	if is_on_floor() || receives_outer_vertical_velocity():
 		coyote_timer = 0.0
 	else:
 		coyote_timer += delta
@@ -140,22 +139,36 @@ func jump_logic():
 	local_velocity.y = -jump_velocity
 
 
-func variable_jump_heigth():
+func variable_jump_height():
 	var is_falling = local_velocity.y < 0
-	if Input.is_action_just_released("jump") && player_control && is_falling:
-		is_cancelling_jump = true
-		if variable_jump_height_min_percentage != 0:
-			local_velocity.y *= variable_jump_height_min_percentage
+	var cancel_pressed = Input.is_action_just_released("jump")
+	var will_cancel = cancel_pressed && is_falling
+	var use_cancel_buffer = buffer_cancel_jump && is_on_floor()
 
-	if is_on_floor():
-		is_cancelling_jump = false
+	if will_cancel || use_cancel_buffer:
+		cut_initial_jump()
+		buffer_cancel_jump = false
 
-	if is_cancelling_jump && is_falling:
-		if jump_height_continuous_cut_percentage != 0:
-			local_velocity.y *= jump_height_continuous_cut_percentage
+	if can_use_jump_buffer() && cancel_pressed:
+		buffer_cancel_jump = true
+
+	cut_continuos_jump(is_falling)
 
 
-func handle_jump_buffer_time(delta):
+func cut_initial_jump():
+	if variable_jump_height_min_percentage == 0: return
+
+	local_velocity.y *= variable_jump_height_min_percentage
+
+
+func cut_continuos_jump(is_falling):
+	if !is_falling: return
+	if jump_height_continuous_cut_percentage != 0: return
+
+	local_velocity.y *= jump_height_continuous_cut_percentage
+
+
+func update_jump_buffer(delta):
 	var jump_input = Input.is_action_just_pressed("jump")
 
 	if jump_input:

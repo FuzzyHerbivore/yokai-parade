@@ -8,8 +8,8 @@ const ELEMENT_TYPE = ELEMENTS.ElementType.FIRE
 @export var dash_velocity = 300.0
 @export var dash_duration = 1.0
 @export var damage_linger_duration : float = .4
-@export var velocity_curve : Curve
 @export var disable_player_movement := true
+@export var velocity_curve : Curve
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_dashing := false
@@ -23,6 +23,7 @@ func _physics_process(_delta):
 
 func use(player_manager):
 	joystick_vibrate()
+
 	var vel_modifier = VelocityModifier.new(Vector2(dash_velocity, 0), dash_duration, 1, \
 	disable_player_movement, true)
 

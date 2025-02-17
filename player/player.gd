@@ -32,6 +32,7 @@ var move_dir
 
 var local_velocity := Vector2.ZERO
 var outer_velocity_sources := Vector2.ZERO
+var cached_local_velocity := Vector2.ZERO
 
 var velocity_mod_instigator = []
 var player_control := true
@@ -93,8 +94,15 @@ func ability_smoothing():
 func jump(delta):
 	coyote_time(delta)
 	jump_logic()
+
+	apex_modifier()
+
+	if cached_local_velocity.y < 0.0 && local_velocity.y > 0.0:
+		pass
+
 	variable_jump_height()
 	update_jump_buffer(delta)
+	cached_local_velocity = local_velocity
 
 
 func calc_move_dir():
@@ -138,6 +146,8 @@ func jump_logic():
 	if !can_jump: return
 
 	local_velocity.y = -jump_velocity
+
+
 
 
 func variable_jump_height():
@@ -211,6 +221,10 @@ func reset_vertical_velocity():
 func clamp_fall_speed():
 	if fall_speed_clamp == 0: return;
 	velocity.y = clampf(velocity.y, -INFINITY, fall_speed_clamp)
+
+
+func apex_modifier():
+	pass
 
 
 func add_velocity_modifier(velocity_mod):

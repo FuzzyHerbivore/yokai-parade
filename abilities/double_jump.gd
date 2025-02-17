@@ -22,6 +22,8 @@ func use(player_manager):
 	if animation_player:
 		animation_player.play("on_ability")
 	contoller_rumble()
+
+	if !get_tree(): return
 	create_timer(double_jump_duration).timeout.connect(exit)
 
 

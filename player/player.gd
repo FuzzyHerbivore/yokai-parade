@@ -235,8 +235,15 @@ func apex_modifier(delta):
 	if apex_timer == null: return
 	if apex_timer.time_left <= 0: return
 
+	apex_horizontal(delta)
+	apex_vertical()
+
+
+func apex_horizontal(delta):
 	local_velocity.y -= get_gravity().y * delta * apex_negativ_gravity
 
+
+func apex_vertical():
 	if local_velocity.x == 0: return
 	if apex_smooth_curve == null:
 		local_velocity.x += look_direction * apex_strength

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dnxi2gyvo83ec"]
+[gd_scene load_steps=48 format=3 uid="uid://dnxi2gyvo83ec"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
 [ext_resource type="Script" path="res://abilities/abilities.gd" id="2_es05j"]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -56,6 +56,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [9.455]
+}
+
+[sub_resource type="Animation" id="Animation_802ph"]
+resource_name = "dash"
+length = 0.85
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [24, 25, 26]
 }
 
 [sub_resource type="Animation" id="Animation_hhc52"]
@@ -80,11 +97,24 @@ tracks/0/use_blend = true
 
 [sub_resource type="Animation" id="Animation_qskf8"]
 resource_name = "falling"
+length = 0.5
 step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [34, 33]
+}
 
 [sub_resource type="Animation" id="Animation_ykyju"]
 resource_name = "got_hit"
-length = 0.4
+length = 0.5
 step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -113,10 +143,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [-9.455]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [21, 22]
+}
 
 [sub_resource type="Animation" id="Animation_v1rfk"]
 resource_name = "hit"
-length = 0.35
+length = 0.4
+loop_mode = 1
 step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -130,7 +173,7 @@ tracks/0/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("7_ilb2w")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.25)
 }
 tracks/0/use_blend = true
 tracks/1/type = "value"
@@ -152,14 +195,15 @@ tracks/2/path = NodePath("PlayerWalk:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [17, 21]
 }
 
 [sub_resource type="Animation" id="Animation_ko40m"]
 resource_name = "idling"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -167,15 +211,32 @@ tracks/0/path = NodePath("PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.166667, 0.433333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_a8b1i"]
+resource_name = "idling2"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_xmvxb"]
 resource_name = "jump"
-length = 0.14
+length = 0.4
 step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -204,10 +265,22 @@ tracks/1/keys = {
 "update": 0,
 "values": [-7.403, -5.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [29, 30]
+}
 
 [sub_resource type="Animation" id="Animation_uoss2"]
 resource_name = "landing"
-length = 0.16
+length = 0.4
 step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -235,6 +308,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [3.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [36, 37]
 }
 
 [sub_resource type="Animation" id="Animation_2eqfq"]
@@ -285,11 +370,13 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x7y5v"]
 _data = {
 "RESET": SubResource("Animation_1fs6i"),
+"dash": SubResource("Animation_802ph"),
 "dying": SubResource("Animation_hhc52"),
 "falling": SubResource("Animation_qskf8"),
 "got_hit": SubResource("Animation_ykyju"),
 "hit": SubResource("Animation_v1rfk"),
 "idling": SubResource("Animation_ko40m"),
+"idling2": SubResource("Animation_a8b1i"),
 "jump": SubResource("Animation_xmvxb"),
 "landing": SubResource("Animation_uoss2"),
 "walking": SubResource("Animation_2eqfq")
@@ -343,7 +430,7 @@ advance_mode = 2
 states/falling/node = SubResource("AnimationNodeAnimation_q240u")
 states/falling/position = Vector2(741, -83)
 states/idling/node = SubResource("AnimationNodeAnimation_o53j2")
-states/idling/position = Vector2(441, -13)
+states/idling/position = Vector2(447, -12)
 states/jump/node = SubResource("AnimationNodeAnimation_ukipm")
 states/jump/position = Vector2(618, -23)
 states/landing/node = SubResource("AnimationNodeAnimation_sc3xl")
@@ -351,7 +438,7 @@ states/landing/position = Vector2(515, -107)
 states/walking/node = SubResource("AnimationNodeAnimation_l41dg")
 states/walking/position = Vector2(537, 114)
 transitions = ["Start", "idling", SubResource("AnimationNodeStateMachineTransition_i4wgy"), "idling", "walking", SubResource("AnimationNodeStateMachineTransition_egflg"), "walking", "idling", SubResource("AnimationNodeStateMachineTransition_1r4x0"), "walking", "jump", SubResource("AnimationNodeStateMachineTransition_87uy6"), "idling", "jump", SubResource("AnimationNodeStateMachineTransition_p4mgk"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_47fet"), "landing", "idling", SubResource("AnimationNodeStateMachineTransition_71yb5")]
-graph_offset = Vector2(10, -97)
+graph_offset = Vector2(25, -121)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ovhno"]
 
@@ -411,10 +498,11 @@ debug_color = Color(0.976648, 0, 0.410241, 0.42)
 
 [node name="PlayerWalk" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1, -11)
+position = Vector2(1, -9)
 texture = ExtResource("5_o3mnp")
 hframes = 4
-vframes = 7
+vframes = 10
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

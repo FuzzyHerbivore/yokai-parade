@@ -113,19 +113,8 @@ func jump(delta):
 	apex_modifier(delta)
 	variable_jump_height()
 	update_jump_buffer(delta)
+	edge_correction()
 	cached_local_velocity = local_velocity
-
-	if is_on_floor():
-		is_using_edge_correction = false
-
-	if upper_edge_detection_ray.has_target():
-		return
-
-	if downer_edge_detection_ray.has_target() && !is_using_edge_correction:
-		is_using_edge_correction = true
-		local_velocity.x *= -x_edge_correction
-		local_velocity.y *= y_edge_correction
-
 
 
 func calc_move_dir():
@@ -172,9 +161,8 @@ func jump_logic():
 
 
 func variable_jump_height():
-	var is_falling = local_velocity.y < 0
 	var cancel_pressed = Input.is_action_just_released("jump")
-	var will_cancel = cancel_pressed && is_falling
+	var will_cancel = cancel_pressed && is_rising()
 	var use_cancel_buffer = buffer_cancel_jump && is_on_floor()
 
 	if will_cancel || use_cancel_buffer:
@@ -188,7 +176,7 @@ func variable_jump_height():
 	if can_use_jump_buffer() && cancel_pressed:
 		buffer_cancel_jump = true
 
-	cut_continuos_jump(is_falling)
+	cut_continuos_jump()
 
 
 func cut_initial_jump():
@@ -197,8 +185,8 @@ func cut_initial_jump():
 	local_velocity.y *= variable_jump_height_min_percentage
 
 
-func cut_continuos_jump(is_falling):
-	if !is_falling: return
+func cut_continuos_jump():
+	if is_falling: return
 	if jump_height_continuous_cut_percentage != 0: return
 
 	local_velocity.y *= jump_height_continuous_cut_percentage
@@ -221,9 +209,25 @@ func can_use_coyote_time(should_jump):
 	if jump_coyote_time == 0: return false
 	if coyote_timer == 0: return false
 	if !should_jump: return false
-	if local_velocity.y < 0: return false
+	if is_rising(): return false
 
 	return coyote_timer < jump_coyote_time
+
+
+func edge_correction():
+	if is_on_floor():
+		is_using_edge_correction = false
+		return
+
+	if is_using_edge_correction: return
+	if is_falling(): return
+	if upper_edge_detection_ray.has_target(): return
+	if !downer_edge_detection_ray.has_target():return
+
+	print("a")
+	is_using_edge_correction = true
+	local_velocity.x *= -x_edge_correction
+	local_velocity.y *= y_edge_correction
 
 
 func can_use_jump_buffer():
@@ -274,6 +278,14 @@ func apex_vertical():
 
 	local_velocity.x += look_direction * \
 	lerpf(apex_strength * .5, apex_strength, apex_smooth_curve.sample(apex_timer.time_left / apex_time))
+
+
+func is_rising():
+	return local_velocity.y < 0
+
+
+func is_falling():
+	return local_velocity.y > 0
 
 
 func add_velocity_modifier(velocity_mod):

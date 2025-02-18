@@ -18,8 +18,8 @@ const INFINITY = 1e20
 @export_range(0.0, 1.0, .01) var jump_buffer_time = .15
 @export_range(0.0, 1.0, .01) var variable_jump_height_min_percentage = .7
 @export_range(0.0, .99, .01) var jump_height_continuous_cut_percentage = 1.0
-@export_range(0.5, 3.0, .01) var edge_correction_x : float = 1.2
-@export_range(1.0, 3.0, .01) var edge_correction_y : float = 1.5
+@export_range(0.5, 3.0, .01) var x_edge_correction : float = 1.2
+@export_range(1.0, 3.0, .01) var y_edge_correction : float = 1.5
 
 @export_category("Apex Settings")
 @export var apex_time : float = .1
@@ -123,8 +123,8 @@ func jump(delta):
 
 	if downer_edge_detection_ray.has_target() && !is_using_edge_correction:
 		is_using_edge_correction = true
-		local_velocity.x *= -edge_correction_x
-		local_velocity.y *= edge_correction_y
+		local_velocity.x *= -x_edge_correction
+		local_velocity.y *= y_edge_correction
 
 
 

@@ -32,10 +32,12 @@ var move_dir
 
 var local_velocity := Vector2.ZERO
 var outer_velocity_sources := Vector2.ZERO
+var cached_local_velocity := Vector2.ZERO
 
 var velocity_mod_instigator = []
 var player_control := true
 var buffer_cancel_jump := false
+var is_cancelling_jump := false
 var debug_mode = false
 var debug_speed_modifier = 3
 
@@ -90,10 +92,17 @@ func ability_smoothing():
 
 
 func jump(delta):
-	handle_coyote_time(delta)
+	coyote_time(delta)
 	jump_logic()
+
+	apex_modifier()
+
+	if cached_local_velocity.y < 0.0 && local_velocity.y > 0.0:
+		pass
+
 	variable_jump_height()
 	update_jump_buffer(delta)
+	cached_local_velocity = local_velocity
 
 
 func calc_move_dir():
@@ -120,8 +129,8 @@ func fall_on_ceiling(delta):
 		outer_velocity_sources.y = 0
 
 
-func handle_coyote_time(delta):
-	if is_on_floor() || receives_outer_vertical_velocity():
+func coyote_time(delta):
+	if is_on_floor() || receives_outer_vertical_velocity() || is_cancelling_jump:
 		coyote_timer = 0.0
 	else:
 		coyote_timer += delta
@@ -139,6 +148,8 @@ func jump_logic():
 	local_velocity.y = -jump_velocity
 
 
+
+
 func variable_jump_height():
 	var is_falling = local_velocity.y < 0
 	var cancel_pressed = Input.is_action_just_released("jump")
@@ -146,8 +157,12 @@ func variable_jump_height():
 	var use_cancel_buffer = buffer_cancel_jump && is_on_floor()
 
 	if will_cancel || use_cancel_buffer:
+		is_cancelling_jump = true
 		cut_initial_jump()
 		buffer_cancel_jump = false
+
+	if is_on_floor():
+		is_cancelling_jump = false
 
 	if can_use_jump_buffer() && cancel_pressed:
 		buffer_cancel_jump = true
@@ -208,6 +223,10 @@ func clamp_fall_speed():
 	velocity.y = clampf(velocity.y, -INFINITY, fall_speed_clamp)
 
 
+func apex_modifier():
+	pass
+
+
 func add_velocity_modifier(velocity_mod):
 	velocity_mod_instigator.append(velocity_mod)
 	calc_vel_mods()
@@ -242,8 +261,6 @@ func delete_vel_mod(velocity_mod):
 
 func reset_velocity_mod_effects(velocity_mod):
 	player_control = true
-	if velocity_mod.ability != null && velocity_mod.ability.has_method("exit"):
-		velocity_mod.ability.exit()
 
 
 func clear_abilities():

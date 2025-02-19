@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b173nlre4ndsy"]
+[gd_scene load_steps=40 format=3 uid="uid://b173nlre4ndsy"]
 
 [ext_resource type="Texture2D" uid="uid://dchjx31w1tyge" path="res://player/player_spritesheet.png" id="1_wuri4"]
 [ext_resource type="AudioStream" uid="uid://cojwru8qh7oh8" path="res://sounds/player_dying.wav" id="2_jfhhs"]
@@ -359,11 +359,26 @@ _data = {
 "walking": SubResource("Animation_2eqfq")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5upi"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_54gw0"]
+animation = &"dying"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q240u"]
 animation = &"falling"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcx2n"]
+animation = &"got_hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8ddy"]
+animation = &"hit"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o53j2"]
 animation = &"idling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_prn2w"]
+animation = &"idling2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ukipm"]
 animation = &"jump"
@@ -412,10 +427,20 @@ advance_mode = 2
 advance_expression = "velocity.y < 0"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h8ooh"]
+states/dash/node = SubResource("AnimationNodeAnimation_n5upi")
+states/dash/position = Vector2(577, -122)
+states/dying/node = SubResource("AnimationNodeAnimation_54gw0")
+states/dying/position = Vector2(577, -54)
 states/falling/node = SubResource("AnimationNodeAnimation_q240u")
 states/falling/position = Vector2(377, -186)
+states/got_hit/node = SubResource("AnimationNodeAnimation_hcx2n")
+states/got_hit/position = Vector2(704, -135)
+states/hit/node = SubResource("AnimationNodeAnimation_d8ddy")
+states/hit/position = Vector2(704, -74)
 states/idling/node = SubResource("AnimationNodeAnimation_o53j2")
 states/idling/position = Vector2(322, -18)
+states/idling2/node = SubResource("AnimationNodeAnimation_prn2w")
+states/idling2/position = Vector2(814, -98)
 states/jump/node = SubResource("AnimationNodeAnimation_ukipm")
 states/jump/position = Vector2(377, -98)
 states/landing/node = SubResource("AnimationNodeAnimation_sc3xl")
@@ -423,7 +448,7 @@ states/landing/position = Vector2(275, -135)
 states/walking/node = SubResource("AnimationNodeAnimation_l41dg")
 states/walking/position = Vector2(436, -18)
 transitions = ["Start", "idling", SubResource("AnimationNodeStateMachineTransition_i4wgy"), "idling", "walking", SubResource("AnimationNodeStateMachineTransition_egflg"), "walking", "idling", SubResource("AnimationNodeStateMachineTransition_1r4x0"), "walking", "jump", SubResource("AnimationNodeStateMachineTransition_87uy6"), "idling", "jump", SubResource("AnimationNodeStateMachineTransition_p4mgk"), "landing", "idling", SubResource("AnimationNodeStateMachineTransition_71yb5"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_dyay8"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_gvbew"), "falling", "jump", SubResource("AnimationNodeStateMachineTransition_in6c8")]
-graph_offset = Vector2(-86, -244)
+graph_offset = Vector2(-14, -206)
 
 [node name="PlayerAnimatables" type="Node2D"]
 

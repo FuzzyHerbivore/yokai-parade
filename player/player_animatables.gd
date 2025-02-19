@@ -31,8 +31,10 @@ func different_idles(anim_name):
 
 	var random_value = randf_range(0, total_weight)
 	var cumulative_weight = 0
+
 	for animation_name in idle_animations.keys():
 		cumulative_weight += idle_animations[animation_name]
-		if random_value < cumulative_weight:
-			state_machine.start(animation_name)
-			return
+
+		if random_value > cumulative_weight: continue
+		state_machine.start(animation_name)
+		return

@@ -9,6 +9,8 @@ var state_machine
 func _ready():
 	state_machine = animation_tree.get("parameters/playback")
 	abilities.player_hits.connect(func(): state_machine.travel("hit"))
+	abilities.used_ability.connect(func(): state_machine.travel("dash"))
+
 	player.player_gets_pushed.connect(func(): state_machine.travel("got_hit"))
 
 

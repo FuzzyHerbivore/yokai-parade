@@ -17,6 +17,7 @@ var hit_queue_timer
 
 @onready var visualizer: Node2D =  $"../Visuals/AbilityVisualizer"
 signal player_hits
+signal used_ability
 
 
 func _ready():
@@ -36,6 +37,7 @@ func use_ability():
 
 	if current_ability.has_method("use"):
 		current_ability.use(player)
+		used_ability.emit()
 
 	reset_color()
 	current_ability = null

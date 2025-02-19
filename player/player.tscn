@@ -32,12 +32,25 @@ height = 168.0
 radius = 18.0
 height = 74.0
 
+[sub_resource type="SphereMesh" id="SphereMesh_ovhno"]
+
+[sub_resource type="Curve" id="Curve_xeqma"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3tghh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hcowl"]
+colors = PackedColorArray(0.384314, 0.823529, 0.878431, 1, 0.952941, 0.298039, 0.490196, 1)
+
 [sub_resource type="Animation" id="Animation_1fs6i"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/path = NodePath("Animation/PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +62,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/path = NodePath("Animation/AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -66,7 +79,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/path = NodePath("Animation/PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +96,7 @@ step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/path = NodePath("Animation/AudioStreamPlayer2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -103,7 +116,7 @@ step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/path = NodePath("Animation/PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -120,7 +133,7 @@ step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/path = NodePath("Animation/AudioStreamPlayer2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -135,7 +148,7 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/path = NodePath("Animation/AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -147,7 +160,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/path = NodePath("Animation/PlayerWalk:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -165,7 +178,7 @@ step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/path = NodePath("Animation/AudioStreamPlayer2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -180,7 +193,7 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/path = NodePath("Animation/AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -192,7 +205,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/path = NodePath("Animation/PlayerWalk:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -208,7 +221,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/path = NodePath("Animation/PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -225,7 +238,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/path = NodePath("Animation/PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -242,7 +255,7 @@ step = 0.125
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/path = NodePath("Animation/AudioStreamPlayer2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -257,7 +270,7 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/path = NodePath("Animation/AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -269,7 +282,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/path = NodePath("Animation/PlayerWalk:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -286,7 +299,7 @@ step = 0.0
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/path = NodePath("Animation/AudioStreamPlayer2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -301,7 +314,7 @@ tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/1/path = NodePath("Animation/AudioStreamPlayer2D:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -313,7 +326,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerWalk:frame")
+tracks/2/path = NodePath("Animation/PlayerWalk:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -331,7 +344,7 @@ step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerWalk:frame")
+tracks/0/path = NodePath("Animation/PlayerWalk:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -343,7 +356,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/path = NodePath("Animation/AudioStreamPlayer2D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -358,7 +371,7 @@ tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/2/path = NodePath("Animation/AudioStreamPlayer2D:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -449,19 +462,6 @@ states/walking/position = Vector2(436, -18)
 transitions = ["Start", "idling", SubResource("AnimationNodeStateMachineTransition_i4wgy"), "idling", "walking", SubResource("AnimationNodeStateMachineTransition_egflg"), "walking", "idling", SubResource("AnimationNodeStateMachineTransition_1r4x0"), "walking", "jump", SubResource("AnimationNodeStateMachineTransition_87uy6"), "idling", "jump", SubResource("AnimationNodeStateMachineTransition_p4mgk"), "landing", "idling", SubResource("AnimationNodeStateMachineTransition_71yb5"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_dyay8"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_gvbew"), "falling", "jump", SubResource("AnimationNodeStateMachineTransition_in6c8")]
 graph_offset = Vector2(-91, -253)
 
-[sub_resource type="SphereMesh" id="SphereMesh_ovhno"]
-
-[sub_resource type="Curve" id="Curve_xeqma"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_3tghh"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_hcowl"]
-colors = PackedColorArray(0.384314, 0.823529, 0.878431, 1, 0.952941, 0.298039, 0.490196, 1)
-
 [node name="Player" type="CharacterBody2D"]
 top_level = true
 collision_layer = 2
@@ -513,25 +513,6 @@ target_position = Vector2(-23, -68)
 [node name="CanEdgeDetectRay" parent="." instance=ExtResource("5_5gjfl")]
 target_position = Vector2(32, -63)
 
-[node name="PlayerWalk" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1, -9)
-texture = ExtResource("5_o3mnp")
-hframes = 4
-vframes = 10
-frame = 8
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_x7y5v")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-callback_mode_discrete = 1
-tree_root = SubResource("AnimationNodeStateMachine_h8ooh")
-advance_expression_base_node = NodePath("..")
-anim_player = NodePath("../AnimationPlayer")
-
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="AbilityVisualizer" type="Node2D" parent="Visuals"]
@@ -571,7 +552,30 @@ gradient = SubResource("Gradient_hcowl")
 script = ExtResource("14_p1m7a")
 trail_points_max = 300
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Animation" type="Node2D" parent="."]
+
+[node name="PlayerWalk" type="Sprite2D" parent="Animation"]
+texture_filter = 1
+position = Vector2(1, -9)
+texture = ExtResource("5_o3mnp")
+hframes = 4
+vframes = 10
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_x7y5v")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Animation"]
+root_node = NodePath("../..")
+callback_mode_discrete = 1
+tree_root = SubResource("AnimationNodeStateMachine_h8ooh")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Animation"]
 volume_db = 9.455
 
 [connection signal="deal_damage_area_entered" from="DealDamageArea" to="Abilities" method="on_deal_damage_area_entered"]

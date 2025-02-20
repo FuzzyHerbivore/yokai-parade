@@ -477,6 +477,10 @@ position = Vector2(2597, 0)
 position = Vector2(827, 1694)
 scale = Vector2(11.36, 1)
 
+[node name="DespawnArea7" parent="Deathzones" instance=ExtResource("14_dwdv4")]
+position = Vector2(5966, 2767)
+scale = Vector2(-26.4176, 1.51147)
+
 [node name="DespawnArea6" parent="Deathzones" instance=ExtResource("14_dwdv4")]
 position = Vector2(-1471, 1321)
 scale = Vector2(11.36, 1)

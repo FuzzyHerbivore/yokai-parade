@@ -81,7 +81,6 @@ func _physics_process(delta):
 		update_gravity(delta)
 		jump(delta)
 		speed_token_falloff()
-		print(current_speed_tokens)
 
 	ability_smoothing()
 	calc_vel_mods()

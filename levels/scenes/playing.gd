@@ -1,1 +1,1 @@
-extends LevelStateScene
+extends Node

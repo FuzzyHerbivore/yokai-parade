@@ -6,10 +6,13 @@ extends LevelState
 
 func enter(p_previous_state):
 	super.enter(p_previous_state)
-	current_scene.set_next_level_state(next_level_state)
 
-	current_scene.level_state_scene_finished.connect(change_state)
+	state_scene.set_state_node(self)
+
+
+func change_to_next_level_state():
+	change_state(next_level_state)
 
 
 func reset_to_checkpoint():
-	parent.reset_to_checkpoint()
+	await parent.reset_to_checkpoint()

@@ -1,29 +1,17 @@
-extends LevelStateScene
+extends Node
 
 
-var playing_level_state
-var paused_level_state
+var state_node
 
 
-func set_playing_level_state(state):
-	playing_level_state = state
+# Level States
 
-
-func set_paused_level_state(state):
-	paused_level_state = state
+func set_state_node(node):
+	state_node = node
 
 
 func _ready():
 		%AnimationPlayer.play("countdown")
+		await %AnimationPlayer.animation_finished
 
-
-func switch_to_playing_level_state():
-	switch_to_next_level_state(playing_level_state)
-
-
-func switch_to_paused_level_state():
-	switch_to_next_level_state(paused_level_state)
-
-
-func switch_to_next_level_state(state):
-	level_state_scene_finished.emit(state)
+		state_node.change_to_next_level_state()

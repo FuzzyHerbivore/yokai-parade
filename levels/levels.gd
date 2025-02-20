@@ -1,7 +1,9 @@
 extends Node
 
 
+signal level_load_progress(progress)
 signal level_load_completed(level_packed_scene)
+signal player_despawned
 
 
 @export var level_paths: Array[String]
@@ -35,20 +37,20 @@ func try_changing_to_next_level():
 
 
 func try_changing_to_level(level_index):
-	var was_successful = false
+	var succeeded = false
 
 	if level_index >= 0 \
 	and level_index < level_paths.size():
 		var level_path = level_paths[level_index]
-		was_successful = await try_loading_level(level_path)
-	if was_successful:
+		succeeded = await try_loading_level(level_path)
+	if succeeded:
 		current_level_path_index = level_index
 
-	return was_successful
+	return succeeded
 
 
 func try_loading_level(level_path):
-	var was_successful = false
+	var succeeded = false
 
 	currently_loading_level_path = level_path
 
@@ -58,14 +60,12 @@ func try_loading_level(level_path):
 	currently_loading_level_path = null
 
 	if level_packed_scene == null:
-		return was_successful
+		return succeeded
 
 	set_current_level(level_packed_scene)
-	was_successful = true
+	succeeded = true
 
-	return was_successful
-	# Tell scene that loading is finished (loading progress back to null)
-	#current_scene.set_start_button_enabled(true)
+	return succeeded
 
 
 func clear_current_level():
@@ -101,11 +101,10 @@ func _physics_process(_delta):
 
 	match ResourceLoader.load_threaded_get_status(currently_loading_level_path):
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
-			# Update progress and push change to progress bar in scene
 			var progress = []
 			ResourceLoader.load_threaded_get_status(currently_loading_level_path, progress)
-			#if progress.size() > 0:
-				#current_scene.set_level_loading_progress(progress.front())
+			if progress.size() > 0:
+				level_load_progress.emit(progress.front())
 		ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 			var level_packed_scene = ResourceLoader.load_threaded_get(currently_loading_level_path)
 			level_load_completed.emit(level_packed_scene)
@@ -125,25 +124,43 @@ func get_player_spawn_position():
 	return player_spawn_position
 
 
+func spawn_player():
+	var player = %CurrentLevel.get_node_or_null("Player")
+	if player != null:
+		%CurrentLevel.remove_child(player)
+
+	if %CurrentLevel.get_node_or_null("Player") != null:
+		printerr("Error: Player not cleared yet!")
+
+	var player_scene = preload("res://player/player.tscn")
+	player = player_scene.instantiate()
+	player.position = get_player_spawn_position()
+
+	player.player_reached_checkpoint.connect(on_player_reached_checkpoint)
+	player.player_despawned.connect(on_player_despawned)
+	#player.player_reached_goal.connect(on_player_reached_goal)
+
+	var remote_transform = RemoteTransform2D.new()
+	remote_transform.remote_path = %PlayerCamera.get_path()
+	player.add_child(remote_transform)
+
+	%CurrentLevel.add_child.call_deferred(player)
+	await player.tree_entered
+
+
 func on_player_reached_checkpoint(position):
 	player_spawn_position = position
 
 
-func spawn_player():
-	var player = %CurrentLevel.get_node_or_null("Player")
-	if player != null:
-		player.clear_abilities()
-	else:
-		var player_scene = preload("res://player/player.tscn")
-		player = player_scene.instantiate()
-		#player.player_despawned.connect(on_player_despawned)
-		#player.player_reached_goal.connect(on_player_reached_goal)
-		player.player_reached_checkpoint.connect(on_player_reached_checkpoint)
+func reset_to_checkpoint():
+	await spawn_player()
 
-		var remote_transform = RemoteTransform2D.new()
-		remote_transform.remote_path = %PlayerCamera.get_path()
-		player.add_child(remote_transform)
 
-		%CurrentLevel.add_child.call_deferred(player)
+func on_player_despawned():
+	player_despawned.emit()
 
-	player.position = get_player_spawn_position()
+
+func reset_level():
+	player_spawn_position = null
+	await try_loading_level(level_paths[current_level_path_index])
+	await spawn_player()

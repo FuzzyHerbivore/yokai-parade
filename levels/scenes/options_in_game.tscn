@@ -1,62 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw0g44fku0ne6"]
+[gd_scene load_steps=3 format=3 uid="uid://dw0g44fku0ne6"]
 
 [ext_resource type="Script" path="res://levels/scenes/options_in_game.gd" id="1_fvlq8"]
-
-[sub_resource type="Animation" id="Animation_ga6y3"]
-resource_name = "fade_in"
-length = 0.25
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Main:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5in4e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Main:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_eloke"]
-resource_name = "fade_out"
-length = 0.25
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Main:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lelbw"]
-_data = {
-"RESET": SubResource("Animation_5in4e"),
-"fade_in": SubResource("Animation_ga6y3"),
-"fade_out": SubResource("Animation_eloke")
-}
+[ext_resource type="AnimationLibrary" uid="uid://dk4cys2ms8tsl" path="res://assets/animations/state_transitions_long.res" id="2_m0nu1"]
 
 [node name="OptionsInGame" type="Node"]
 script = ExtResource("1_fvlq8")
@@ -64,6 +9,7 @@ script = ExtResource("1_fvlq8")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Main" type="Control" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,6 +40,6 @@ text = "Back"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_lelbw")
+"state_transitions_long": ExtResource("2_m0nu1")
 }
-autoplay = "fade_in"
+autoplay = "state_transitions_long/show_state_scene"

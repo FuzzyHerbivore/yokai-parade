@@ -4,6 +4,8 @@ extends LevelState
 func enter(p_previous_state):
 	super.enter(p_previous_state)
 
-	current_scene.set_previous_state(previous_state)
+	state_scene.set_state_node(self)
 
-	current_scene.level_state_scene_finished.connect(change_state)
+
+func change_to_previous_level_state():
+	change_state(previous_state)

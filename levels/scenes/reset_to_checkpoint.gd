@@ -1,15 +1,24 @@
-extends LevelStateScene
+extends Node
 
 
-var next_level_state
+var state_node
 
 
-func set_next_level_state(state):
-	next_level_state = state
+# Level States
+
+func set_state_node(node):
+	state_node = node
 
 
-func switch_to_next_level_state():
-	%AnimationPlayer.stop()
-	%AnimationPlayer.play("show_level")
+func _ready():
 	await %AnimationPlayer.animation_finished
-	level_state_scene_finished.emit(next_level_state)
+	await state_node.reset_to_checkpoint()
+	change_to_next_level_state()
+
+
+func change_to_next_level_state():
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play("state_transitions_short/hide_state_scene")
+	await %AnimationPlayer.animation_finished
+
+	state_node.change_to_next_level_state()

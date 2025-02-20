@@ -6,19 +6,24 @@ extends LevelState
 
 func enter(p_previous_state):
 	super.enter(p_previous_state)
-	current_scene.set_next_level_state(next_level_state)
+	state_scene.set_state_node(self)
 
-	current_scene.level_state_scene_finished.connect(change_state)
-	current_scene.level_loading_ready.connect(load_level)
+	parent.level_load_progress.connect(func(progress): state_scene.update_progress_bar(progress))
+	state_scene.level_loading_ready.connect(load_level)
 
 	parent.set_game_paused(true)
 
 
-func load_level():
-	var level_loading_succeeded = await parent.try_changing_to_next_level()
+func change_to_next_level_state():
+	change_state(next_level_state)
 
-	if level_loading_succeeded == true:
-		parent.spawn_player()
-		current_scene.set_start_button_enabled(true)
+
+func load_level():
+	var succeeded = await parent.try_changing_to_next_level()
+
+	if succeeded == true:
+		await parent.spawn_player()
+		state_scene.set_start_button_enabled(true)
+		state_scene.update_progress_bar(1)
 	else:
 		printerr("Error: Loading of level failed!")

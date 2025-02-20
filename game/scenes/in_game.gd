@@ -1,15 +1,22 @@
-extends GameStateScene
+extends Node
+
+
+signal player_despawned
+signal level_load_progress(progress)
 
 
 @export_category("Level States")
 @export var initial_level_state: LevelState
 
 var play_time
-var main_menu_game_state
+var state_node
 var current_level_state_scene
 
 
 func _ready():
+	%Levels.player_despawned.connect(on_player_despawned)
+	%Levels.level_load_progress.connect(on_level_load_progress)
+
 	reset_play_time()
 	%LevelStateMachine.init(self, initial_level_state)
 
@@ -47,6 +54,14 @@ func reset_play_time():
 	set_play_time(0.0)
 
 
+func on_player_despawned():
+	player_despawned.emit()
+
+
+func on_level_load_progress(progress):
+	level_load_progress.emit(progress)
+
+
 # Level Loading
 
 func try_changing_to_previous_level():
@@ -57,12 +72,17 @@ func try_changing_to_next_level():
 	return await %Levels.try_changing_to_next_level()
 
 
-func clear_current_level():
-	%Levels.clear_current_level()
-
-
 func spawn_player():
-	%Levels.spawn_player()
+	await %Levels.spawn_player()
+
+
+func reset_to_checkpoint():
+	await %Levels.reset_to_checkpoint()
+
+
+func reset_level():
+	await %Levels.reset_level()
+	reset_play_time()
 
 
 # Level State
@@ -81,29 +101,15 @@ func unload_level_state_scene(level_state_scene):
 		remove_child(scene_to_be_removed)
 
 
-func switch_to_level_state(level_state):
+func change_to_level_state(level_state):
 	%LevelStateMachine.change_state(level_state)
 
 
-# GameState
+# Game States
 
-func set_main_menu_game_state(state):
-	main_menu_game_state = state
-
-
-func switch_to_main_menu_game_state():
-	switch_to_game_state(main_menu_game_state)
+func set_state_node(node):
+	state_node = node
 
 
-func switch_to_game_state(next_game_state):
-	game_state_scene_finished.emit(next_game_state)
-
-
-# OLD STUFF!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-#func on_player_despawned():
-	#if get_node_or_null("Player") != null:
-		#await $Player.tree_exited
-#
-	#load_level(current_level_index)
-	#spawn_player()
+func change_to_main_menu_game_state():
+	state_node.change_to_main_menu_game_state()

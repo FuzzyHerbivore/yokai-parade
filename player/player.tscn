@@ -57,8 +57,8 @@ token_value_curve = SubResource("Curve_8672j")
 jump_coyote_time = 0.2
 jump_buffer_time = 0.2
 variable_jump_height_min_percentage = 0.58
-x_edge_correction = 1.5
-y_edge_correction = 1.1
+x_edge_correction = 1.38
+y_edge_correction = 1.11
 apex_time = 0.18
 apex_strength = 36.0
 apex_negativ_gravity = 0.25
@@ -90,11 +90,15 @@ collision_layer = 4
 shape = SubResource("CapsuleShape2D_4pm2j")
 debug_color = Color(0.976648, 0, 0.410241, 0.42)
 
-[node name="CantEdgeDetectRay" parent="." instance=ExtResource("5_5gjfl")]
+[node name="CantEdgeCorrectRay" parent="." instance=ExtResource("5_5gjfl")]
 target_position = Vector2(-23, -68)
 
-[node name="CanEdgeDetectRay" parent="." instance=ExtResource("5_5gjfl")]
-target_position = Vector2(32, -63)
+[node name="HasAirTargetRay" parent="." instance=ExtResource("5_5gjfl")]
+position = Vector2(0, -77.405)
+target_position = Vector2(111, -0.595001)
+
+[node name="CanEdgeCorrectRay" parent="." instance=ExtResource("5_5gjfl")]
+target_position = Vector2(41, -66)
 
 [node name="Visuals" type="Node2D" parent="."]
 

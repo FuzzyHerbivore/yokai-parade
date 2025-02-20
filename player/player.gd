@@ -39,8 +39,9 @@ const INFINITY = 1e20
 @export_range(.0, 1.5, .1) var push_height_percentage = .75
 
 @onready var abilities: Node2D = $Abilities
-@onready var cant_edge_detect_ray: RayCast2D = $CantEdgeDetectRay
-@onready var can_edge_detect_ray: RayCast2D = $CanEdgeDetectRay
+@onready var cant_edge_detect_ray: RayCast2D = $CantEdgeCorrectRay
+@onready var has_air_target_ray: RayCast2D = $HasAirTargetRay
+@onready var can_edge_detect_ray: RayCast2D = $CanEdgeCorrectRay
 
 
 var coyote_timer = 0.15
@@ -239,14 +240,16 @@ func can_use_coyote_time(should_jump):
 
 func edge_correction():
 	if x_edge_correction == 0 && y_edge_correction == 1: return
-	if is_on_wall(): return
+
 	if is_on_floor():
 		is_using_edge_correction = false
 		return
+	if is_on_wall(): return
 
 	if is_using_edge_correction: return
 	if is_falling(): return
 	if cant_edge_detect_ray.has_target(): return
+	if has_air_target_ray.has_target(): return
 	if !can_edge_detect_ray.has_target():return
 
 	is_using_edge_correction = true

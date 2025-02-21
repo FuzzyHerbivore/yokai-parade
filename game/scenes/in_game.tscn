@@ -72,8 +72,11 @@ script = ExtResource("9_u70qo")
 next_level_state = NodePath("../Recaping")
 level_state_packed_scene = ExtResource("12_q0gsl")
 
-[node name="Recaping" type="Node" parent="LevelStateMachine"]
+[node name="Recaping" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("loading_level_state", "return_to_main_menu_level_state", "reset_level_state")]
 script = ExtResource("10_8fb6y")
+loading_level_state = NodePath("../Loading")
+return_to_main_menu_level_state = NodePath("../ReturnToMainMenu")
+reset_level_state = NodePath("../ResetLevel")
 level_state_packed_scene = ExtResource("12_tbifs")
 
 [node name="Paused" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("return_to_main_menu_level_state", "options_in_game_level_state", "reset_to_checkpoint_level_state", "reset_level_state")]
@@ -81,7 +84,7 @@ script = ExtResource("11_k5x60")
 return_to_main_menu_level_state = NodePath("../ReturnToMainMenu")
 options_in_game_level_state = NodePath("../OptionsInGame")
 reset_to_checkpoint_level_state = NodePath("../ResetToCheckpoint")
-reset_level_state = NodePath("../ReturnToMainMenu")
+reset_level_state = NodePath("../ResetLevel")
 level_state_packed_scene = ExtResource("13_o02i2")
 
 [node name="OptionsInGame" type="Node" parent="LevelStateMachine"]
@@ -95,7 +98,7 @@ level_state_packed_scene = ExtResource("16_tucxx")
 
 [node name="ResetLevel" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("next_level_state")]
 script = ExtResource("16_0moau")
-next_level_state = NodePath("../Playing")
+next_level_state = NodePath("../Starting")
 level_state_packed_scene = ExtResource("18_0wv6n")
 
 [node name="ReturnToMainMenu" type="Node" parent="LevelStateMachine"]

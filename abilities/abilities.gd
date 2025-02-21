@@ -20,6 +20,7 @@ var hit_queue_timer
 
 @onready var visualizer: Node2D =  $"../Visuals/AbilityVisualizer"
 @onready var hit_enemy_ray: RayCast2D = $"../HitEnemyRay"
+var hit_targets = []
 signal player_hits
 signal used_ability
 
@@ -60,10 +61,10 @@ func catch_ability():
 
 
 func absorb_ability():
-	if damage_subject == null: return
+	if get_nearest_target() == null: return
 	if hit_enemy_ray.has_target() && hit_enemy_ray.get_target() is TileMapLayer: return
 
-	var subject_parent = damage_subject.get_damage_subject()
+	var subject_parent = get_nearest_target().get_damage_subject()
 	if subject_parent == null: return
 	if not subject_parent.has_method("got_caught"): return
 
@@ -139,11 +140,25 @@ func get_current_ability():
 
 func on_deal_damage_area_entered(other):
 	damage_subject = other
+	hit_targets.append(damage_subject)
 
 	if hit_timer_active():
 		absorb_ability()
 
 
 func on_deal_damage_area_exited(other):
+	hit_targets.erase(other)
+
 	if other == damage_subject:
 		damage_subject = null
+
+
+func get_nearest_target():
+	var nearest = null
+
+	for hit_target in hit_targets:
+		var current_distance = global_position.distance_to(hit_target.global_position)
+		if nearest == null || current_distance < global_position.distance_to(nearest.global_position):
+			nearest = hit_target
+
+	return nearest

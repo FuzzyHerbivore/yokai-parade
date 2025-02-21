@@ -111,9 +111,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 level_paths = Array[String](["res://levels/area_01/level_tutorial.tscn", "res://levels/area_01/level_01.tscn", "res://levels/area_01/level_02.tscn", "res://levels/area_01/level_03.tscn"])
 
-[node name="UI Layer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="UI Layer"]
+[node name="Control" type="Control" parent="UILayer"]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -121,7 +121,7 @@ anchor_right = 1.0
 grow_horizontal = 0
 mouse_filter = 1
 
-[node name="TopRight bg" type="TextureRect" parent="UI Layer/Control"]
+[node name="TopRight bg" type="TextureRect" parent="UILayer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -131,7 +131,7 @@ offset_top = -1.0
 offset_bottom = 483.0
 texture = ExtResource("4_1ymkj")
 
-[node name="TopRight main" type="TextureRect" parent="UI Layer/Control"]
+[node name="TopRight main" type="TextureRect" parent="UILayer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -143,7 +143,7 @@ offset_top = 0.09
 offset_bottom = 484.09
 texture = ExtResource("5_1whgf")
 
-[node name="TopRight line" type="TextureRect" parent="UI Layer/Control"]
+[node name="TopRight line" type="TextureRect" parent="UILayer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -155,7 +155,7 @@ offset_top = 0.09
 offset_bottom = 484.09
 texture = ExtResource("6_010ge")
 
-[node name="Clock" type="TextureRect" parent="UI Layer/Control"]
+[node name="Clock" type="TextureRect" parent="UILayer/Control"]
 layout_mode = 0
 offset_left = -471.0
 offset_top = 7.0
@@ -163,7 +163,7 @@ offset_right = -12.0
 offset_bottom = 229.0
 texture = ExtResource("7_bjrkf")
 
-[node name="TopUI" type="MarginContainer" parent="UI Layer/Control"]
+[node name="TopUI" type="MarginContainer" parent="UILayer/Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -175,13 +175,13 @@ grow_horizontal = 2
 pivot_offset = Vector2(128, 37)
 theme = ExtResource("8_l8w65")
 
-[node name="PlayTimeLabel" type="Label" parent="UI Layer/Control/TopUI"]
+[node name="PlayTimeLabel" type="Label" parent="UILayer/Control/TopUI"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00:00"
 
-[node name="Control2" type="Control" parent="UI Layer"]
+[node name="Control2" type="Control" parent="UILayer"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -191,7 +191,7 @@ offset_right = 40.0
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="BottomLeft bg" type="TextureRect" parent="UI Layer/Control2"]
+[node name="BottomLeft bg" type="TextureRect" parent="UILayer/Control2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -204,7 +204,7 @@ offset_right = 1036.0
 offset_bottom = 40.08
 texture = ExtResource("9_tvxpd")
 
-[node name="BottomLeft main" type="TextureRect" parent="UI Layer/Control2"]
+[node name="BottomLeft main" type="TextureRect" parent="UILayer/Control2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -217,7 +217,7 @@ offset_right = 1036.0
 offset_bottom = 40.08
 texture = ExtResource("10_bjykd")
 
-[node name="BottomLeft line" type="TextureRect" parent="UI Layer/Control2"]
+[node name="BottomLeft line" type="TextureRect" parent="UILayer/Control2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -230,14 +230,14 @@ offset_right = 1036.0
 offset_bottom = 40.08
 texture = ExtResource("11_7oqmf")
 
-[node name="Ability bg" type="TextureRect" parent="UI Layer/Control2"]
+[node name="Ability bg" type="TextureRect" parent="UILayer/Control2"]
 layout_mode = 0
 offset_top = -373.0
 offset_right = 452.0
 offset_bottom = 40.0
 texture = ExtResource("12_yb5sd")
 
-[node name="Ability line" type="TextureRect" parent="UI Layer/Control2"]
+[node name="Ability line" type="TextureRect" parent="UILayer/Control2"]
 layout_mode = 0
 offset_top = -373.0
 offset_right = 452.0

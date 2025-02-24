@@ -170,4 +170,4 @@ func refresh_wallray():
 	var nearest = get_nearest_target()
 	if nearest == null: return
 
-	hit_wall_ray.lookat_direction(nearest.global_position)
+	hit_wall_ray.lookat_position(nearest.global_position)

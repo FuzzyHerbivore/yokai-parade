@@ -89,7 +89,7 @@ shape = SubResource("CapsuleShape2D_82728")
 debug_color = Color(0.595658, 0.545411, 0, 0.42)
 
 [node name="HitWallRay" parent="." instance=ExtResource("5_5gjfl")]
-target_position = Vector2(200, 0)
+target_position = Vector2(124, 0)
 hit_from_inside = true
 
 [node name="TakeDamageArea" parent="." instance=ExtResource("4_y0ly5")]

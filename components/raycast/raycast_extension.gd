@@ -1,10 +1,5 @@
 extends RayCast2D
 
-var initial_length
-
-func _ready():
-	initial_length = target_position.length()
-
 
 func has_target():
 	return is_colliding()
@@ -17,5 +12,7 @@ func get_target():
 
 func lookat_direction(target_pos):
 	var look_pos = to_local(target_pos)
-	target_position = look_pos.normalized() * initial_length
-	print(target_position)
+	target_position = look_pos.normalized() * target_position.length()
+
+func lookat_position(target_pos):
+	target_position = to_local(target_pos)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dnxi2gyvo83ec"]
+[gd_scene load_steps=21 format=3 uid="uid://dnxi2gyvo83ec"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
 [ext_resource type="Script" path="res://abilities/abilities.gd" id="2_es05j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://player/player_visuals.gd" id="6_guley"]
 [ext_resource type="Script" path="res://player/debug.gd" id="7_3jai0"]
 [ext_resource type="PackedScene" uid="uid://b173nlre4ndsy" path="res://player/player_animatables.tscn" id="7_74yxj"]
+[ext_resource type="Shader" path="res://shader/exchange_color_on_asset.gdshader" id="8_yirkx"]
 [ext_resource type="Script" path="res://player/movement_line.gd" id="14_p1m7a"]
 
 [sub_resource type="Curve" id="Curve_8672j"]
@@ -35,6 +36,12 @@ height = 74.0
 [sub_resource type="Curve" id="Curve_xeqma"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3ot6"]
+shader = ExtResource("8_yirkx")
+shader_parameter/color_to_replace = Color(1, 0, 0, 1)
+shader_parameter/wanted_color = Color(0.433998, 0.316775, 1, 1)
+shader_parameter/feather_range = 0.511
 
 [sub_resource type="Curve" id="Curve_3tghh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
@@ -112,7 +119,7 @@ target_position = Vector2(50, -85)
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="AbilityVisualizer" type="Node2D" parent="Visuals"]
-position = Vector2(51, -76)
+position = Vector2(38, 18)
 script = ExtResource("6_guley")
 trail_points_max = 10
 hit_speed = 0.4
@@ -132,12 +139,16 @@ mesh = SubResource("SphereMesh_ovhno")
 position = Vector2(54, 2)
 
 [node name="AttackLine" type="Line2D" parent="Visuals"]
+z_index = 1
 width_curve = SubResource("Curve_xeqma")
 
 [node name="PlayerAnimatables" parent="." instance=ExtResource("7_74yxj")]
 
-[node name="PlayerWalk" parent="PlayerAnimatables" index="0"]
-frame = 8
+[node name="VfxHitAnimationMittig" parent="PlayerAnimatables" index="0"]
+visible = false
+
+[node name="PlayerWalk" parent="PlayerAnimatables" index="1"]
+material = SubResource("ShaderMaterial_k3ot6")
 
 [node name="Debug" type="Node2D" parent="."]
 script = ExtResource("7_3jai0")

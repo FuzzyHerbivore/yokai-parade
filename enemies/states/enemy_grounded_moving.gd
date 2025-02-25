@@ -1,4 +1,4 @@
-extends "res://enemies/states/catchable_state.gd"
+extends EnemyStateCatchable
 
 
 var speed = 0.0
@@ -9,7 +9,9 @@ func init(p_parent):
 	speed = parent.get_speed()
 
 
-func enter(_previous_state):
+func enter(p_previous_state):
+	super.enter(p_previous_state)
+
 	parent.enter_animation_state_moving()
 
 

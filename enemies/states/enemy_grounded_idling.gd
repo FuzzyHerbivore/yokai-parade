@@ -1,7 +1,9 @@
-extends "res://enemies/states/catchable_state.gd"
+extends EnemyStateCatchable
 
 
-func enter(_last_state):
+func enter(p_previous_state):
+	super.enter(p_previous_state)
+
 	parent.enter_animation_state_idling()
 
 

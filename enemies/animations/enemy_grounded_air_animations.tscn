@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://b5x05pl1dh0ey"]
 
 [ext_resource type="Texture2D" uid="uid://cxsfo7protit" path="res://enemies/animations/enemy_grounded_air_spritesheet.png" id="1_ngobw"]
-[ext_resource type="Script" path="res://enemies/animations/enemy_animations.gd" id="1_t3cf0"]
+[ext_resource type="Script" path="res://enemies/enemy_animations.gd" id="1_t3cf0"]
 
 [sub_resource type="Animation" id="Animation_563iv"]
 length = 0.001

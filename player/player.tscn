@@ -137,6 +137,9 @@ width_curve = SubResource("Curve_xeqma")
 
 [node name="PlayerAnimatables" parent="." instance=ExtResource("7_74yxj")]
 
+[node name="PlayerWalk" parent="PlayerAnimatables" index="0"]
+frame = 8
+
 [node name="Debug" type="Node2D" parent="."]
 script = ExtResource("7_3jai0")
 

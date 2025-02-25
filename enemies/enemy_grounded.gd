@@ -20,30 +20,24 @@ const STATES = preload("res://enemies/enemy_initial_states.gd")
 @export_category("State Machine")
 @export var idling_state: State
 @export var moving_state: State
-@export var recovering_state: State
 
 var is_recovering = false
-var enemy_animations
+var state_animations_scene
 var direction
 
 
 func _ready():
 	check_validity()
 
-	enemy_animations = element_type.animations_grounded.instantiate()
-	add_child(enemy_animations)
+	state_animations_scene = element_type.animations_grounded.instantiate()
+	add_child(state_animations_scene)
 
-	enemy_animations.position = %Sprite2D.position
+	state_animations_scene.position = %Sprite2D.position
 	%Sprite2D.visible = false
 
 	set_direction(Vector2(initial_direction, 0.0))
 
-	var init_state
-	match initial_state:
-		STATES.EnemyInitialState.MOVING:
-			init_state = moving_state
-		_:
-			init_state = idling_state
+	var init_state = get_initial_state()
 
 	%StateMachine.init(self, init_state)
 
@@ -79,9 +73,21 @@ func check_validity():
 	assert(is_valid, "Error: Enemy not set up properly, check errors above!")
 
 
+func get_initial_state():
+	match initial_state:
+		STATES.EnemyInitialState.MOVING:
+			return moving_state
+		_:
+			return idling_state
+
+
+func get_state_animations_scene():
+	return state_animations_scene
+
+
 func set_direction(value):
 	direction = value
-	enemy_animations.update_direction(direction)
+	state_animations_scene.update_direction(direction)
 
 
 func get_direction():
@@ -109,15 +115,15 @@ func get_is_recovering():
 
 
 func enter_animation_state_moving():
-	enemy_animations.enter_state_moving()
+	state_animations_scene.enter_state_moving()
 
 
 func enter_animation_state_idling():
-	enemy_animations.enter_state_idling()
+	state_animations_scene.enter_state_idling()
 
 
 func enter_animation_state_recovering():
-	enemy_animations.enter_state_recovering()
+	state_animations_scene.enter_state_recovering()
 
 
 func handle_gravity(delta):

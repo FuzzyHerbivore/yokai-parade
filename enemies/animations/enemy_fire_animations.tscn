@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://ddyyhxxuwsxtk"]
 
-[ext_resource type="Script" path="res://enemies/animations/enemy_animations.gd" id="1_ladii"]
+[ext_resource type="Script" path="res://enemies/enemy_animations.gd" id="1_ladii"]
 [ext_resource type="Texture2D" uid="uid://ba1gmfx4honp5" path="res://enemies/animations/enemy_fire_spritesheet.png" id="2_t1kpb"]
 
 [sub_resource type="Animation" id="Animation_36pp3"]

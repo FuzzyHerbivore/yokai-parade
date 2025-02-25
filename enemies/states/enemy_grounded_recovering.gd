@@ -1,11 +1,11 @@
-extends State
+extends EnemyState
 
 
 var recovery_timer
 
 
 func enter(p_previous_state):
-	self.previous_state = p_previous_state
+	super.enter(p_previous_state)
 
 	if previous_state == null:
 		printerr("Error: Recovering state should have a previous state!")

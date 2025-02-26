@@ -166,11 +166,12 @@ position = Vector2(0, 800)
 texture = ExtResource("7_qvnb5")
 
 [node name="MountainsSpritesheet" type="Sprite2D" parent="MountainsCloseParallax"]
-position = Vector2(1310, 592)
+position = Vector2(1302, 587)
 texture = ExtResource("7_7xycs")
 hframes = 4
 vframes = 3
 frame = 1
+region_rect = Rect2(0, 0, 2048, 2048)
 
 [node name="MountainsSpritesheet2" type="Sprite2D" parent="MountainsCloseParallax"]
 position = Vector2(837, 634)

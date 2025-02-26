@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cisf071rha1ru"]
+[gd_scene load_steps=37 format=3 uid="uid://cisf071rha1ru"]
 
 [ext_resource type="Script" path="res://game/scenes/in_game.gd" id="1_jmwmp"]
 [ext_resource type="PackedScene" uid="uid://cv00eqe6lwt2h" path="res://components/state_machine/state_machine.tscn" id="2_7ssm8"]
@@ -21,8 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://cajispq8sq8cp" path="res://ui/ui_ingame_ability_line.png" id="13_m5arx"]
 [ext_resource type="PackedScene" uid="uid://v24eao35y2ad" path="res://levels/scenes/paused.tscn" id="13_o02i2"]
 [ext_resource type="Script" path="res://levels/states/return_to_main_menu.gd" id="15_a0dd1"]
+[ext_resource type="Script" path="res://levels/states/game_over.gd" id="15_e62cx"]
 [ext_resource type="Script" path="res://levels/states/reset_to_checkpoint.gd" id="15_t1lu2"]
 [ext_resource type="Script" path="res://levels/states/reset_level.gd" id="16_0moau"]
+[ext_resource type="PackedScene" uid="uid://dj8bkbrvcyudi" path="res://levels/scenes/game_over.tscn" id="16_jypa4"]
 [ext_resource type="PackedScene" uid="uid://bp10lwi3myrce" path="res://levels/scenes/reset_to_checkpoint.tscn" id="16_tucxx"]
 [ext_resource type="Script" path="res://levels/states/options_in_game.gd" id="17_7gv5i"]
 [ext_resource type="PackedScene" uid="uid://bhgs0xub5lxvf" path="res://levels/scenes/reset_level.tscn" id="18_0wv6n"]
@@ -72,12 +74,18 @@ script = ExtResource("9_u70qo")
 next_level_state = NodePath("../Recaping")
 level_state_packed_scene = ExtResource("12_q0gsl")
 
-[node name="Recaping" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("loading_level_state", "return_to_main_menu_level_state", "reset_level_state")]
+[node name="Recaping" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("loading_level_state", "game_over_level_state", "return_to_main_menu_level_state", "reset_level_state")]
 script = ExtResource("10_8fb6y")
 loading_level_state = NodePath("../Loading")
+game_over_level_state = NodePath("../GameOver")
 return_to_main_menu_level_state = NodePath("../ReturnToMainMenu")
 reset_level_state = NodePath("../ResetLevel")
 level_state_packed_scene = ExtResource("12_tbifs")
+
+[node name="GameOver" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("return_to_main_menu_level_state")]
+script = ExtResource("15_e62cx")
+return_to_main_menu_level_state = NodePath("../ReturnToMainMenu")
+level_state_packed_scene = ExtResource("16_jypa4")
 
 [node name="Paused" type="Node" parent="LevelStateMachine" node_paths=PackedStringArray("playing_level_state", "return_to_main_menu_level_state", "options_in_game_level_state", "reset_to_checkpoint_level_state", "reset_level_state")]
 script = ExtResource("11_k5x60")

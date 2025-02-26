@@ -40,6 +40,8 @@ func set_next_level_state():
 	else:
 		next_level_state = loading_level_state
 
+	next_level_state = loading_level_state # TODO: Bug bypass
+
 
 func set_state_node(node):
 	state_node = node

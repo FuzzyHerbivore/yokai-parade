@@ -16,8 +16,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbauj"]
 shader = ExtResource("2_ygekg")
 shader_parameter/overlay_alpha = 1.0
-shader_parameter/pattern_scale = 0.67
-shader_parameter/tilemap_offset = Vector2(-1.125, 0)
+shader_parameter/pattern_scale = 1.73
+shader_parameter/tilemap_offset = Vector2(0, 0)
 shader_parameter/flip_alpha = false
 shader_parameter/use_hard_blend = true
 shader_parameter/use_local = false
@@ -25,9 +25,9 @@ shader_parameter/pattern_texture = ExtResource("3_bxexl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0aer"]
 shader = ExtResource("4_jiapn")
-shader_parameter/color_to_replace = Color(1, 0, 0, 1)
+shader_parameter/color_to_replace = Color(1, 1, 0.0117647, 1)
 shader_parameter/wanted_color = Color(0.470248, 0.454168, 0.494929, 1)
-shader_parameter/feather_range = 0.489
+shader_parameter/feather_range = 0.826
 
 [sub_resource type="Animation" id="Animation_1fs6i"]
 length = 0.001

@@ -14,7 +14,7 @@ func _ready():
 
 
 func _process(delta):
-	%ProgressBar.value = lerp(%ProgressBar.value, progress_percent, PROGRESS_BAR_LERP_SPEED_FACTOR)
+	%ProgressBar.value = lerp(%ProgressBar.value, progress_percent, delta * PROGRESS_BAR_LERP_SPEED_FACTOR)
 
 
 func update_progress(progress):

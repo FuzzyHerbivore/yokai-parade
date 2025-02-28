@@ -47,13 +47,14 @@ shape = SubResource("CircleShape2D_i3f1p")
 
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(34, 0)
+position = Vector2(20, 0)
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-34, 0)
+position = Vector2(-20, 0)
 
 [node name="PerceptionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -65,6 +66,7 @@ debug_color = Color(0.733333, 0.690196, 0, 0.419608)
 
 [node name="DealBumpDamageArea" parent="." instance=ExtResource("2_jj2bd")]
 unique_name_in_owner = true
+visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DealBumpDamageArea"]
@@ -73,6 +75,7 @@ debug_color = Color(0.858824, 0.364706, 0, 0.419608)
 
 [node name="DealAttackDamageArea" parent="." instance=ExtResource("2_jj2bd")]
 unique_name_in_owner = true
+visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DealAttackDamageArea"]

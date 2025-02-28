@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cv00eqe6lwt2h" path="res://components/state_machine/state_machine.tscn" id="6_tsxge"]
 [ext_resource type="Script" path="res://enemies/states/moving_airborne.gd" id="7_16tgl"]
 [ext_resource type="Script" path="res://enemies/states/lunging.gd" id="8_81glp"]
-[ext_resource type="Script" path="res://enemies/states/idling.gd" id="8_is8ca"]
+[ext_resource type="Script" path="res://enemies/states/idling_airborne.gd" id="8_is8ca"]
 [ext_resource type="Script" path="res://enemies/states/attacking.gd" id="8_noh7y"]
 [ext_resource type="Script" path="res://enemies/states/recovering.gd" id="9_kcogj"]
 

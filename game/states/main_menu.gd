@@ -7,6 +7,8 @@ extends GameState
 @export var quit_game_state: GameState
 
 
+# Game States
+
 func enter(p_previous_state):
 	super.enter(p_previous_state)
 

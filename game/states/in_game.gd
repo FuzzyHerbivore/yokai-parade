@@ -16,7 +16,7 @@ func enter(p_previous_state):
 
 	state_scene.set_state_node(self)
 
-	await parent.fade_out_music(1.0)
+	await parent.fade_out_audio(1.0)
 
 
 func change_to_main_menu_game_state():

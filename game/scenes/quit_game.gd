@@ -13,8 +13,8 @@ func _ready():
 	get_tree().quit()
 
 
-func fade_out_music(duration):
-	await state_node.fade_out_music(duration)
+func fade_out_audio(duration):
+	await state_node.fade_out_audio(duration)
 
 
 func set_state_node(node):

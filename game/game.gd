@@ -59,15 +59,15 @@ func fade_out_audio(duration):
 
 # Options
 
-func get_window_fullscreen():
-	return get_window().mode == Window.MODE_FULLSCREEN
-
-
 func set_window_fullscreen(active):
 	if active:
 		get_window().mode = Window.MODE_FULLSCREEN
 	else:
 		get_window().mode = Window.MODE_WINDOWED
+
+
+func get_window_fullscreen():
+	return get_window().mode == Window.MODE_FULLSCREEN
 
 
 func set_volume_audio_bus(bus_id, volume_db):

@@ -70,7 +70,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [0.5],
-"method": &"fade_out_music"
+"method": &"fade_out_audio"
 }]
 }
 

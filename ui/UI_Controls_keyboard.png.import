@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3o4ihtsqhemf"
-path="res://.godot/imported/player_walk.png-2fa6ef2eff801151c1b9d0104c4a078c.ctex"
+uid="uid://cvcpym3grnxa6"
+path="res://.godot/imported/UI_Controls_keyboard.png-4ef6478816e91b58a884c34957759e46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/assets/player_walk.png"
-dest_files=["res://.godot/imported/player_walk.png-2fa6ef2eff801151c1b9d0104c4a078c.ctex"]
+source_file="res://ui/UI_Controls_keyboard.png"
+dest_files=["res://.godot/imported/UI_Controls_keyboard.png-4ef6478816e91b58a884c34957759e46.ctex"]
 
 [params]
 

@@ -25,6 +25,22 @@ func _ready():
 	%LevelStateMachine.init(self, initial_level_state)
 
 
+func set_window_fullscreen(active):
+	state_node.set_window_fullscreen(active)
+
+
+func get_window_fullscreen():
+	return state_node.get_window_fullscreen()
+
+
+func set_volume_audio_bus(bus_id, volume_db):
+	state_node.set_volume_audio_bus(bus_id, volume_db)
+
+
+func get_volume_audio_bus(bus_id):
+	return state_node.get_volume_audio_bus(bus_id)
+
+
 func play_game_music():
 	state_node.play_game_music()
 

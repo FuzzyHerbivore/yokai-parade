@@ -26,22 +26,56 @@ func play_music(stream):
 	if stream == %MusicPlayer.stream:
 		return
 
-	await fade_out_music(1.0)
+	await fade_out_audio(1.0)
+
 	%MusicPlayer.stream = stream
-	%MusicPlayer.playing = true
+	%MusicPlayer.play()
 
 
-func fade_out_music(duration):
+func fade_out_audio(duration):
 	if not %MusicPlayer.playing:
 		return
 
+	var current_volume_master = get_volume_audio_bus(0)
+	var mute_volume = -80.0
+
+	var set_volume_audio_bus_master = func(volume_db):
+		set_volume_audio_bus(0, volume_db)
+
 	var tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(%MusicPlayer, "volume_db", -80.0, duration).from_current()
+	tween.tween_method(set_volume_audio_bus_master, current_volume_master, mute_volume, duration)
 
 	await tween.finished
+
 	%MusicPlayer.stop()
-	%MusicPlayer.volume_db = 0.0
+
+	# Workaround for AudioStreamPlayer.stop() not stopping immediately and not being awaitable,
+	# which leads to sound pops from turning up the volume again without a delay
+	OS.delay_msec(50)
+
+	set_volume_audio_bus_master.call(current_volume_master)
+
+
+# Options
+
+func set_window_fullscreen(active):
+	if active:
+		get_window().mode = Window.MODE_FULLSCREEN
+	else:
+		get_window().mode = Window.MODE_WINDOWED
+
+
+func get_window_fullscreen():
+	return get_window().mode == Window.MODE_FULLSCREEN
+
+
+func set_volume_audio_bus(bus_id, volume_db):
+	AudioServer.set_bus_volume_db(bus_id, volume_db)
+
+
+func get_volume_audio_bus(bus_id):
+	return AudioServer.get_bus_volume_db(bus_id)
 
 
 # State Machine

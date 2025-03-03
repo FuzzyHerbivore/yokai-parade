@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f8apw8d4yauy"
-path="res://.godot/imported/UI_ingame_tr_main.png-8a16fb284bfb4330ce35ba80c5f18f8f.ctex"
+uid="uid://cajispq8sq8cp"
+path="res://.godot/imported/ui_ingame_ability_line.png-62b1f4ef5af07d6e04e3ead4041e02a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/UI_ingame_tr_main.png"
-dest_files=["res://.godot/imported/UI_ingame_tr_main.png-8a16fb284bfb4330ce35ba80c5f18f8f.ctex"]
+source_file="res://ui/ingame/ui_ingame_ability_line.png"
+dest_files=["res://.godot/imported/ui_ingame_ability_line.png-62b1f4ef5af07d6e04e3ead4041e02a7.ctex"]
 
 [params]
 

@@ -6,4 +6,5 @@ func on_checkpoint_area_entered(other):
 
 	other.on_reached_checkpoint(%SpawnPoint.global_position)
 	%AnimationPlayer.play("active")
+	%AudioStreamPlayer2D.play()
 	set_deferred("monitoring", false)

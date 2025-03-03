@@ -7,7 +7,6 @@ uniform vec4 color_a : source_color;
 uniform vec4 color_b : source_color;
 
 uniform sampler2D pattern_texture;
-uniform sampler2D empty_texture;
 uniform float overlay_alpha : hint_range(0.0, 1.0) = 1.0;
 uniform float pattern_scale = 1.0;
 uniform vec2 tilemap_offset = vec2(0.0, 0.0);
@@ -90,7 +89,6 @@ void fragment() {
 	vec2 pattern_uv = fract(scaled_position);
 
 	vec4 pattern_color = texture(pattern_texture, pattern_uv);
-	vec4 empty_color = texture(empty_texture , pattern_uv);
 
 	float filtered_alpha = mix(texture_color, pattern_color, pattern_color.x).a;
 
@@ -116,7 +114,8 @@ void fragment() {
  
 	COLOR = final_color;
 	
-	if(pattern_color == empty_color)
+	ivec2 size = textureSize(pattern_texture,  0);
+	if(size.x < 5)
 	COLOR = final_mix;
 
 }

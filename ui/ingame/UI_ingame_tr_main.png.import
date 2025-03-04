@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6tphfuf0dkud"
-path="res://.godot/imported/p_checkpoint_active.png-6a3e456fe6b279a4449e8e8fd948ab02.ctex"
+uid="uid://f8apw8d4yauy"
+path="res://.godot/imported/UI_ingame_tr_main.png-346851ec60d8af571e74c92f48f8845e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/modules/assets/p_checkpoint_active.png"
-dest_files=["res://.godot/imported/p_checkpoint_active.png-6a3e456fe6b279a4449e8e8fd948ab02.ctex"]
+source_file="res://ui/ingame/UI_ingame_tr_main.png"
+dest_files=["res://.godot/imported/UI_ingame_tr_main.png-346851ec60d8af571e74c92f48f8845e.ctex"]
 
 [params]
 

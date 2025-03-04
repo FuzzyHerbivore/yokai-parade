@@ -55,15 +55,13 @@ func on_ability(current_ability):
 		state_machine.start("dash")
 	elif current_ability.ELEMENT_TYPE == ELEMENTS.ElementType.AIR:
 		state_machine.start("jump")
-		spawn_vfx("jump")
+		spawn_vfx("jump", true)
 
 
-func spawn_vfx(anim_name):
+func spawn_vfx(anim_name, emit_in_global):
 	var vfx = vfx_instance.instantiate()
-	vfx.position = position
 	add_child(vfx)
-	if vfx.has_method("play"): vfx.play(anim_name)
-	vfx.reparent(get_tree().root)
+	if vfx.has_method("play"): vfx.play(anim_name, emit_in_global)
 
 
 func on_pickup(color):

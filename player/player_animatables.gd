@@ -6,6 +6,7 @@ const COLOR_BLACK = Color(0,0,0,1)
 @export var time_to_blend : float = 1.0
 @export var blend_curve : Curve
 @export var default_vfx_col : Color
+@export var vfx_instance : PackedScene
 @export_category("Shrug")
 @export var shrug_cooldown : float = .8
 @export_category("Idle")
@@ -54,6 +55,15 @@ func on_ability(current_ability):
 		state_machine.start("dash")
 	elif current_ability.ELEMENT_TYPE == ELEMENTS.ElementType.AIR:
 		state_machine.start("jump")
+		spawn_vfx("jump")
+
+
+func spawn_vfx(anim_name):
+	var vfx = vfx_instance.instantiate()
+	vfx.position = position
+	add_child(vfx)
+	if vfx.has_method("play"): vfx.play(anim_name)
+	vfx.reparent(get_tree().root)
 
 
 func on_pickup(color):

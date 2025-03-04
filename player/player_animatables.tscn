@@ -1,14 +1,14 @@
-[gd_scene load_steps=65 format=3 uid="uid://b173nlre4ndsy"]
+[gd_scene load_steps=64 format=3 uid="uid://b173nlre4ndsy"]
 
 [ext_resource type="Script" path="res://player/player_animatables.gd" id="1_japyu"]
 [ext_resource type="Texture2D" uid="uid://dchjx31w1tyge" path="res://player/assets/player_spritesheet.png" id="1_wuri4"]
 [ext_resource type="AudioStream" uid="uid://cojwru8qh7oh8" path="res://sounds/player_dying.wav" id="2_jfhhs"]
-[ext_resource type="Shader" path="res://shader/pattern_overlay.gdshader" id="2_ygekg"]
-[ext_resource type="Texture2D" uid="uid://ba5pi8b15xb8a" path="res://assets/patterns/t_pattern_flowers.png" id="3_os8yi"]
+[ext_resource type="Material" uid="uid://c68p80bnif4bc" path="res://assets/vfx/player_vfx.tres" id="2_xp0es"]
 [ext_resource type="AudioStream" uid="uid://g4orwxysi14l" path="res://sounds/player_got_hit.wav" id="3_yjdp8"]
 [ext_resource type="Texture2D" uid="uid://lbun5m4epu5r" path="res://assets/vfx/vfx_animation_character.png" id="4_f7hvb"]
 [ext_resource type="Shader" path="res://shader/exchange_color_on_asset.gdshader" id="4_jiapn"]
 [ext_resource type="AudioStream" uid="uid://coibewadmss1o" path="res://sounds/player_hittting2.wav" id="4_wmhc6"]
+[ext_resource type="PackedScene" uid="uid://h3ruips3t7l8" path="res://player/vfx_instance.tscn" id="5_av5c8"]
 [ext_resource type="AudioStream" uid="uid://cwgybk1plghnu" path="res://sounds/player_jump.wav" id="5_irw32"]
 [ext_resource type="AudioStream" uid="uid://dgk7beqkylhis" path="res://sounds/player_landing.wav" id="6_f5xr2"]
 [ext_resource type="AudioStream" uid="uid://coy5ai5tktmgg" path="res://sounds/player_walking.wav" id="7_rrgwt"]
@@ -16,19 +16,6 @@
 [sub_resource type="Curve" id="Curve_uxwp6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbauj"]
-shader = ExtResource("2_ygekg")
-shader_parameter/overlay_alpha = 1.0
-shader_parameter/pattern_scale = 2.0
-shader_parameter/tilemap_offset = Vector2(0, 0)
-shader_parameter/flip_alpha = false
-shader_parameter/use_hard_blend = false
-shader_parameter/use_local = false
-shader_parameter/world_scale = 0.3
-shader_parameter/pattern_multiplier = 1.0
-shader_parameter/end_tint = Color(0, 0, 0, 1)
-shader_parameter/pattern_texture = ExtResource("3_os8yi")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0aer"]
 shader = ExtResource("4_jiapn")
@@ -695,27 +682,18 @@ states/no_ability_hit/position = Vector2(60, -103)
 states/walking/node = SubResource("AnimationNodeAnimation_l41dg")
 states/walking/position = Vector2(436, -18)
 transitions = ["Start", "idling", SubResource("AnimationNodeStateMachineTransition_i4wgy"), "idling", "walking", SubResource("AnimationNodeStateMachineTransition_egflg"), "walking", "idling", SubResource("AnimationNodeStateMachineTransition_1r4x0"), "walking", "jump", SubResource("AnimationNodeStateMachineTransition_87uy6"), "idling", "jump", SubResource("AnimationNodeStateMachineTransition_p4mgk"), "landing", "idling", SubResource("AnimationNodeStateMachineTransition_71yb5"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_dyay8"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_gvbew"), "falling", "jump", SubResource("AnimationNodeStateMachineTransition_in6c8"), "dash", "falling", SubResource("AnimationNodeStateMachineTransition_s3chn"), "got_hit", "falling", SubResource("AnimationNodeStateMachineTransition_kpurb"), "hit", "idling", SubResource("AnimationNodeStateMachineTransition_ebmfl"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_5yhxo"), "idling2", "walking", SubResource("AnimationNodeStateMachineTransition_0gbqa"), "idling3", "walking", SubResource("AnimationNodeStateMachineTransition_3olmi"), "idling4", "walking", SubResource("AnimationNodeStateMachineTransition_874ca"), "no_ability_hit", "idling", SubResource("AnimationNodeStateMachineTransition_8s21v"), "celebration", "idling", SubResource("AnimationNodeStateMachineTransition_kii8v")]
-graph_offset = Vector2(-221, -155)
+graph_offset = Vector2(-265, -250)
 
 [node name="PlayerAnimatables" type="Node2D"]
 script = ExtResource("1_japyu")
 blend_curve = SubResource("Curve_uxwp6")
 default_vfx_col = Color(0.521569, 0.501961, 0.882353, 1)
+vfx_instance = ExtResource("5_av5c8")
 
 [node name="VfxAnimationCharacter" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qbauj")
+material = ExtResource("2_xp0es")
 position = Vector2(-1167, 105)
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("4_f7hvb")
-offset = Vector2(972.5, -99.1667)
-hframes = 4
-vframes = 10
-frame = 4
-
-[node name="VFXInstance" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qbauj")
-position = Vector2(-2567.4, 231)
-scale = Vector2(1.44, 1.44)
 texture = ExtResource("4_f7hvb")
 offset = Vector2(972.5, -99.1667)
 hframes = 4
@@ -729,7 +707,7 @@ position = Vector2(1, -9)
 texture = ExtResource("1_wuri4")
 hframes = 4
 vframes = 12
-frame = 8
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

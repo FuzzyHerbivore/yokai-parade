@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bllds58nj1vyh"]
+[gd_scene load_steps=23 format=4 uid="uid://bllds58nj1vyh"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_vx1lh"]
 [ext_resource type="PackedScene" uid="uid://bomxlv8ndomnc" path="res://enemies/enemy_grounded.tscn" id="2_k5gev"]
@@ -19,6 +19,8 @@
 [ext_resource type="TileSet" uid="uid://b4k5ayqgk5hiq" path="res://levels/area_01/assets/decoration_tileset_area_01.tres" id="14_reit7"]
 [ext_resource type="TileSet" uid="uid://4v2t32qfx3hb" path="res://levels/area_01/assets/tileset_area_01.tres" id="15_4fppq"]
 [ext_resource type="PackedScene" uid="uid://bxb7rgxfvtxf2" path="res://levels/modules/player_spawn_point.tscn" id="16_riu0e"]
+[ext_resource type="Material" uid="uid://td4fx63dfxad" path="res://shader/mountain_pattern2.tres" id="17_soat7"]
+[ext_resource type="Texture2D" uid="uid://c5frpar7yqfe2" path="res://levels/area_01/assets/mountains_spritesheet.png" id="18_jpa5m"]
 
 [sub_resource type="Curve2D" id="Curve2D_j4ig6"]
 _data = {
@@ -132,6 +134,31 @@ metadata/_edit_lock_ = true
 z_index = -1
 tile_map_data = PackedByteArray("AAALAEIAAAAXACEAAAAOAEEAAAAkACgAAAAiAEYAAAAAAGoAAAAMAEcAAAAAAF4AAABIADcAAAAAAAAAABBKAEcAAAAAAFIAABBCAEcAAAAAAF4AABBQAEcAAAAAAFIAABBNAEEAAAAtAAIAAACHADUAAAA1AAkAAAB0ADwAAAAUACYAABByADwAAAAkACgAAADNADYAAAAlAAYAAADNADwAAAAAAF4AAACqAD0AAAAAAGoAAADcACwAAAAAAGoAABALASsAAAAAAGoAAADDADgAAAAXACEAAAC/ADcAAAAUACYAABC1AC0AAAAkACgAAAC3AC0AAAAkACgAABDdACQAAAA1AAkAAACIASUAAAArAAYAAACFASYAAAAwAAgAAACPASYAAAAlACQAAABNASsAAAAAAGoAAAA4ASQAAAA1AAkAAABBASYAAAAkACgAABAWASYAAAAwAAgAAAB4ASYAAAAUACYAABB9ASYAAAAXACEAABB7ASUAAAAkACgAAABcAR4AAAAtAAIAAACpARYAAAA0ABEAAACpARsAAAArAAYAAACfASEAAAAAAGoAAAB9ASwAAAAAAGoAAAAoASsAAAAAAF4AAADyACwAAAAAAF4AABBlASsAAAAAAF4AAAC3ASEAAAAAAF4AAABZAR4AAAAkAAIAABAYAv7/AAAAAAAAAAAZAg4AAAAAAF4AAAAPAg4AAAAAAF4AAAASAggAAAAtAAIAABAOAggAAAAkAAIAAAAHAhsAAAAUACYAABAEAhwAAAAUACYAABD8ARwAAAAtAAIAAADLARoAAAA1AAkAABDCARwAAAAlACQAAADdASEAAAAAAGoAAAD1ASEAAAAAAFIAABA9AisAAAAAAGoAABAlAggAAAAtAAIAAAB6AiQAAAA1AAkAAACGAiYAAAAlACQAAACGAiQAAAAkACgAAACDAiYAAAAkACgAABBgAisAAAAAAGoAAACPAg4AAAAAAF4AAACxAg4AAAAAAFIAABBjAg4AAAAAAFIAABDZAgYAAAA1AAkAABDlAggAAAAkACgAABA8AiUAAAAlAAYAAAA5AiUAAAArAAYAAABSAiYAAAAUACYAAABOAiYAAAAXACEAABBRAiQAAAAkACgAAACRAggAAAAUACYAAACNAggAAAAXACEAABDjAg4AAAAAAFIAABDRAg4AAAAAAFIAABAFAw0AAAAAAGoAAAAZAw0AAAAAAFIAABAzAxYAAAAAAF4AABAeAw8AAAAUACYAAAAgAw8AAAAkACgAABBLAxUAAAA1AAkAAABgAx0AAAAAAGoAAAB9Ax0AAAAAAF4AAACtAwgAAAAAAGoAAACaAx0AAAAAAFIAAACTAx0AAAAAAFIAABCBAxcAAAAkAAIAAAB/AxcAAAAkAAIAAAB8AxcAAAAtAAIAAAA8AxYAAAAkACgAAABzAxcAAAAXACEAAABvAxcAAAAUACYAABB7AwUAAAAAAF4AAAAyAwgAAAAAAF4AAAAxAg0AAAAAAFIAAACzAggAAAAXACEAAACwAggAAAAlACQAAACmAggAAAAwAAgAAAAJAwgAAAAUACYAAAALAwgAAAAkACgAAAARAwkAAAAkAAIAAAA=")
 tile_set = ExtResource("14_reit7")
+
+[node name="GiantMountain" type="Sprite2D" parent="TileMapBackground"]
+material = ExtResource("17_soat7")
+position = Vector2(-202.004, 1016.05)
+scale = Vector2(2.06761, 2.06761)
+texture = ExtResource("18_jpa5m")
+hframes = 4
+vframes = 3
+
+[node name="GiantMountain1" type="Sprite2D" parent="TileMapBackground"]
+material = ExtResource("17_soat7")
+position = Vector2(-907.004, 1311.05)
+scale = Vector2(1.99777, 1.99777)
+texture = ExtResource("18_jpa5m")
+region_enabled = true
+region_rect = Rect2(1039.51, 254.247, 902.831, 606.821)
+
+[node name="GiantMountain2" type="Sprite2D" parent="TileMapBackground"]
+material = ExtResource("17_soat7")
+position = Vector2(-217.004, 1565.05)
+scale = Vector2(1.98913, 1.98913)
+texture = ExtResource("18_jpa5m")
+hframes = 4
+vframes = 3
+frame = 4
 
 [node name="GameplayTileMapLayer" type="TileMapLayer" parent="."]
 material = ExtResource("14_jolra")

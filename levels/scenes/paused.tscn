@@ -190,6 +190,7 @@ offset_bottom = 739.0
 texture = ExtResource("5_w1drn")
 
 [node name="UiControlsController" type="TextureRect" parent="CanvasLayer/Main"]
+layout_mode = 0
 offset_left = 151.0
 offset_top = 380.0
 offset_right = 571.0

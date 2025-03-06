@@ -37,7 +37,8 @@ func subscribe_events():
 
 	player.player_reached_goal.connect(func(): state_machine.start("celebration"))
 	player.player_despawned.connect(func(): state_machine.start("dying"))
-	player.player_despawned.connect(func(): default_vfx())
+	player.player_despawned.connect(default_vfx)
+	player.on_reload.connect(default_vfx)
 
 
 func _physics_process(_delta):
@@ -88,6 +89,7 @@ func on_pickup(color):
 
 func blend_vfx_back():
 	color_blend_timer = create_timer(time_to_blend)
+	if color_blend_timer == null: return
 	color_blend_timer.timeout.connect(reset_vfx_conditionally)
 
 
@@ -141,4 +143,5 @@ func sort_dictionary_descending():
 
 
 func create_timer(time):
+	if get_tree() == null: return null
 	return get_tree().create_timer(time)

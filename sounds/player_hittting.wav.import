@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://coibewadmss1o"
-path="res://.godot/imported/player_hittting2.wav-ad03a5b54248795c3fd9392e869da59e.sample"
+path="res://.godot/imported/player_hittting.wav-d89f1e529cb34b47447c871c69546ead.sample"
 
 [deps]
 
-source_file="res://sounds/player_hittting2.wav"
-dest_files=["res://.godot/imported/player_hittting2.wav-ad03a5b54248795c3fd9392e869da59e.sample"]
+source_file="res://sounds/player_hittting.wav"
+dest_files=["res://.godot/imported/player_hittting.wav-d89f1e529cb34b47447c871c69546ead.sample"]
 
 [params]
 

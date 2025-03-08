@@ -7,6 +7,7 @@ signal player_reached_checkpoint(position)
 signal player_reached_goal
 signal player_gets_pushed
 signal on_jump
+signal on_land
 signal on_reload
 
 const INFINITY = 1e20
@@ -59,6 +60,7 @@ var move_dir
 var local_velocity := Vector2.ZERO
 var outer_velocity_sources := Vector2.ZERO
 var cached_local_velocity := Vector2.ZERO
+var cached_grounded = true
 
 var velocity_mod_instigator = []
 var player_control := true
@@ -96,6 +98,7 @@ func _physics_process(delta):
 	apply_velocity()
 	clamp_fall_speed()
 	move_and_slide()
+	land()
 
 
 func set_controls_active(active):
@@ -427,6 +430,13 @@ func flip_outer_velocity_logic(velocity_mod):
 
 	if look_direction < 0:
 		outer_velocity_sources.x = -outer_velocity_sources.x
+
+
+func land():
+	if !cached_grounded && is_on_floor():
+		on_land.emit()
+
+	cached_grounded = is_on_floor()
 
 
 func on_despawn():

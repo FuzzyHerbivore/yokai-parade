@@ -41,6 +41,7 @@ func subscribe_events():
 	player.player_despawned.connect(default_vfx)
 	player.on_reload.connect(default_vfx)
 	player.on_jump.connect(func(): spawn_vfx("jump", true, false))
+	player.on_land.connect(land)
 
 
 func _exit_tree():
@@ -72,6 +73,8 @@ func on_ability(current_ability):
 	elif current_ability.ELEMENT_TYPE == ELEMENTS.ElementType.AIR:
 		state_machine.start("double_jump")
 		spawn_vfx("air_jump", true, true)
+
+	shrug_timer = create_timer(shrug_cooldown)
 
 
 func spawn_vfx(anim_name, emit_in_global, freeze_physics):

@@ -53,22 +53,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:hframes")
+tracks/2/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -150,34 +138,22 @@ step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:hframes")
+tracks/0/path = NodePath("PlayerAnimatables/Player:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerAnimatables/Player:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.000868827, 0.0525644, 0.10426),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [36, 29, 30]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerAnimatables/AudioStreamPlayer2D")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimatables/AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -185,18 +161,30 @@ tracks/2/keys = {
 }],
 "times": PackedFloat32Array(0.000434416)
 }
-tracks/2/use_blend = true
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.070718),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
+tracks/3/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"times": PackedFloat32Array(0, 0.169045),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 4]
 }
 
 [sub_resource type="Animation" id="Animation_hhc52"]
@@ -366,7 +354,7 @@ tracks/2/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0779835, 0.198592),
+"times": PackedFloat32Array(0, 0.0779835, 0.165064),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [17, 18, 19]
@@ -378,7 +366,7 @@ tracks/3/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0776568, 0.199076),
+"times": PackedFloat32Array(0, 0.0786256, 0.1651),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(0, 0), Vector2(40, 0), Vector2(0, 0)]
@@ -631,27 +619,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [36, 37]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerAnimatables")
+tracks/2/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.00129042),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"land"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerAnimatables/VfxAnimationCharacter:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -902,7 +876,7 @@ advance_expression = "velocity.y > 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3qk0m"]
 advance_mode = 2
-advance_expression = "velocity.y > 0"
+advance_expression = "velocity.y >= 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cmh50"]
 switch_mode = 2
@@ -916,7 +890,7 @@ states/dash/position = Vector2(616, -272)
 states/double_jump/node = SubResource("AnimationNodeAnimation_sjerf")
 states/double_jump/position = Vector2(238, -219)
 states/dying/node = SubResource("AnimationNodeAnimation_54gw0")
-states/dying/position = Vector2(616, -143)
+states/dying/position = Vector2(605, -98)
 states/falling/node = SubResource("AnimationNodeAnimation_q240u")
 states/falling/position = Vector2(377, -186)
 states/got_hit/node = SubResource("AnimationNodeAnimation_hcx2n")
@@ -940,7 +914,7 @@ states/no_ability_hit/position = Vector2(60, -103)
 states/walking/node = SubResource("AnimationNodeAnimation_l41dg")
 states/walking/position = Vector2(436, -18)
 transitions = ["Start", "idling", SubResource("AnimationNodeStateMachineTransition_i4wgy"), "idling", "walking", SubResource("AnimationNodeStateMachineTransition_egflg"), "walking", "idling", SubResource("AnimationNodeStateMachineTransition_1r4x0"), "walking", "jump", SubResource("AnimationNodeStateMachineTransition_87uy6"), "idling", "jump", SubResource("AnimationNodeStateMachineTransition_p4mgk"), "landing", "idling", SubResource("AnimationNodeStateMachineTransition_71yb5"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_dyay8"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_gvbew"), "falling", "jump", SubResource("AnimationNodeStateMachineTransition_in6c8"), "dash", "falling", SubResource("AnimationNodeStateMachineTransition_s3chn"), "got_hit", "falling", SubResource("AnimationNodeStateMachineTransition_kpurb"), "hit", "idling", SubResource("AnimationNodeStateMachineTransition_ebmfl"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_5yhxo"), "idling2", "walking", SubResource("AnimationNodeStateMachineTransition_0gbqa"), "idling3", "walking", SubResource("AnimationNodeStateMachineTransition_3olmi"), "idling4", "walking", SubResource("AnimationNodeStateMachineTransition_874ca"), "no_ability_hit", "idling", SubResource("AnimationNodeStateMachineTransition_8s21v"), "celebration", "idling", SubResource("AnimationNodeStateMachineTransition_kii8v"), "double_jump", "falling", SubResource("AnimationNodeStateMachineTransition_qomkr"), "double_jump", "landing", SubResource("AnimationNodeStateMachineTransition_3qk0m"), "dying", "idling", SubResource("AnimationNodeStateMachineTransition_cmh50")]
-graph_offset = Vector2(-98, -254)
+graph_offset = Vector2(-150, -285)
 
 [node name="PlayerAnimatables" type="Node2D"]
 script = ExtResource("1_japyu")

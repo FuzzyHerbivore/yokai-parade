@@ -1,9 +1,13 @@
 extends EnemyStateCatchable
 
 
-@export var lunging_state: EnemyState
-@export var cliff_detection: Node2D
+@export_category("Enemy States")
+@export var lunging_enemy_state: EnemyState
 
+@export_category("Components")
+@export var cliff_detection_component: Node2D
+@export var target_direction_component: Node2D
+@export var ranged_attack_component: Node2D
 
 var speed = 0.0
 
@@ -31,15 +35,26 @@ func physics_process(delta):
 	var next_state = check_caught()
 
 	if next_state == null \
-	and parent.get_target_in_ranged_attack_reach() != null:
-		next_state = lunging_state
+	and ranged_attack_component.get_target_in_visible_range() != null:
+		next_state = lunging_enemy_state
 
 	return next_state
 
 
 func update_direction():
-	var direction = parent.get_look_direction()
-	if direction != null:
+	var current_direction = parent.get_look_direction()
+	var target_direction = target_direction_component.get_target_direction()
+	var new_direction
+
+	if current_direction != null:
 		if parent.is_on_wall() \
-		or cliff_detection.is_on_cliff():
-			parent.set_look_direction(Vector2(direction.x * -1.0, direction.y).normalized())
+		or cliff_detection_component.is_on_cliff():
+			new_direction = Vector2(current_direction.x * -1.0, current_direction.y).normalized()
+
+	if target_direction != null \
+	and target_direction != Vector2.ZERO:
+		new_direction = Vector2(target_direction.x, 0.0).normalized()
+
+	if new_direction == null: return
+
+	parent.set_look_direction(new_direction)

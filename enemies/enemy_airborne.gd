@@ -26,7 +26,6 @@ var path_2d
 var is_recovering = false
 var state_animations_scene
 var look_direction
-var target_in_perception_area
 
 
 func _ready():
@@ -40,7 +39,7 @@ func _ready():
 	state_animations_scene.position = %PreviewSprite.position
 	%PreviewSprite.visible = false
 
-	reset_look_direction()
+	look_direction = get_initial_look_direction()
 
 	var init_state = get_initial_state()
 	%StateMachine.init(self, init_state)
@@ -94,12 +93,10 @@ func get_initial_state():
 			return idling_state
 
 
-func get_state_animations_scene():
-	return state_animations_scene
-
-
-func get_target_in_ranged_attack_reach():
-	return %RangedAttack.get_target_in_ranged_attack_reach()
+func get_initial_look_direction():
+	match initial_look_direction:
+		1: return Vector2.RIGHT
+		-1: return Vector2.LEFT
 
 
 func set_look_direction(value):
@@ -112,12 +109,8 @@ func get_look_direction():
 	return look_direction
 
 
-func reset_look_direction():
-	var direction
-	match initial_look_direction:
-		1: direction = Vector2.RIGHT
-		-1: direction = Vector2.LEFT
-	set_look_direction(direction)
+func get_state_animations_scene():
+	return state_animations_scene
 
 
 func get_max_speed():
@@ -128,23 +121,11 @@ func set_deal_melee_damage_active(active):
 	%DealMeleeDamageArea.set_deferred("monitoring", active)
 
 
-func on_perception_area_entered(target):
-	var target_direction = global_position.direction_to(target.global_position)
-	set_look_direction(target_direction)
-
-
-func on_perception_area_exited(_target):
-	target_in_perception_area = null
-
-
 func on_melee_damage_area_entered(target):
-	attack(%DealMeleeDamageArea.get_damageable_subject(target))
+	var subject = %DealMeleeDamageArea.get_damageable_subject(target)
 
-
-func attack(target):
-	if target == null: return
-
-	target.on_took_damage(self)
+	if subject == null: return
+	subject.on_took_damage(self)
 
 
 # TODO: Try getting rid of this and setting monitoring and state change by returning from state

@@ -55,7 +55,12 @@ position = Vector2(12363, 228)
 
 [node name="Enemies" type="Node2D" parent="Start-1stCheckpoint"]
 
-[node name="AirGroundedIdling" parent="Start-1stCheckpoint/Enemies" instance=ExtResource("3_0vhd0")]
+[node name="FireGroundedMoving" parent="Start-1stCheckpoint/Enemies" instance=ExtResource("3_0vhd0")]
+position = Vector2(2472, 712)
+initial_state = 200
+element_type = ExtResource("5_spnqd")
+
+[node name="AirGroundedMoving" parent="Start-1stCheckpoint/Enemies" instance=ExtResource("3_0vhd0")]
 position = Vector2(3823, 593)
 initial_state = 200
 element_type = ExtResource("4_bqem7")
@@ -198,6 +203,7 @@ initial_state = 200
 element_type = ExtResource("4_bqem7")
 
 [node name="AirFlyingMoving2" type="Path2D" parent="Start-1stCheckpoint/Enemies"]
+position = Vector2(-464, -64)
 curve = SubResource("Curve2D_7t57f")
 
 [node name="EnemyAirborne" parent="Start-1stCheckpoint/Enemies/AirFlyingMoving2" instance=ExtResource("6_tj8ky")]
@@ -218,11 +224,6 @@ curve = SubResource("Curve2D_h3j2p")
 
 [node name="EnemyAirborne" parent="Start-1stCheckpoint/Enemies/FireFlyingMoving2" instance=ExtResource("6_tj8ky")]
 position = Vector2(1800, 272)
-initial_state = 200
-element_type = ExtResource("5_spnqd")
-
-[node name="EnemyGrounded" parent="Start-1stCheckpoint/Enemies" instance=ExtResource("3_0vhd0")]
-position = Vector2(2472, 712)
 initial_state = 200
 element_type = ExtResource("5_spnqd")
 
@@ -260,5 +261,5 @@ position = Vector2(2168, 912)
 
 [node name="TileMapForeground" type="TileMapLayer" parent="."]
 z_index = 10
-tile_map_data = PackedByteArray("AABdACwAAAAAAAAAAACWAC0AAAAjAAwAAAB8ADEAAAA0ABEAAAC7ADQAAAAAACEAAAC8ABwAAAAAADEAAACbADwAAAAAAFIAAACmADwAAAAAAF4AAACLAD0AAAAAAGoAAABsADUAAAA1AAkAAABtAEUAAAAxADEAAACBAEoAAAAbADEAAACwACsAAAAkAAIAAAC5ACsAAAAtAAIAAADFACoAAAAlAAYAAADNAC8AAAArAAYAAADUACYAAAAwAAgAAABQAR0AAAAZAFIAAAAoASwAAAAaAF4AAABOASsAAAAaAGkAAAA1AScAAABIAAAAAAD3ACgAAAAXACEAAAD1ACoAAAAUACYAAAD4ACsAAAAkACgAAAD0ACkAAAAUACYAAAD7ACgAAAAUACYAAAD7ACsAAAAlACQAAAA=")
+tile_map_data = PackedByteArray("AABdACwAAAAAAAAAAAB8ADEAAAA0ABEAAAC7ADQAAAAAACEAAAC8ABwAAAAAADEAAACbADwAAAAAAFIAAACmADwAAAAAAF4AAACLAD0AAAAAAGoAAABsADUAAAA1AAkAAABtAEUAAAAxADEAAACBAEoAAAAbADEAAACwACsAAAAkAAIAAAC5ACsAAAAtAAIAAADFACoAAAAlAAYAAADNAC8AAAArAAYAAADUACYAAAAwAAgAAABQAR0AAAAZAFIAAAAoASwAAAAaAF4AAABOASsAAAAaAGkAAAA1AScAAABIAAAAAAD3ACgAAAAXACEAAAD1ACoAAAAUACYAAAD4ACsAAAAkACgAAAD0ACkAAAAUACYAAAD7ACgAAAAUACYAAAD7ACsAAAAlACQAAAA=")
 tile_set = ExtResource("14_3gfgu")

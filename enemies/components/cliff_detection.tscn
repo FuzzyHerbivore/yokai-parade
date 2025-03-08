@@ -4,11 +4,3 @@
 
 [node name="CliffDetection" type="Node2D"]
 script = ExtResource("1_7f57t")
-
-[node name="RightGroundDetectionRayCast" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(20, 0)
-
-[node name="LeftGroundDetectionRayCast" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-20, 0)

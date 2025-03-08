@@ -1,7 +1,12 @@
 extends EnemyStateCatchable
 
 
+@export_category("Enemy States")
 @export var lunging_enemy_state: EnemyState
+
+@export_category("Components")
+@export var target_direction_component: Node2D
+@export var ranged_attack_component: Node2D
 
 
 func enter(p_previous_state):
@@ -11,11 +16,22 @@ func enter(p_previous_state):
 
 
 func physics_process(_delta):
+	var target_direction = target_direction_component.get_target_direction()
+	var new_direction
+
+	if target_direction != null:
+		new_direction = Vector2(target_direction.x, 0.0).normalized()
+	else:
+		new_direction = parent.get_initial_look_direction()
+
+	if new_direction != null:
+		parent.set_look_direction(new_direction)
+
 	var next_state = check_caught()
 	if next_state != null:
 		return next_state
 
-	if parent.get_target_in_ranged_attack_reach() != null:
+	if ranged_attack_component.get_target_in_visible_range() != null:
 		next_state = lunging_enemy_state
 
 	return next_state

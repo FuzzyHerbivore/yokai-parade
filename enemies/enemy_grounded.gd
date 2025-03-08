@@ -35,7 +35,7 @@ func _ready():
 	state_animations_scene.position = %PreviewSprite.position
 	%PreviewSprite.visible = false
 
-	reset_look_direction()
+	look_direction = get_initial_look_direction()
 
 	var init_state = get_initial_state()
 	%StateMachine.init(self, init_state)
@@ -80,30 +80,24 @@ func get_initial_state():
 			return idling_state
 
 
-func get_state_animations_scene():
-	return state_animations_scene
+func get_initial_look_direction():
+	match initial_look_direction:
+		1: return Vector2.RIGHT
+		-1: return Vector2.LEFT
 
 
-func get_target_in_ranged_attack_reach():
-	return %RangedAttack.get_target_in_ranged_attack_reach()
-
-
-func set_look_direction(value):
-	look_direction = value
+func set_look_direction(direction):
+	look_direction = direction
 	if look_direction != null:
-		state_animations_scene.update_direction(look_direction)
+		state_animations_scene.update_direction(direction)
 
 
 func get_look_direction():
 	return look_direction
 
 
-func reset_look_direction():
-	var direction
-	match initial_look_direction:
-		1: direction = Vector2.RIGHT
-		-1: direction = Vector2.LEFT
-	set_look_direction(direction)
+func get_state_animations_scene():
+	return state_animations_scene
 
 
 func get_speed():
@@ -112,11 +106,6 @@ func get_speed():
 
 func set_deal_melee_damage_active(active):
 	%DealMeleeDamageArea.set_deferred("monitoring", active)
-
-
-func on_perception_area_entered(target):
-	var target_direction = global_position.direction_to(target.global_position)
-	set_look_direction(target_direction)
 
 
 func on_melee_damage_area_entered(target):

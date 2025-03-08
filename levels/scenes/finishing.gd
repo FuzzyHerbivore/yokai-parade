@@ -1,6 +1,13 @@
 extends Node
 
 
+signal music_volume_fraction_changed(fraction)
+
+
+@export var music_volume_fraction: float:
+	set(fraction):
+		music_volume_fraction_changed.emit(fraction)
+
 var state_node
 
 
@@ -10,10 +17,6 @@ func _ready():
 	await %AnimationPlayer.animation_finished
 
 	change_to_next_level_state()
-
-
-func reset_music_volue(duration):
-	await state_node.reset_music_volume(duration)
 
 
 func set_state_node(node):

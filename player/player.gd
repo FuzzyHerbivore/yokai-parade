@@ -64,6 +64,7 @@ var cached_grounded = true
 
 var velocity_mod_instigator = []
 var player_control := true
+var has_won := false
 
 var buffer_cancel_jump := false
 var is_cancelling_jump := false
@@ -103,8 +104,12 @@ func _physics_process(delta):
 
 func set_controls_active(active):
 	player_control = active
+	if active: return
+
 	local_velocity.x = 0
+	outer_velocity_sources = Vector2.ZERO
 	velocity.x = 0
+
 
 
 func apply_velocity():
@@ -446,11 +451,13 @@ func on_despawn():
 	if cam_remote != null:
 		cam_remote.queue_free()
 
+	if has_won: return
 	create_timer(reset_time).timeout.connect(func(): player_despawned.emit())
 
 
 func on_goal_reached():
 	player_reached_goal.emit()
+	has_won = true
 
 
 func on_reached_checkpoint(checkpoint_position):

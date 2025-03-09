@@ -140,6 +140,8 @@ func create_timer(time):
 
 
 func reset_color():
+	if player_sprite == null: return
+
 	var shader_mat = player_sprite.material as ShaderMaterial
 	shader_mat.set_shader_parameter("wanted_color", COLOR_PLAIN)
 	ability_changed.emit(COLOR_PLAIN)

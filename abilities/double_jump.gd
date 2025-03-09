@@ -8,10 +8,14 @@ const ELEMENT_TYPE = ELEMENTS.ElementType.AIR
 @export var disable_player_movement := false
 @export var velocity_curve : Curve
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+var in_tree = false
+
+
+func _ready():
+	in_tree = true
 
 
 func use(player_manager):
-
 	var vel_modifier = VelocityModifier.new(Vector2(0, -double_jump_vel), \
 	double_jump_duration, 1, disable_player_movement, true)
 
@@ -19,11 +23,14 @@ func use(player_manager):
 	vel_modifier.set_curve(velocity_curve)
 	player_manager.add_velocity_modifier(vel_modifier)
 
-	if animation_player:
-		animation_player.play("on_ability")
+	animation_player = $AnimationPlayer
+	animation_player.play("on_ability")
 	contoller_rumble()
 
-	if is_inside_tree() == null: return
+	if !in_tree:
+		call_deferred("exit")
+		return
+
 	create_timer(double_jump_duration).timeout.connect(exit)
 
 

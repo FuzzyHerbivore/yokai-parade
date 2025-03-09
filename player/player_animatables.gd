@@ -77,15 +77,15 @@ func on_ability(current_ability):
 	shrug_timer = create_timer(shrug_cooldown)
 
 
-func spawn_vfx(anim_name, emit_in_global, freeze_physics):
+func spawn_vfx(anim_name, emit_in_global, freeze_physics, _z_index = null):
 	var vfx = vfx_instance.instantiate()
 	call_deferred("add_child", vfx)
 
-	if vfx.has_method("play"): vfx.play(anim_name, emit_in_global, freeze_physics)
+	if vfx.has_method("play"): vfx.play(anim_name, emit_in_global, freeze_physics, _z_index)
 
 
 func land():
-	spawn_vfx("land", true, false)
+	spawn_vfx("land", true, false, -1)
 
 
 func player_death():

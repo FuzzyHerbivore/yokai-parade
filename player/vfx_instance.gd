@@ -3,7 +3,7 @@ var anim_sprite
 var rigid_body
 var freeze_physics
 
-func play(animation_name, emit_in_global = false, _freeze_physics = false):
+func play(animation_name, emit_in_global = false, _freeze_physics = false, _z_index = null):
 	rigid_body = $RigidBody2D
 	anim_sprite = $RigidBody2D/AnimatedSprite2D
 	anim_sprite.play(animation_name, 1.0, false)
@@ -12,6 +12,9 @@ func play(animation_name, emit_in_global = false, _freeze_physics = false):
 	call_deferred("reset_rb")
 	freeze_physics = _freeze_physics
 	rigid_body.freeze = freeze_physics
+
+	if _z_index != null:
+		anim_sprite.z_index = _z_index
 
 
 func to_root():

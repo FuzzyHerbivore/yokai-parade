@@ -921,6 +921,12 @@ script = ExtResource("1_japyu")
 blend_curve = SubResource("Curve_uxwp6")
 default_vfx_col = Color(0.521569, 0.501961, 0.882353, 1)
 vfx_instance = ExtResource("5_av5c8")
+idle_animation_probability = {
+"idling": 16,
+"idling2": 15,
+"idling3": 3,
+"idling4": 7
+}
 
 [node name="VfxAnimationCharacter" type="Sprite2D" parent="."]
 material = ExtResource("2_xp0es")

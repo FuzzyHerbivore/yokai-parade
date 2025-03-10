@@ -35,13 +35,7 @@ func to_root():
 func _physics_process(_delta):
 	flip()
 
-	clear_after_moving()
-	if rigid_body != null && rigid_body.freeze: return
-	if rigid_body != null && rigid_body.get_linear_velocity() == Vector2.ZERO:
-		rigid_body.freeze = true
-
-	if scale.y == 1 && rotation == 0 && (rigid_body == null || rigid_body.rotation == 0): return
-	if flip_parent != null: return
+	clear_after_action()
 
 	reset_rb()
 
@@ -53,14 +47,14 @@ func flip():
 	scale.y = flip_parent.look_direction
 
 
-func clear_after_moving():
+func clear_after_action():
 	if !clear_after_move: return
 	if !moved: return
 
 	queue_free()
 
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	moved = true
 
 
@@ -74,6 +68,13 @@ func on_animation_finished():
 
 
 func reset_rb():
+	if rigid_body != null && rigid_body.freeze: return
+	if rigid_body != null && rigid_body.get_linear_velocity() == Vector2.ZERO:
+		rigid_body.freeze = true
+
+	if flip_parent != null: return
+	if scale.y == 1 && rotation == 0 && (rigid_body == null || rigid_body.rotation == 0): return
+
 	scale.y = 1
 	rotation = 0
 	rigid_body.rotation = 0

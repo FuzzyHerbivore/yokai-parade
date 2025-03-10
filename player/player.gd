@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 signal player_ability_changed(color)
+signal on_death_zone
 signal player_despawned
 signal player_reached_checkpoint(position)
 signal player_reached_goal
 signal player_gets_pushed
 signal on_jump
+signal on_land
 signal on_reload
 
 const INFINITY = 1e20
@@ -45,6 +47,10 @@ const INFINITY = 1e20
 @onready var has_air_target_ray: RayCast2D = $HasAirTargetRay
 @onready var can_edge_detect_ray: RayCast2D = $CanEdgeCorrectRay
 
+@export_category("Reset")
+@export var reset_time : float = .6
+
+var cam_remote
 var coyote_timer = 0.15
 var jump_buffer_timer = 0.0
 
@@ -54,9 +60,11 @@ var move_dir
 var local_velocity := Vector2.ZERO
 var outer_velocity_sources := Vector2.ZERO
 var cached_local_velocity := Vector2.ZERO
+var cached_grounded = true
 
 var velocity_mod_instigator = []
 var player_control := true
+var has_won := false
 
 var buffer_cancel_jump := false
 var is_cancelling_jump := false
@@ -91,12 +99,17 @@ func _physics_process(delta):
 	apply_velocity()
 	clamp_fall_speed()
 	move_and_slide()
+	land()
 
 
 func set_controls_active(active):
 	player_control = active
+	if active: return
+
 	local_velocity.x = 0
+	outer_velocity_sources = Vector2.ZERO
 	velocity.x = 0
+
 
 
 func apply_velocity():
@@ -424,15 +437,27 @@ func flip_outer_velocity_logic(velocity_mod):
 		outer_velocity_sources.x = -outer_velocity_sources.x
 
 
+func land():
+	if !cached_grounded && is_on_floor():
+		on_land.emit()
+
+	cached_grounded = is_on_floor()
+
+
 func on_despawn():
 	if Input.get_connected_joypads().size() > 0:
 		Input.start_joy_vibration(0, 1.0, 0.0, 2.0)
-	player_despawned.emit()
-	queue_free()
+	on_death_zone.emit()
+	if cam_remote != null:
+		cam_remote.queue_free()
+
+	if has_won: return
+	create_timer(reset_time).timeout.connect(func(): player_despawned.emit())
 
 
 func on_goal_reached():
 	player_reached_goal.emit()
+	has_won = true
 
 
 func on_reached_checkpoint(checkpoint_position):
@@ -454,6 +479,11 @@ func on_took_damage(source):
 
 func create_timer(time):
 	return get_tree().create_timer(time)
+
+
+func set_cam_remote(remote):
+	cam_remote = remote
+	add_child(cam_remote)
 
 
 func toggle_debug():

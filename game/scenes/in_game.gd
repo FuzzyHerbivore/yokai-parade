@@ -52,6 +52,14 @@ func play_game_music():
 	state_node.play_game_music()
 
 
+func get_music_volume():
+	return get_volume_audio_bus(1)
+
+
+func set_music_volume(volume_db):
+	set_volume_audio_bus(1, volume_db)
+
+
 func set_game_paused(should_pause):
 	get_tree().paused = should_pause
 

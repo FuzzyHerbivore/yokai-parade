@@ -119,17 +119,13 @@ controller_variant = ExtResource("18_xc5u8")
 
 [node name="Deathzones" type="Node2D" parent="."]
 
-[node name="DespawnArea" parent="Deathzones" instance=ExtResource("12_corae")]
-position = Vector2(17382, 575)
-scale = Vector2(33.56, 1)
-
 [node name="DespawnArea3" parent="Deathzones" instance=ExtResource("12_corae")]
-position = Vector2(13919, 567)
-scale = Vector2(33.56, 1)
+position = Vector2(16076, 567)
+scale = Vector2(56.615, 1)
 
 [node name="DespawnArea2" parent="Deathzones" instance=ExtResource("12_corae")]
-position = Vector2(-292, 1261)
-scale = Vector2(53.96, 1)
+position = Vector2(2391, 1261)
+scale = Vector2(89.035, 1)
 
 [node name="Area1Backgrounds2" parent="." instance=ExtResource("13_poah6")]
 metadata/_edit_lock_ = true
@@ -149,7 +145,3 @@ tile_set = ExtResource("15_4fppq")
 
 [node name="PlayerSpawnPoint" parent="." instance=ExtResource("16_riu0e")]
 position = Vector2(301, 1070)
-
-[connection signal="body_entered" from="GameplayTileMapLayer/Goal" to="GameplayTileMapLayer/Goal" method="on_body_entered"]
-[connection signal="area_entered" from="GameplayTileMapLayer/Checkpoint" to="GameplayTileMapLayer/Checkpoint" method="on_checkpoint_area_entered"]
-[connection signal="body_entered" from="GameplayTileMapLayer/Checkpoint" to="GameplayTileMapLayer/Checkpoint" method="on_checkpoint_area_entered"]

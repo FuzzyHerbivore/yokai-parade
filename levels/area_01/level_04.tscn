@@ -413,8 +413,8 @@ position = Vector2(13725, 2049)
 scale = Vector2(28.4, 1)
 
 [node name="DespawnArea5" parent="Deathzones" instance=ExtResource("6_m58lr")]
-position = Vector2(17243, 2246)
-scale = Vector2(14, 1)
+position = Vector2(17495, 2246)
+scale = Vector2(11.43, 1)
 
 [node name="DespawnArea6" parent="Deathzones" instance=ExtResource("6_m58lr")]
 position = Vector2(19109, 1767)
@@ -458,10 +458,10 @@ environment = SubResource("Environment_c3u4k")
 
 [connection signal="area_entered" from="GameplayTileMapLayer/Checkpoint" to="GameplayTileMapLayer/Checkpoint" method="on_checkpoint_area_entered"]
 [connection signal="body_entered" from="GameplayTileMapLayer/Checkpoint" to="GameplayTileMapLayer/Checkpoint" method="on_checkpoint_area_entered"]
-[connection signal="area_entered" from="GameplayTileMapLayer/@Area2D@22396" to="GameplayTileMapLayer/@Area2D@22396" method="on_checkpoint_area_entered"]
-[connection signal="body_entered" from="GameplayTileMapLayer/@Area2D@22396" to="GameplayTileMapLayer/@Area2D@22396" method="on_checkpoint_area_entered"]
-[connection signal="area_entered" from="GameplayTileMapLayer/@Area2D@22401" to="GameplayTileMapLayer/@Area2D@22401" method="on_checkpoint_area_entered"]
-[connection signal="body_entered" from="GameplayTileMapLayer/@Area2D@22401" to="GameplayTileMapLayer/@Area2D@22401" method="on_checkpoint_area_entered"]
-[connection signal="area_entered" from="GameplayTileMapLayer/@Area2D@22405" to="GameplayTileMapLayer/@Area2D@22405" method="on_checkpoint_area_entered"]
-[connection signal="body_entered" from="GameplayTileMapLayer/@Area2D@22405" to="GameplayTileMapLayer/@Area2D@22405" method="on_checkpoint_area_entered"]
+[connection signal="area_entered" from="GameplayTileMapLayer/@Area2D@80296" to="GameplayTileMapLayer/@Area2D@80296" method="on_checkpoint_area_entered"]
+[connection signal="body_entered" from="GameplayTileMapLayer/@Area2D@80296" to="GameplayTileMapLayer/@Area2D@80296" method="on_checkpoint_area_entered"]
+[connection signal="area_entered" from="GameplayTileMapLayer/@Area2D@80301" to="GameplayTileMapLayer/@Area2D@80301" method="on_checkpoint_area_entered"]
+[connection signal="body_entered" from="GameplayTileMapLayer/@Area2D@80301" to="GameplayTileMapLayer/@Area2D@80301" method="on_checkpoint_area_entered"]
+[connection signal="area_entered" from="GameplayTileMapLayer/@Area2D@80305" to="GameplayTileMapLayer/@Area2D@80305" method="on_checkpoint_area_entered"]
+[connection signal="body_entered" from="GameplayTileMapLayer/@Area2D@80305" to="GameplayTileMapLayer/@Area2D@80305" method="on_checkpoint_area_entered"]
 [connection signal="body_entered" from="GameplayTileMapLayer/Goal" to="GameplayTileMapLayer/Goal" method="on_body_entered"]

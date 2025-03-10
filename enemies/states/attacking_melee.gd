@@ -1,7 +1,8 @@
 extends EnemyStateCatchable
 
 
-@export var lunging_state: EnemyState
+@export_category("Components")
+@export var attack_melee_component: Node2D
 
 var is_animation_running = false
 
@@ -14,12 +15,12 @@ func enter(p_previous_state):
 	is_animation_running = false
 
 
-func exit():
-	super.exit()
-
-
 func attack():
-	parent.attack(parent.get_target_in_perception_area())
+	var target = attack_melee_component.get_target_in_range()
+	if target == null \
+	or not target.has_method("on_took_damage"): return
+
+	target.on_took_damage(parent)
 
 
 func physics_process(_delta):
@@ -29,8 +30,5 @@ func physics_process(_delta):
 	or is_animation_running:
 		return next_state
 
-	if parent.get_target_in_perception_area() != null:
-		next_state = lunging_state
-	else:
-		next_state = parent.get_initial_state()
+	next_state = parent.get_initial_state()
 	return next_state

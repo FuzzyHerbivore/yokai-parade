@@ -69,8 +69,7 @@ func catch_ability():
 func absorb_ability():
 	var nearest = get_nearest_target()
 	if nearest == null: return
-
-	if hit_wall_ray.has_target() && hit_wall_ray.get_target() is TileMapLayer: return
+	if hit_wall_ray.has_target(): return
 
 	var subject_parent = nearest.get_damage_subject()
 	if subject_parent == null: return
@@ -141,6 +140,8 @@ func create_timer(time):
 
 
 func reset_color():
+	if player_sprite == null: return
+
 	var shader_mat = player_sprite.material as ShaderMaterial
 	shader_mat.set_shader_parameter("wanted_color", COLOR_PLAIN)
 	ability_changed.emit(COLOR_PLAIN)

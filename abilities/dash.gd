@@ -31,8 +31,16 @@ func use(player_manager):
 	vel_modifier.set_curve(velocity_curve)
 	player_manager.add_velocity_modifier(vel_modifier)
 	is_dashing = true
+
+	animation_player = $AnimationPlayer
 	animation_player.play("on_ability")
+
+	if get_parent() == null:
+		call_deferred("exit")
+		return
+
 	create_timer(dash_duration).timeout.connect(exit)
+
 
 func exit():
 	if damage_linger_duration == 0.0:

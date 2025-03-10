@@ -36,16 +36,19 @@ func subscribe_events():
 	abilities.ability_changed.connect(on_pickup)
 
 	player.player_reached_goal.connect(func(): state_machine.start("celebration"))
-	player.player_despawned.connect(func(): state_machine.start("dying"))
+	player.player_gets_pushed.connect(func(): state_machine.start("got_hit"))
+	player.on_death_zone.connect(player_death)
 	player.player_despawned.connect(default_vfx)
 	player.on_reload.connect(default_vfx)
 	player.on_jump.connect(func(): spawn_vfx("jump", true, false))
+	player.on_land.connect(land)
 
 
 func _exit_tree():
 	abilities.used_ability.disconnect(on_ability)
 	abilities.ability_changed.disconnect(on_pickup)
 
+	player.on_death_zone.disconnect(player_death)
 	player.player_despawned.disconnect(default_vfx)
 	player.on_reload.disconnect(default_vfx)
 
@@ -68,19 +71,26 @@ func on_ability(current_ability):
 	if current_ability.ELEMENT_TYPE == ELEMENTS.ElementType.FIRE:
 		state_machine.start("dash")
 	elif current_ability.ELEMENT_TYPE == ELEMENTS.ElementType.AIR:
-		state_machine.start("jump")
+		state_machine.start("double_jump")
 		spawn_vfx("air_jump", true, true)
 
+	shrug_timer = create_timer(shrug_cooldown)
 
-func spawn_vfx(anim_name, emit_in_global, freeze_physics):
+
+func spawn_vfx(anim_name, emit_in_global, freeze_physics, _z_index = null):
 	var vfx = vfx_instance.instantiate()
 	call_deferred("add_child", vfx)
 
-	if vfx.has_method("play"): vfx.play(anim_name, emit_in_global, freeze_physics)
+	if vfx.has_method("play"): vfx.play(anim_name, emit_in_global, freeze_physics, _z_index)
 
 
 func land():
-	spawn_vfx("land", true, false)
+	spawn_vfx("land", true, false, -1)
+
+
+func player_death():
+	spawn_vfx("dying", true, true)
+	state_machine.start("dying")
 
 
 func on_pickup(color):
@@ -125,6 +135,7 @@ func different_idles(anim_name):
 		if random_value >= idle_animation_probability[key]: continue
 
 		state_machine.start(key)
+		spawn_vfx(key, true, true, 1)
 		return
 
 	var last_key = idle_animation_probability.keys()[idle_animation_probability.size() - 1]

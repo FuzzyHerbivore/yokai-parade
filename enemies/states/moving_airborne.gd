@@ -1,7 +1,14 @@
 extends EnemyStateCatchable
 
 
-@export var lunging_state: EnemyState
+@export_category("Enemy States")
+@export var attacking_melee_enemy_state: EnemyState
+@export var lunging_enemy_state: EnemyState
+
+@export_category("Components")
+@export var target_direction_component: Node2D
+@export var attack_melee_component: Node2D
+@export var attack_ranged_component: Node2D
 
 var last_position
 var speed = 0.0
@@ -48,7 +55,17 @@ func physics_process(delta):
 
 	update_direction()
 
-	return check_caught()
+	var next_state = check_caught()
+
+	if next_state != null:
+		return next_state
+
+	if attack_melee_component.get_target_in_range() != null:
+		next_state = attacking_melee_enemy_state
+	elif attack_ranged_component.get_target_in_visible_range() != null:
+		next_state = lunging_enemy_state
+
+	return next_state
 
 
 func update_direction():

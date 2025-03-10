@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7bdx67irenol"
-path="res://.godot/imported/p_goal_active.png-657c108e203f778ae7bd9bd142e26d39.ctex"
+uid="uid://bq0wsylybrjvq"
+path="res://.godot/imported/p_goal_spritesheet.png-64d284c7486163021836e5a480477c23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/modules/assets/p_goal_active.png"
-dest_files=["res://.godot/imported/p_goal_active.png-657c108e203f778ae7bd9bd142e26d39.ctex"]
+source_file="res://levels/modules/assets/p_goal_spritesheet.png"
+dest_files=["res://.godot/imported/p_goal_spritesheet.png-64d284c7486163021836e5a480477c23.ctex"]
 
 [params]
 

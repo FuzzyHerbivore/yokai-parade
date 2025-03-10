@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnj6o61ajdyke"
-path="res://.godot/imported/ui_ingame_ability_main.png-02b68800aacd6ea0936bb5c0bd87c792.ctex"
+uid="uid://uja72e3p7hhx"
+path="res://.godot/imported/vfx_goal_spritesheet.png-8af861e97cdc47218f85dc51bda454e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/ingame/ui_ingame_ability_main.png"
-dest_files=["res://.godot/imported/ui_ingame_ability_main.png-02b68800aacd6ea0936bb5c0bd87c792.ctex"]
+source_file="res://levels/modules/assets/vfx_goal_spritesheet.png"
+dest_files=["res://.godot/imported/vfx_goal_spritesheet.png-8af861e97cdc47218f85dc51bda454e6.ctex"]
 
 [params]
 

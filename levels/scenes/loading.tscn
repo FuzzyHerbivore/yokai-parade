@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbew8yq4n6jan"]
+[gd_scene load_steps=15 format=3 uid="uid://bbew8yq4n6jan"]
 
 [ext_resource type="Script" path="res://levels/scenes/loading.gd" id="1_4fevy"]
-[ext_resource type="Texture2D" uid="uid://bpqxl54lmx415" path="res://ui/misc/ui_bg_3.png" id="2_3o1sf"]
 [ext_resource type="AnimationLibrary" uid="uid://dk4cys2ms8tsl" path="res://assets/animations/state_transitions_long.res" id="2_b1mnc"]
+[ext_resource type="Texture2D" path="res://ui/misc/ui_bg_5.png" id="2_chnw0"]
 [ext_resource type="Shader" path="res://shader/exchange_color_on_asset.gdshader" id="2_fomcb"]
 [ext_resource type="Texture2D" uid="uid://dchjx31w1tyge" path="res://player/assets/player_spritesheet.png" id="2_vro33"]
 
@@ -63,9 +63,14 @@ tracks/0/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_mo4sr"]
+resource_name = "loading_finished"
+step = 0.125
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_78vyi"]
 _data = {
-"RESET": SubResource("Animation_753kk")
+"RESET": SubResource("Animation_753kk"),
+"loading_finished": SubResource("Animation_mo4sr")
 }
 
 [node name="Loading" type="Node"]
@@ -86,7 +91,7 @@ color = Color(0.235294, 0.207843, 0.266667, 1)
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_3o1sf")
+texture = ExtResource("2_chnw0")
 
 [node name="Main" type="Control" parent="CanvasLayer"]
 z_index = 100

@@ -32,6 +32,11 @@ func enter(p_previous_state):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
+func unhandled_input(event):
+	if event.is_action_pressed("pause_game"):
+		change_state(previous_state)
+
+
 func exit():
 	super.exit()
 

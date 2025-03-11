@@ -7,11 +7,6 @@ signal player_hits
 const COLOR_PLAIN = Color("#949494")
 
 
-var current_ability
-
-@onready var player: CharacterBody2D = $".."
-@onready var player_sprite = $"../PlayerAnimatables/Player"
-
 @export var hit_cooldown_time : float = .6
 @export var hit_grace_time : float = .2
 @export var hit_queue_time : float = .3
@@ -19,6 +14,10 @@ var hit_cooldown_timer
 var hit_grace_timer
 var hit_queue_timer
 
+var current_ability
+
+@onready var player: CharacterBody2D = $".."
+@onready var player_sprite = $"../PlayerAnimatables/Player"
 @onready var hit_wall_ray: RayCast2D = $"../HitWallRay"
 var targets_in_range = []
 

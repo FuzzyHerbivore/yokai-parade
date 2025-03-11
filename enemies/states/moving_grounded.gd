@@ -16,10 +16,10 @@ extends EnemyState
 var speed = 0.0
 
 
-func init(p_parent):
-	super(p_parent)
+func init(p_context):
+	super(p_context)
 
-	speed = parent.get_speed()
+	speed = context.get_speed()
 
 
 func enter(p_previous_state):
@@ -32,9 +32,9 @@ func physics_process(delta):
 	handle_gravity(delta)
 	update_direction()
 
-	parent.velocity = Vector2(visualisation_component.get_facing_direction().x * speed, parent.velocity.y)
-	visualisation_component.set_facing_direction(parent.velocity.normalized())
-	parent.move_and_slide()
+	context.velocity = Vector2(visualisation_component.get_facing_direction().x * speed, context.velocity.y)
+	visualisation_component.set_facing_direction(context.velocity.normalized())
+	context.move_and_slide()
 
 	if take_damage_component.get_did_take_damage():
 		return recovering_state
@@ -50,8 +50,8 @@ func physics_process(delta):
 
 
 func handle_gravity(delta):
-	if not parent.is_on_floor():
-		parent.velocity += parent.get_gravity() * delta
+	if not context.is_on_floor():
+		context.velocity += context.get_gravity() * delta
 
 
 func update_direction():
@@ -60,7 +60,7 @@ func update_direction():
 	var new_direction
 
 	if current_direction != null:
-		if parent.is_on_wall():
+		if context.is_on_wall():
 			new_direction = Vector2(current_direction.x * -1.0, current_direction.y).normalized()
 
 		elif cliff_detection_component.is_on_cliff_right():

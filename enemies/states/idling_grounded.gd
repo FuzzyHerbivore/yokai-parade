@@ -21,7 +21,7 @@ func enter(p_previous_state):
 
 func physics_process(delta):
 	handle_gravity(delta)
-	parent.move_and_slide()
+	context.move_and_slide()
 
 	var target_direction = target_direction_component.get_target_direction()
 	var new_direction = visualisation_component.get_facing_direction()
@@ -46,5 +46,5 @@ func physics_process(delta):
 
 
 func handle_gravity(delta):
-	if not parent.is_on_floor():
-		parent.velocity += parent.get_gravity() * delta
+	if not context.is_on_floor():
+		context.velocity += context.get_gravity() * delta

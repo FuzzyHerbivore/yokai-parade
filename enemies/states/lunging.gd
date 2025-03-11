@@ -41,11 +41,11 @@ func physics_process(_delta):
 		next_state = attacking_ranged_enemy_state
 		update_direction(attack_ranged_target)
 	else:
-		next_state = parent.get_initial_state()
+		next_state = context.get_initial_state()
 	return next_state
 
 
 func update_direction(look_at_target):
 	if look_at_target != null:
-		var new_direction = parent.global_position.direction_to(look_at_target.global_position).normalized()
+		var new_direction = context.global_position.direction_to(look_at_target.global_position).normalized()
 		visualisation_component.set_facing_direction(new_direction)

@@ -20,12 +20,12 @@ var progression_direction = 1.0
 var progress_ratio_raw = 0.0
 
 
-func init(p_parent):
-	super.init(p_parent)
+func init(p_context):
+	super.init(p_context)
 
-	speed = parent.get_max_speed()
-	path_length = parent.get_path_length()
-	is_path_closed = parent.get_is_path_closed()
+	speed = context.get_max_speed()
+	path_length = context.get_path_length()
+	is_path_closed = context.get_is_path_closed()
 
 
 func enter(p_previous_state):
@@ -47,13 +47,13 @@ func physics_process(delta):
 			progress_ratio_raw += overflow
 			progression_direction = 1.0
 
-		if parent.easing_curve != null:
-			parent.progress_ratio = parent.easing_curve.sample(progress_ratio_raw)
+		if context.easing_curve != null:
+			context.progress_ratio = context.easing_curve.sample(progress_ratio_raw)
 		else:
-			parent.progress_ratio = progress_ratio_raw
+			context.progress_ratio = progress_ratio_raw
 
 	else:
-		parent.progress_ratio = progress_ratio_raw
+		context.progress_ratio = progress_ratio_raw
 
 	update_direction()
 
@@ -71,7 +71,7 @@ func physics_process(delta):
 
 
 func update_direction():
-	var position = parent.global_position
+	var position = context.global_position
 	if last_position == null:
 		last_position = position
 		return

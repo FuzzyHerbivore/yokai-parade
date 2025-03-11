@@ -26,7 +26,7 @@ func physics_process(_delta):
 	if is_animation_running:
 		return null
 
-	return parent.get_initial_state()
+	return context.get_initial_state()
 
 
 func attack():
@@ -34,4 +34,4 @@ func attack():
 	if target == null \
 	or not target.has_method("on_took_damage"): return
 
-	target.on_took_damage(parent)
+	target.on_took_damage(context)

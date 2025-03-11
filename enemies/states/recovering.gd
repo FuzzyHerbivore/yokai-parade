@@ -23,7 +23,7 @@ func physics_process(_delta):
 	if is_animation_running:
 		return
 
-	return parent.get_initial_state()
+	return context.get_initial_state()
 
 
 func exit():

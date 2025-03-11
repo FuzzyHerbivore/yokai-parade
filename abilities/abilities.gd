@@ -15,6 +15,7 @@ var hit_grace_timer
 var hit_queue_timer
 
 var current_ability
+var shader_mat
 
 @onready var player: CharacterBody2D = $".."
 @onready var player_sprite = $"../PlayerAnimatables/Player"
@@ -27,6 +28,7 @@ func _ready():
 
 	player.player_despawned.connect(clear_abilities)
 	ability_changed.connect(player.ability_changed)
+	shader_mat = player_sprite.material as ShaderMaterial
 
 
 func _physics_process(_delta):
@@ -122,8 +124,7 @@ func set_current_ability(ability_scene):
 	current_ability = ability
 
 	if ability.has_method("get_color"):
-		var ability_color: Color = ability.get_color()
-		var shader_mat = player_sprite.material as ShaderMaterial
+		var ability_color = ability.get_color()
 		shader_mat.set_shader_parameter("wanted_color", ability_color)
 		ability_changed.emit(ability_color)
 
@@ -141,7 +142,6 @@ func create_timer(time):
 func reset_color():
 	if player_sprite == null: return
 
-	var shader_mat = player_sprite.material as ShaderMaterial
 	shader_mat.set_shader_parameter("wanted_color", COLOR_PLAIN)
 	ability_changed.emit(COLOR_PLAIN)
 

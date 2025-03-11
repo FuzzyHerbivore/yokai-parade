@@ -11,3 +11,7 @@ func _physics_process(_delta):
 	add_point(get_parent().global_position)
 	if get_point_count() > trail_points_max:
 		remove_point(0)
+
+
+func _enter_tree():
+	clear_points()

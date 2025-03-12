@@ -16,7 +16,8 @@ var quit_game_level_state
 func _ready():
 	await %AnimationPlayer.animation_finished
 
-	set_next_level_state()
+	if state_node != null:
+		set_next_level_state()
 
 	%NextLevelButton.pressed.connect(change_to_next_level_state)
 	%ResetLevelButton.pressed.connect(change_to_reset_level_state)

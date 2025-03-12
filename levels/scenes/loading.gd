@@ -1,36 +1,54 @@
 extends Node
 
 
-const PROGRESS_BAR_LERP_SPEED_FACTOR = 5.0
+const PROGRESS_BAR_LERP_SPEED_FACTOR = 1.0
 
 var state_node
-var progress_percent = 0.0
-var loading_finished = false
+var progress = 0.0
+var has_progress_animation_finished = false
+var has_loading_finished = false
 
 
 func _ready():
+	if OS.has_feature("web"):
+		%AnimatedCharacter.visible = false
+
 	await %AnimationPlayer.animation_finished
-	await state_node.load_level()
+	if state_node != null:
+		await state_node.load_level()
 
 
 func _process(delta):
-	%ProgressBar.value = lerp(%ProgressBar.value, progress_percent, delta * PROGRESS_BAR_LERP_SPEED_FACTOR)
+	update_progress_percent(delta)
 
 
-func update_progress(progress):
+func get_progress_percent():
+	return progress * 100.0
+
+
+func update_progress_percent(_delta):
+	%ProgressBar.value = move_toward(%ProgressBar.value, get_progress_percent(), PROGRESS_BAR_LERP_SPEED_FACTOR)
+
+	if %ProgressBar.value == 100.0 \
+	and not has_progress_animation_finished:
+		has_progress_animation_finished = true
+		check_change_to_next_level()
+
+
+func update_progress(p_progress):
 	# Loader can set progress back to 0.0 after loading, so we skip updating once we reached 1.0
-	if loading_finished:
+	if has_loading_finished:
 		return
 
-	progress_percent = progress * 100.0
+	progress = p_progress
 
 	if progress == 1.0:
-		finish_loading()
+		has_loading_finished = true
 
 
-func finish_loading():
-	loading_finished = true
-	change_to_next_level_state()
+func check_change_to_next_level():
+	if has_loading_finished and has_progress_animation_finished:
+		change_to_next_level_state()
 
 
 # Level States
@@ -40,7 +58,7 @@ func set_state_node(node):
 
 
 func change_to_next_level_state():
-	%AnimationPlayer.queue("loading_finished")
+	%AnimationPlayer.play("loading_finished")
 	%AnimationPlayer.queue("state_transitions_long/hide_state_scene")
 	await %AnimationPlayer.animation_finished
 	state_node.change_to_next_level_state()

@@ -12,12 +12,14 @@ func _ready():
 
 func _pressed():
 	disabled = true
-	click_player.play()
+	if click_player != null:
+		click_player.play()
 
 
 func on_hover():
 	grab_focus()
-	hover_player.play()
+	if hover_player != null:
+		hover_player.play()
 
 
 func get_node_in_game(node_patch):

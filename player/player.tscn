@@ -145,13 +145,8 @@ end_cap_mode = 2
 position = Vector2(0, -50)
 line_material = ExtResource("9_hbaoq")
 
-[node name="EnvironmentalSounds" parent="PlayerAnimatables" index="4"]
-pitch_min = 0.95
-pitch_max = 1.1
-
-[node name="VoiceSounds" parent="PlayerAnimatables" index="5"]
-pitch_min = 0.95
-pitch_max = 1.1
+[node name="Player" parent="PlayerAnimatables" index="1"]
+frame = 8
 
 [node name="Debug" type="Node2D" parent="."]
 position = Vector2(0, -25)

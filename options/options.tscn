@@ -116,9 +116,9 @@ layout_mode = 2
 text = "Options"
 horizontal_alignment = 1
 
-[node name="AudioLabel2" type="Label" parent="MainPanel/PanelContainer/VBoxContainer"]
+[node name="ControlsLabel" type="Label" parent="MainPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"HeadingLabel"
+theme_type_variation = &"SubHeadingLabel"
 text = "controls"
 horizontal_alignment = 1
 
@@ -141,7 +141,7 @@ texture = ExtResource("4_e2u6s")
 
 [node name="AudioLabel" type="Label" parent="MainPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"HeadingLabel"
+theme_type_variation = &"SubHeadingLabel"
 text = "Audio"
 horizontal_alignment = 1
 

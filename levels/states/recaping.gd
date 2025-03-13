@@ -17,6 +17,7 @@ func enter(p_previous_state):
 	state_scene.set_reset_level_state(reset_level_state)
 	state_scene.set_quit_game_level_state(quit_game_level_state)
 
+	state_scene.set_level_info(1, 4, 5)
 	state_scene.set_play_time(context.get_play_time())
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

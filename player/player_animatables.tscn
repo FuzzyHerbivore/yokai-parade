@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://77a3pk7xnpwu" path="res://sounds/player_footsteps_01.ogg" id="14_yo6re"]
 [ext_resource type="AudioStream" uid="uid://buxi8ehvusiow" path="res://sounds/player_footsteps_02.ogg" id="15_qxsyd"]
 [ext_resource type="Script" path="res://player/movement_line.gd" id="17_tfrnd"]
-[ext_resource type="Material" uid="uid://byy6iohvlx7as" path="res://shader/debug_line.tres" id="18_y1len"]
+[ext_resource type="Material" path="res://shader/debug_line.tres" id="18_y1len"]
 
 [sub_resource type="Curve" id="Curve_uxwp6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]

@@ -68,7 +68,7 @@ func fade_out_audio(duration):
 
 	%MusicPlayer.stop()
 
-	# Workaround for AudioStreamPlayer.stop() not stopping immediately and not being awaitable,
+	# HACK: Workaround for AudioStreamPlayer.stop() not stopping immediately and not being awaitable,
 	# which leads to sound pops from turning up the volume again without a delay
 	OS.delay_msec(50)
 

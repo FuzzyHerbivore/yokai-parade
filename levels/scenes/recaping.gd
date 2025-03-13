@@ -27,6 +27,19 @@ func _ready():
 	%NextLevelButton.grab_focus()
 
 
+func set_level_info(first_level_index, current_level_index, level_index_count):
+	var levels_above_first_count = level_index_count - first_level_index
+
+	var current_level_text
+	if current_level_index < first_level_index:
+		current_level_text = "Tutorial Level"
+	else:
+		current_level_text = "Level %s of %s" % [current_level_index, levels_above_first_count]
+
+	var info_text = "Completed %s!" % current_level_text
+	%LevelInfoLabel.text = info_text
+
+
 func set_play_time(p_play_time):
 	play_time = p_play_time
 	%PlayTimeLabel.text = "%5.2f" % play_time

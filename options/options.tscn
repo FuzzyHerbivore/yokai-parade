@@ -118,6 +118,9 @@ theme = ExtResource("4_0yobf")
 text = "Options"
 horizontal_alignment = 1
 
+[node name="Control" type="Control" parent="MainPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="ControlsLabel" type="Label" parent="MainPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"SubHeadingLabel"

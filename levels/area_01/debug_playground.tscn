@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://chw071c302k1s"]
+[gd_scene load_steps=21 format=4 uid="uid://chw071c302k1s"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_5yuc3"]
 [ext_resource type="PackedScene" uid="uid://dnq2l128u47ma" path="res://levels/modules/goal.tscn" id="2_12oxi"]
@@ -34,7 +34,7 @@ point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_blg6u"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 2336, 504, 0, 0, 0, 0, 2600, 288)
+"points": PackedVector2Array(0, 0, 0, 0, 2336, 504, 0, 0, 0, 0, 2336, 280)
 }
 point_count = 2
 
@@ -43,6 +43,12 @@ _data = {
 "points": PackedVector2Array(49.0815, -1.88775, -49.0815, 1.88775, 1800, 272, -2.517, -68.5882, 2.517, 68.5882, 1640, 416, -93.7582, -0.629249, 93.7582, 0.629249, 1784, 568, 0.629249, 44.6767, -0.629249, -44.6767, 1952, 424, 48.4522, -0.629249, -48.4522, 0.629249, 1800, 272)
 }
 point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_u8bbi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2080, 272, 0, 0, 0, 0, 2080, 544)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6upq"]
 size = Vector2(930, 24)
@@ -233,6 +239,14 @@ position = Vector2(1824, 792)
 initial_state = 200
 element_type = ExtResource("4_bqem7")
 initial_facing_direction = 1
+
+[node name="Path2D" type="Path2D" parent="Start-1stCheckpoint/Enemies"]
+curve = SubResource("Curve2D_u8bbi")
+
+[node name="EnemyAirborne" parent="Start-1stCheckpoint/Enemies/Path2D" instance=ExtResource("6_tj8ky")]
+position = Vector2(2080, 272)
+initial_state = 200
+element_type = ExtResource("4_bqem7")
 
 [node name="Deathzones" type="Node2D" parent="."]
 

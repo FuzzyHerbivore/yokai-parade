@@ -86,6 +86,7 @@ func set_player_controls_active(active):
 
 # UI
 
+# TODO: The state for this should probably be in the CurrentLevel scene
 func set_play_time(new_time):
 	play_time = new_time
 	%PlayTimeLabel.text = "%5.2f" % play_time
@@ -154,7 +155,7 @@ func reset_to_checkpoint():
 
 func reset_level():
 	await %Levels.reset_level()
-	reset_play_time()
+	reset_play_time() # TODO: Move to CurrentLevel script once it exists
 
 
 # State Machine

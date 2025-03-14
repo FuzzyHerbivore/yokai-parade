@@ -1,5 +1,5 @@
 extends Node2D
-
+# TODO: Turn this into a scene/script combo that can be added through the Add Scene dialog
 
 func get_player_spawn_position():
 	if get_node_or_null("PlayerSpawnPoint") == null:

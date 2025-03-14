@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://levels/scenes/recaping.gd" id="1_set1l"]
 [ext_resource type="AnimationLibrary" uid="uid://dk4cys2ms8tsl" path="res://assets/animations/state_transitions_long.res" id="2_3n6t2"]
 [ext_resource type="Shader" path="res://shader/blur.gdshader" id="2_foowg"]
-[ext_resource type="Texture2D" uid="uid://c5mky68gcqspu" path="res://ui/ui_outline_hori.png" id="2_qupa2"]
-[ext_resource type="Texture2D" uid="uid://c3i6sr0g87h2b" path="res://ui/ui_panel_horimain.png" id="2_v8yip"]
-[ext_resource type="Texture2D" uid="uid://ck7yd2b51exe3" path="res://ui/ui_panel_horibottom.png" id="3_gndks"]
-[ext_resource type="Texture2D" uid="uid://de8n4chrqn73o" path="res://ui/ui_panel_horitop.png" id="4_0ksdu"]
+[ext_resource type="Texture2D" uid="uid://b1yjwkybbh635" path="res://ui/ui_outline_recap.png" id="3_72fsv"]
+[ext_resource type="Texture2D" uid="uid://cj58f54kb7ohd" path="res://ui/ui_panel_recapmain.png" id="4_nf83o"]
 [ext_resource type="Script" path="res://ui/custom_controls/button_focus_on_hover.gd" id="5_33r4r"]
 [ext_resource type="Texture2D" uid="uid://b7bu0g5d2kfpc" path="res://ui/ui_panel_deco.png" id="5_vgvy0"]
+[ext_resource type="Texture2D" uid="uid://dxr8bi5qmldfy" path="res://ui/ui_panel_recapbottom.png" id="6_pmrgv"]
+[ext_resource type="Texture2D" uid="uid://cbey0yd4m5ukv" path="res://ui/ui_panel_recaptop.png" id="7_fgh8m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6j5vi"]
 shader = ExtResource("2_foowg")
@@ -88,138 +88,161 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.85098, 0.823529, 0.941176, 1)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Main"]
+[node name="UiOutlineRecap" type="TextureRect" parent="CanvasLayer/Main"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -586.0
-offset_top = -534.0
-offset_right = 584.0
-offset_bottom = 498.0
+offset_left = -380.0
+offset_top = -486.0
+offset_right = 363.0
+offset_bottom = 487.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_qupa2")
+texture = ExtResource("3_72fsv")
 
-[node name="MainPanel" type="TextureRect" parent="CanvasLayer/Main"]
+[node name="UiPanelRecapmain" type="TextureRect" parent="CanvasLayer/Main"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -544.0
-offset_top = -409.0
-offset_right = 536.0
-offset_bottom = 439.0
+offset_left = -329.0
+offset_top = -386.0
+offset_right = 306.0
+offset_bottom = 456.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_v8yip")
+texture = ExtResource("4_nf83o")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/MainPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/UiPanelRecapmain"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -168.5
-offset_top = -258.0
-offset_right = 168.5
-offset_bottom = 258.0
+offset_left = -233.5
+offset_top = -243.0
+offset_right = 232.5
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main/MainPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 30
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/MainPanel/VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="LevelInfoLabel" type="Label" parent="CanvasLayer/Main/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="LevelInfoLabel" type="Label" parent="CanvasLayer/Main/UiPanelRecapmain/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HeadingLabel"
+theme_override_font_sizes/font_size = 54
 text = "Finished Level X of Y!"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/Main/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main/UiPanelRecapmain/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main/UiPanelRecapmain/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="CanvasLayer/Main/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/Main/UiPanelRecapmain/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeadingLabel"
+theme_override_font_sizes/font_size = 54
 text = "Total time:"
 horizontal_alignment = 1
 
-[node name="PlayTimeLabel" type="Label" parent="CanvasLayer/Main/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="PlayTimeLabel" type="Label" parent="CanvasLayer/Main/UiPanelRecapmain/VBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 54
 text = "00:00"
 horizontal_alignment = 1
 
-[node name="NextLevelButton" type="Button" parent="CanvasLayer/Main/MainPanel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Main"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -499.0
+offset_right = 124.0
+offset_bottom = -231.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/Main/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitGameButton")
+theme_override_font_sizes/font_size = 50
 text = "Next Level"
 script = ExtResource("5_33r4r")
 
-[node name="ResetLevelButton" type="Button" parent="CanvasLayer/Main/MainPanel/VBoxContainer"]
+[node name="ResetLevelButton" type="Button" parent="CanvasLayer/Main/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Retry"
 script = ExtResource("5_33r4r")
 
-[node name="ReturnToMainMenuButton" type="Button" parent="CanvasLayer/Main/MainPanel/VBoxContainer"]
+[node name="ReturnToMainMenuButton" type="Button" parent="CanvasLayer/Main/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Main Menu"
 script = ExtResource("5_33r4r")
 
-[node name="QuitGameButton" type="Button" parent="CanvasLayer/Main/MainPanel/VBoxContainer"]
+[node name="QuitGameButton" type="Button" parent="CanvasLayer/Main/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../NextLevelButton")
+theme_override_font_sizes/font_size = 50
 text = "Quit Game"
 script = ExtResource("5_33r4r")
 
-[node name="BottomRoll" type="TextureRect" parent="CanvasLayer/Main"]
+[node name="UiPanelRecapbottom" type="TextureRect" parent="CanvasLayer/Main"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.53
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.53
-offset_left = -588.0
-offset_top = 378.6
-offset_right = 586.0
-offset_bottom = 462.6
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = 431.0
+offset_right = 355.0
+offset_bottom = 485.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_gndks")
+texture = ExtResource("6_pmrgv")
 
-[node name="TopRoll" type="TextureRect" parent="CanvasLayer/Main"]
+[node name="UiPanelRecaptop" type="TextureRect" parent="CanvasLayer/Main"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -598.0
-offset_top = 15.0
-offset_right = 585.0
-offset_bottom = 163.0
+anchor_bottom = 0.5
+offset_left = -377.0
+offset_top = -482.0
+offset_right = 354.0
+offset_bottom = -363.0
 grow_horizontal = 2
-texture = ExtResource("4_0ksdu")
+grow_vertical = 2
+texture = ExtResource("7_fgh8m")
 
 [node name="Decoration" type="TextureRect" parent="CanvasLayer/Main"]
 layout_mode = 0
-offset_left = 1431.0
-offset_top = 88.0
-offset_right = 1539.0
-offset_bottom = 746.0
+offset_left = 1213.0
+offset_top = 113.0
+offset_right = 1321.0
+offset_bottom = 771.0
 texture = ExtResource("5_vgvy0")
 
 [node name="FrontCover" type="ColorRect" parent="CanvasLayer"]

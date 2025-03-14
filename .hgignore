@@ -1,6 +1,7 @@
 syntax: glob
 *.orig
 *.tmp
+.DS_Store
 
 syntax: rootglob
 build/yokaiparade-html/**

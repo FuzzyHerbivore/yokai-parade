@@ -270,6 +270,10 @@ scale = Vector2(53.96, 1)
 position = Vector2(-292, 1363)
 scale = Vector2(53.96, 1)
 
+[node name="DespawnArea3" parent="Deathzones" instance=ExtResource("14_20vgg")]
+position = Vector2(-847, 1470)
+scale = Vector2(53.96, 1)
+
 [node name="Area1Backgrounds2" parent="." instance=ExtResource("15_hmule")]
 metadata/_edit_lock_ = true
 

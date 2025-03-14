@@ -64,6 +64,7 @@ var cached_grounded = true
 var velocity_mod_instigator = []
 var player_control := true
 var has_won := false
+var died = false
 
 var buffer_cancel_jump := false
 var is_cancelling_jump := false
@@ -459,6 +460,8 @@ func land():
 
 
 func on_despawn():
+	if died: return
+	died = true
 	controller_vibration(0.3, 0.3, 1.2)
 	on_death_zone.emit()
 	if cam_remote != null:

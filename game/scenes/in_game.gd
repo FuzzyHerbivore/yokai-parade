@@ -11,9 +11,11 @@ signal player_reached_goal
 @export var initial_level_state: LevelState
 
 var state_node
-var current_level_state_scene
+var current_level_index = 0
+var current_level_info
+var active_level_state_scene
 var player
-var play_time
+var play_time = 0.0
 var last_checkpoint_position
 
 
@@ -21,9 +23,6 @@ func _ready():
 	%LevelHook.level_load_progress.connect(on_level_load_progress)
 	%LevelHook.level_cleared.connect(func (): level_cleared.emit())
 
-	reset_play_time()
-
-	request_setting_next_level_path_index()
 	%LevelStateMachine.init(self, initial_level_state)
 
 
@@ -71,40 +70,37 @@ func set_game_paused(should_pause):
 
 # Level Loading
 
-func get_level_count():
-	return %LevelCoordinator.get_level_path_count()
+func get_current_level_info():
+	if current_level_info == null:
+		set_current_level_info(current_level_index)
+	return current_level_info
 
 
-func  get_first_level_index():
-	return %LevelCoordinator.get_first_level_path_index()
+func set_current_level_info(level_index):
+	var new_level_info = %LevelCoordinator.get_level_info(level_index)
+
+	if not new_level_info is Object \
+	and new_level_info == Error.ERR_PARAMETER_RANGE_ERROR:
+		return Error.ERR_PARAMETER_RANGE_ERROR
+
+	current_level_index = level_index
+	current_level_info = new_level_info
 
 
-func get_current_level_index():
-	return %LevelCoordinator.get_current_level_path_index()
+func increment_current_level_index():
+	var new_level_index = current_level_index + 1
+	return set_current_level_info(new_level_index)
 
 
-func get_requested_level_path_index():
-	return %LevelCoordinator.get_requested_level_path_index()
+func decrement_current_level_index():
+	var new_level_index = current_level_index - 1
+	return set_current_level_info(new_level_index)
 
 
-func request_setting_level_path_index(index):
-	%LevelCoordinator.request_setting_level_path_index(index)
+func load_current_level():
+	var result = await %LevelHook.load_level(get_current_level_info().level_path)
+	assert(result == Error.OK, "Loading level %s failed!" % current_level_info.name)
 
-
-func request_setting_previous_level_path_index():
-	%LevelCoordinator.request_setting_previous_level_path_index()
-
-
-func request_setting_next_level_path_index():
-	%LevelCoordinator.request_setting_next_level_path_index()
-
-
-func try_changing_to_requested_level():
-	return await %LevelCoordinator.try_changing_to_requested_level(%LevelHook)
-
-
-func load_currently_active_level():
-	await %LevelHook.activate_current_level_packed_scene()
 	reset_last_checkpoint_position()
 	reset_play_time()
 	await spawn_player()
@@ -222,13 +218,13 @@ func _input(event):
 # Level State
 
 func load_level_state_scene(level_state_scene):
-	current_level_state_scene = level_state_scene
-	add_child(current_level_state_scene)
+	active_level_state_scene = level_state_scene
+	add_child(active_level_state_scene)
 
 
-func unload_current_level_state_scene():
-	if current_level_state_scene != null:
-		current_level_state_scene.queue_free()
+func deactivate_level_state_scene():
+	if active_level_state_scene != null:
+		active_level_state_scene.queue_free()
 		await get_tree().process_frame
 
 

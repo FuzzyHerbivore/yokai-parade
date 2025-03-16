@@ -30,9 +30,7 @@ func _physics_process(_delta):
 			level_load_completed.emit(null)
 
 
-func try_loading_level(level_path):
-	var succeeded = false
-
+func load_level(level_path):
 	currently_loading_level_path = level_path
 
 	ResourceLoader.load_threaded_request(currently_loading_level_path)
@@ -41,20 +39,11 @@ func try_loading_level(level_path):
 	currently_loading_level_path = null
 
 	if current_level_packed_scene == null:
-		return succeeded
+		return Error.ERR_FILE_BAD_PATH
 
-	activate_current_level_packed_scene()
-	succeeded = true
+	await activate_current_level_packed_scene()
 
-	return succeeded
-
-
-func clear_current_level():
-	if current_level_scene != null:
-		current_level_scene.queue_free()
-		await get_tree().process_frame
-
-		level_cleared.emit()
+	return Error.OK
 
 
 func activate_current_level_packed_scene():
@@ -63,6 +52,14 @@ func activate_current_level_packed_scene():
 	current_level_scene = current_level_packed_scene.instantiate()
 
 	add_child(current_level_scene)
+
+
+func clear_current_level():
+	if current_level_scene != null:
+		current_level_scene.queue_free()
+		await get_tree().process_frame
+
+		level_cleared.emit()
 
 
 func get_initial_player_spawn_position():

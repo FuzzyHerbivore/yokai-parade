@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://badws0m5drr6w"]
+[gd_scene load_steps=5 format=3 uid="uid://pc0lf6cifcic"]
 
 [ext_resource type="Script" path="res://levels/level_coordinator.gd" id="1_blmvj"]
+[ext_resource type="Script" path="res://levels/area_info.gd" id="2_hakua"]
+[ext_resource type="Resource" uid="uid://b2nnebw5i2pgg" path="res://levels/area_01/area_01_info.tres" id="3_ey3bn"]
+[ext_resource type="Resource" uid="uid://cbfdk82rahdm2" path="res://levels/area_01/area_02_info.tres" id="4_7qqrg"]
 
 [node name="LevelCoordinator" type="Node"]
 script = ExtResource("1_blmvj")
-level_paths = Array[String](["res://levels/area_01/level_00.tscn", "res://levels/area_01/level_01.tscn", "res://levels/area_01/level_02.tscn", "res://levels/area_01/level_03.tscn", "res://levels/area_01/level_04.tscn"])
-is_debug_level_active = true
-debug_level_path = "res://levels/area_01/debug_playground.tscn"
+area_infos = Array[ExtResource("2_hakua")]([ExtResource("3_ey3bn"), ExtResource("4_7qqrg")])

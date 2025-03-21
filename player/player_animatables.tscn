@@ -1,10 +1,10 @@
 [gd_scene load_steps=77 format=3 uid="uid://b173nlre4ndsy"]
 
-[ext_resource type="Script" path="res://player/player_animatables.gd" id="1_japyu"]
+[ext_resource type="Script" uid="uid://cbbtr63ga6sjj" path="res://player/player_animatables.gd" id="1_japyu"]
 [ext_resource type="Texture2D" uid="uid://dchjx31w1tyge" path="res://player/assets/player_spritesheet.png" id="1_wuri4"]
 [ext_resource type="Material" uid="uid://c68p80bnif4bc" path="res://assets/vfx/player_vfx.tres" id="2_xp0es"]
 [ext_resource type="Texture2D" uid="uid://lbun5m4epu5r" path="res://assets/vfx/vfx_animation_character.png" id="4_f7hvb"]
-[ext_resource type="Shader" path="res://shader/exchange_color_on_asset.gdshader" id="4_jiapn"]
+[ext_resource type="Shader" uid="uid://royrbwmamed7" path="res://shader/exchange_color_on_asset.gdshader" id="4_jiapn"]
 [ext_resource type="AudioStream" uid="uid://8ay6mtmv6nbh" path="res://sounds/player_hitting.ogg" id="4_wmhc6"]
 [ext_resource type="PackedScene" uid="uid://h3ruips3t7l8" path="res://player/vfx_instance.tscn" id="5_av5c8"]
 [ext_resource type="AudioStream" uid="uid://bnlxembuk56eb" path="res://sounds/player_jump.ogg" id="5_irw32"]
@@ -13,10 +13,10 @@
 [ext_resource type="AudioStream" uid="uid://cici5vyhrd5yu" path="res://player/assets/player_ability_double_jump.ogg" id="7_rtb8x"]
 [ext_resource type="AudioStream" uid="uid://bscd7xvdgh1of" path="res://sounds/momo_mau_3.ogg" id="9_7jwf0"]
 [ext_resource type="AudioStream" uid="uid://bnvetuq8gc2tv" path="res://sounds/momo_mau_1.ogg" id="10_88u37"]
-[ext_resource type="Script" path="res://sounds/sound_player.gd" id="14_mxwfv"]
+[ext_resource type="Script" uid="uid://dnn3eee52ao05" path="res://sounds/sound_player.gd" id="14_mxwfv"]
 [ext_resource type="AudioStream" uid="uid://77a3pk7xnpwu" path="res://sounds/player_footsteps_01.ogg" id="14_yo6re"]
 [ext_resource type="AudioStream" uid="uid://buxi8ehvusiow" path="res://sounds/player_footsteps_02.ogg" id="15_qxsyd"]
-[ext_resource type="Script" path="res://player/movement_line.gd" id="17_tfrnd"]
+[ext_resource type="Script" uid="uid://dbnrqmougjj2f" path="res://player/movement_line.gd" id="17_tfrnd"]
 [ext_resource type="Material" uid="uid://byy6iohvlx7as" path="res://shader/debug_line.tres" id="18_y1len"]
 
 [sub_resource type="Curve" id="Curve_uxwp6"]
@@ -938,22 +938,22 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x7y5v"]
 _data = {
-"RESET": SubResource("Animation_1fs6i"),
-"celebration": SubResource("Animation_xbpvk"),
-"dash": SubResource("Animation_802ph"),
-"double_jump": SubResource("Animation_o3nxy"),
-"dying": SubResource("Animation_hhc52"),
-"falling": SubResource("Animation_qskf8"),
-"got_hit": SubResource("Animation_ykyju"),
-"hit": SubResource("Animation_v1rfk"),
-"idling": SubResource("Animation_ko40m"),
-"idling2": SubResource("Animation_a8b1i"),
-"idling3": SubResource("Animation_6bbhk"),
-"idling4": SubResource("Animation_wys6x"),
-"jump": SubResource("Animation_xmvxb"),
-"landing": SubResource("Animation_uoss2"),
-"no_ability_hit": SubResource("Animation_cmshr"),
-"walking": SubResource("Animation_2eqfq")
+&"RESET": SubResource("Animation_1fs6i"),
+&"celebration": SubResource("Animation_xbpvk"),
+&"dash": SubResource("Animation_802ph"),
+&"double_jump": SubResource("Animation_o3nxy"),
+&"dying": SubResource("Animation_hhc52"),
+&"falling": SubResource("Animation_qskf8"),
+&"got_hit": SubResource("Animation_ykyju"),
+&"hit": SubResource("Animation_v1rfk"),
+&"idling": SubResource("Animation_ko40m"),
+&"idling2": SubResource("Animation_a8b1i"),
+&"idling3": SubResource("Animation_6bbhk"),
+&"idling4": SubResource("Animation_wys6x"),
+&"jump": SubResource("Animation_xmvxb"),
+&"landing": SubResource("Animation_uoss2"),
+&"no_ability_hit": SubResource("Animation_cmshr"),
+&"walking": SubResource("Animation_2eqfq")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fyh5j"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dw0g44fku0ne6"]
 
-[ext_resource type="Script" path="res://levels/scenes/options_in_game.gd" id="1_fvlq8"]
-[ext_resource type="Shader" path="res://shader/blur.gdshader" id="2_2xj68"]
+[ext_resource type="Script" uid="uid://bjcud7hlf00j7" path="res://levels/scenes/options_in_game.gd" id="1_fvlq8"]
+[ext_resource type="Shader" uid="uid://ylq7xblkjd01" path="res://shader/blur.gdshader" id="2_2xj68"]
 [ext_resource type="AnimationLibrary" uid="uid://dk4cys2ms8tsl" path="res://assets/animations/state_transitions_long.res" id="2_m0nu1"]
 [ext_resource type="PackedScene" uid="uid://c04lg3aglqhgy" path="res://options/options.tscn" id="2_sfmog"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cc0wce22gon55"]
 
-[ext_resource type="Script" path="res://abilities/double_jump.gd" id="1_c33vj"]
+[ext_resource type="Script" uid="uid://4g0v3gix32xx" path="res://abilities/double_jump.gd" id="1_c33vj"]
 
 [sub_resource type="Curve" id="Curve_rgr0d"]
 _data = [Vector2(0, 1), 0.0, -0.149137, 0, 0, Vector2(1, 0.769231), -0.0549454, 0.0, 0, 0]

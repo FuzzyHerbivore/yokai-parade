@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dnq2l128u47ma"]
 
-[ext_resource type="Script" path="res://levels/modules/goal.gd" id="1_jmwwo"]
+[ext_resource type="Script" uid="uid://kgy2t54x1suv" path="res://levels/modules/goal.gd" id="1_jmwwo"]
 [ext_resource type="Texture2D" uid="uid://uja72e3p7hhx" path="res://levels/modules/assets/vfx_goal_spritesheet.png" id="3_kmpe4"]
 [ext_resource type="Texture2D" uid="uid://bq0wsylybrjvq" path="res://levels/modules/assets/p_goal_spritesheet.png" id="4_3daf8"]
 
@@ -154,8 +154,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oqwgx"]
 _data = {
-"RESET": SubResource("Animation_3jmjs"),
-"celebrate": SubResource("Animation_wcior")
+&"RESET": SubResource("Animation_3jmjs"),
+&"celebrate": SubResource("Animation_wcior")
 }
 
 [node name="Goal" type="Area2D"]

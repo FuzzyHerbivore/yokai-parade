@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://bomxlv8ndomnc"]
 
-[ext_resource type="Script" path="res://enemies/enemy_grounded.gd" id="1_ckp3m"]
+[ext_resource type="Script" uid="uid://cqgwwqgk8fqgv" path="res://enemies/enemy_grounded.gd" id="1_ckp3m"]
 [ext_resource type="PackedScene" uid="uid://dbvyxduyy60pr" path="res://components/damage/deal_damage_area.tscn" id="2_jj2bd"]
 [ext_resource type="PackedScene" uid="uid://bpccb0pqmr7r5" path="res://components/damage/take_damage_area.tscn" id="3_rf8mi"]
 [ext_resource type="PackedScene" uid="uid://b4r3q7mgxf88x" path="res://enemies/components/visualisation.tscn" id="4_go320"]
@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://ca36yjx5emens" path="res://enemies/components/attack_ranged.tscn" id="5_gkvlp"]
 [ext_resource type="PackedScene" uid="uid://s3sdon7jx430" path="res://enemies/components/target_direction.tscn" id="5_hi5le"]
 [ext_resource type="PackedScene" uid="uid://dehfctg22n1uq" path="res://enemies/components/cliff_detection.tscn" id="6_iy8rm"]
-[ext_resource type="Script" path="res://enemies/states/idling_grounded.gd" id="6_ltbao"]
-[ext_resource type="Script" path="res://enemies/states/moving_grounded.gd" id="7_sppxq"]
-[ext_resource type="Script" path="res://enemies/states/lunging.gd" id="8_2a3fu"]
+[ext_resource type="Script" uid="uid://crr3jveh8jq7i" path="res://enemies/states/idling_grounded.gd" id="6_ltbao"]
+[ext_resource type="Script" uid="uid://cs5qed8eh2d8h" path="res://enemies/states/moving_grounded.gd" id="7_sppxq"]
+[ext_resource type="Script" uid="uid://cwv72ew8vpcoe" path="res://enemies/states/lunging.gd" id="8_2a3fu"]
 [ext_resource type="PackedScene" uid="uid://cf1ju7j5r32p4" path="res://enemies/components/take_damage.tscn" id="9_51vph"]
-[ext_resource type="Script" path="res://enemies/states/attacking_ranged.gd" id="9_dbaq0"]
-[ext_resource type="Script" path="res://enemies/states/recovering.gd" id="10_7g18r"]
-[ext_resource type="Script" path="res://enemies/states/attacking_melee.gd" id="13_rt86t"]
+[ext_resource type="Script" uid="uid://chysgyh10wtbj" path="res://enemies/states/attacking_ranged.gd" id="9_dbaq0"]
+[ext_resource type="Script" uid="uid://cun3xoo536qnq" path="res://enemies/states/recovering.gd" id="10_7g18r"]
+[ext_resource type="Script" uid="uid://7dieeb34r6ow" path="res://enemies/states/attacking_melee.gd" id="13_rt86t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3f1p"]
 radius = 34.0147

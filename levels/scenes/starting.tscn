@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbliic3r4vcsa"]
 
-[ext_resource type="Script" path="res://levels/scenes/starting.gd" id="1_07kil"]
+[ext_resource type="Script" uid="uid://cajy24vplg377" path="res://levels/scenes/starting.gd" id="1_07kil"]
 [ext_resource type="AudioStream" uid="uid://cg6kgb137bbob" path="res://levels/scenes/assets/claves.ogg" id="2_dm3nm"]
 
 [sub_resource type="Animation" id="Animation_4jxod"]
@@ -132,8 +132,8 @@ tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_23dp4"]
 _data = {
-"RESET": SubResource("Animation_4jxod"),
-"countdown": SubResource("Animation_a484v")
+&"RESET": SubResource("Animation_4jxod"),
+&"countdown": SubResource("Animation_a484v")
 }
 
 [node name="Starting" type="Node"]

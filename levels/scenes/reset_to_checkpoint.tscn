@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp10lwi3myrce"]
 
-[ext_resource type="Script" path="res://levels/scenes/reset_to_checkpoint.gd" id="1_dh7iq"]
+[ext_resource type="Script" uid="uid://dbxm1e4l31ylt" path="res://levels/scenes/reset_to_checkpoint.gd" id="1_dh7iq"]
 [ext_resource type="AnimationLibrary" uid="uid://2vjwp0u36wl8" path="res://assets/animations/state_transitions_short.res" id="2_mbhnm"]
 
 [node name="ResetToCheckpoint" type="Node"]

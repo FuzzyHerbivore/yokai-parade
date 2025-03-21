@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=3 uid="uid://dnxi2gyvo83ec"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_uybn7"]
-[ext_resource type="Script" path="res://abilities/abilities.gd" id="2_es05j"]
+[ext_resource type="Script" uid="uid://c7y1aem0w5n2r" path="res://player/player.gd" id="1_uybn7"]
+[ext_resource type="Script" uid="uid://3ntnf2uc0ugo" path="res://abilities/abilities.gd" id="2_es05j"]
 [ext_resource type="PackedScene" uid="uid://dbvyxduyy60pr" path="res://components/damage/deal_damage_area.tscn" id="4_cn11c"]
 [ext_resource type="PackedScene" uid="uid://bpccb0pqmr7r5" path="res://components/damage/take_damage_area.tscn" id="4_y0ly5"]
 [ext_resource type="PackedScene" uid="uid://do4ocmf2wgj2o" path="res://components/raycast/raycast.tscn" id="5_5gjfl"]
-[ext_resource type="Script" path="res://player/player_visuals.gd" id="6_guley"]
-[ext_resource type="Script" path="res://player/debug.gd" id="7_3jai0"]
+[ext_resource type="Script" uid="uid://bjw6barg87sv2" path="res://player/player_visuals.gd" id="6_guley"]
+[ext_resource type="Script" uid="uid://cjwln0nqk0vl0" path="res://player/debug.gd" id="7_3jai0"]
 [ext_resource type="PackedScene" uid="uid://b173nlre4ndsy" path="res://player/player_animatables.tscn" id="7_74yxj"]
 [ext_resource type="Material" uid="uid://byy6iohvlx7as" path="res://shader/debug_line.tres" id="9_hbaoq"]
 

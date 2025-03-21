@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="AreaInfo" load_steps=8 format=3 uid="uid://b2nnebw5i2pgg"]
 
-[ext_resource type="Script" path="res://levels/level_info.gd" id="1_gsrcw"]
+[ext_resource type="Script" uid="uid://bmdx8b8ustmsx" path="res://levels/level_info.gd" id="1_gsrcw"]
 [ext_resource type="Resource" uid="uid://jpyrxeomecny" path="res://levels/area_01/level_00.tres" id="2_c417j"]
-[ext_resource type="Script" path="res://levels/area_info.gd" id="2_gca6v"]
+[ext_resource type="Script" uid="uid://4xsmp56j5cmx" path="res://levels/area_info.gd" id="2_gca6v"]
 [ext_resource type="Resource" uid="uid://b4i6wlobuggd3" path="res://levels/area_01/level_01.tres" id="3_kqj1l"]
 [ext_resource type="Resource" uid="uid://cc1vm7hoqa4df" path="res://levels/area_01/level_02.tres" id="4_oxkk6"]
 [ext_resource type="Resource" uid="uid://crr4syxkimrek" path="res://levels/area_01/level_03.tres" id="5_67x44"]

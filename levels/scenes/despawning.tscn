@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://wslssapuyl0a"]
 
-[ext_resource type="Script" path="res://levels/scenes/despawning.gd" id="1_3hpan"]
+[ext_resource type="Script" uid="uid://bajmgnto0003r" path="res://levels/scenes/despawning.gd" id="1_3hpan"]
 [ext_resource type="AnimationLibrary" uid="uid://2vjwp0u36wl8" path="res://assets/animations/state_transitions_short.res" id="2_4mp8l"]
 
 [node name="Despawning" type="Node"]

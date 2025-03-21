@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dce17t0phbvrv"]
 
-[ext_resource type="Script" path="res://game/scenes/startup.gd" id="1_rc2m6"]
+[ext_resource type="Script" uid="uid://b6p2y6w6pwpka" path="res://game/scenes/startup.gd" id="1_rc2m6"]
 [ext_resource type="Texture2D" uid="uid://d0o4jvkekla83" path="res://game/scenes/assets/godot_logo.png" id="2_3fhr0"]
 [ext_resource type="Texture2D" uid="uid://crodpmxvj8mpg" path="res://game/scenes/assets/pretentious_possums_logo.png" id="2_vdkk6"]
 [ext_resource type="Texture2D" uid="uid://cpjg24mrglbby" path="res://game/scenes/assets/s4g_logo.png" id="3_xvb03"]
@@ -173,8 +173,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pe02t"]
 _data = {
-"RESET": SubResource("Animation_8xjh0"),
-"logo_parade": SubResource("Animation_oiskn")
+&"RESET": SubResource("Animation_8xjh0"),
+&"logo_parade": SubResource("Animation_oiskn")
 }
 
 [node name="Startup" type="Node"]

@@ -44,7 +44,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ex5v1"]
 _data = {
-"RESET": SubResource("Animation_bbe5r")
+&"RESET": SubResource("Animation_bbe5r")
 }
 
 [node name="IncrementLevel" type="Node"]

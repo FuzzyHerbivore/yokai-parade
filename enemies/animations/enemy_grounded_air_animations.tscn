@@ -1,9 +1,9 @@
 [gd_scene load_steps=41 format=3 uid="uid://b5x05pl1dh0ey"]
 
 [ext_resource type="Texture2D" uid="uid://cxsfo7protit" path="res://enemies/animations/assets/enemy_grounded_air_spritesheet.png" id="1_ngobw"]
-[ext_resource type="Script" path="res://enemies/enemy_animations.gd" id="1_t3cf0"]
+[ext_resource type="Script" uid="uid://c22fy4svmmejr" path="res://enemies/enemy_animations.gd" id="1_t3cf0"]
 [ext_resource type="Texture2D" uid="uid://diek5e44plaf3" path="res://enemies/animations/assets/vfx_enemy_grounded_air.png" id="3_3p7um"]
-[ext_resource type="Material" path="res://shader/air_overlay.tres" id="3_ub5ow"]
+[ext_resource type="Material" uid="uid://02qc1ogeb27d" path="res://shader/air_overlay.tres" id="3_ub5ow"]
 [ext_resource type="AudioStream" uid="uid://cy08pyap7232e" path="res://enemies/animations/assets/enemy_air_attack.ogg" id="5_lgnk5"]
 [ext_resource type="AudioStream" uid="uid://ynagq2iy6gj2" path="res://enemies/animations/assets/enemy_air_lunge.ogg" id="5_rjngv"]
 [ext_resource type="AudioStream" uid="uid://dmfyxwtxotbsh" path="res://enemies/animations/assets/enemy_air_take_damage.ogg" id="6_iab8g"]
@@ -851,17 +851,17 @@ tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyi56"]
 _data = {
-"RESET": SubResource("Animation_563iv"),
-"attacking_left": SubResource("Animation_ugv3d"),
-"attacking_right": SubResource("Animation_migl4"),
-"idling_left": SubResource("Animation_vbn0e"),
-"idling_right": SubResource("Animation_51lvr"),
-"lunging_left": SubResource("Animation_40slr"),
-"lunging_right": SubResource("Animation_yuilb"),
-"moving_left": SubResource("Animation_5vwm6"),
-"moving_right": SubResource("Animation_jofk5"),
-"recovering_left": SubResource("Animation_4284t"),
-"recovering_right": SubResource("Animation_gnyrv")
+&"RESET": SubResource("Animation_563iv"),
+&"attacking_left": SubResource("Animation_ugv3d"),
+&"attacking_right": SubResource("Animation_migl4"),
+&"idling_left": SubResource("Animation_vbn0e"),
+&"idling_right": SubResource("Animation_51lvr"),
+&"lunging_left": SubResource("Animation_40slr"),
+&"lunging_right": SubResource("Animation_yuilb"),
+&"moving_left": SubResource("Animation_5vwm6"),
+&"moving_right": SubResource("Animation_jofk5"),
+&"recovering_left": SubResource("Animation_4284t"),
+&"recovering_right": SubResource("Animation_gnyrv")
 }
 
 [node name="EnemyGroundedAirAnimations" type="Node2D"]

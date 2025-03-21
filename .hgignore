@@ -10,6 +10,3 @@ build/yokaiparade-linux/**
 build/yokaiparade-win/**
 build/yokaiparade-mac/**
 build/*.zip
-
-syntax: regexp
-\.godot\/(?!uid_cache.bin).*

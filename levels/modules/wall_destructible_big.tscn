@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://sxpubdb03xgr"]
 
-[ext_resource type="Script" path="res://levels/modules/wall_destructible.gd" id="1_0plgf"]
+[ext_resource type="Script" uid="uid://cidalcuveuoim" path="res://levels/modules/wall_destructible.gd" id="1_0plgf"]
 [ext_resource type="Texture2D" uid="uid://bpfsuinf728mo" path="res://levels/modules/assets/p_wall_destructible_big.png" id="2_rksfv"]
 [ext_resource type="PackedScene" uid="uid://bpccb0pqmr7r5" path="res://components/damage/take_damage_area.tscn" id="3_6qjuk"]
 [ext_resource type="AudioStream" uid="uid://cwns8ij0iocfd" path="res://levels/modules/assets/destructible_wall_big.ogg" id="4_2geko"]

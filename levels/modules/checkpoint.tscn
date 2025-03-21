@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dotrddyc18eeh"]
 
-[ext_resource type="Script" path="res://levels/modules/checkpoint.gd" id="1_np4pl"]
+[ext_resource type="Script" uid="uid://76x23j14ewtb" path="res://levels/modules/checkpoint.gd" id="1_np4pl"]
 [ext_resource type="AudioStream" uid="uid://l780fnf7psx4" path="res://levels/modules/assets/checkpoint_activation.ogg" id="3_3ul8b"]
 [ext_resource type="Texture2D" uid="uid://c6birnnellyn7" path="res://levels/modules/assets/p_checkpoint_spritesheet.png" id="4_hfl67"]
 
@@ -41,8 +41,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3fbbo"]
 _data = {
-"RESET": SubResource("Animation_vi7nw"),
-"active": SubResource("Animation_2deii")
+&"RESET": SubResource("Animation_vi7nw"),
+&"active": SubResource("Animation_2deii")
 }
 
 [node name="Checkpoint" type="Area2D"]

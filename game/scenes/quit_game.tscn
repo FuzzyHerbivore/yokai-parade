@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceul82s53rfq2"]
 
-[ext_resource type="Script" path="res://game/scenes/quit_game.gd" id="1_vdy4u"]
+[ext_resource type="Script" uid="uid://bfw0yg7vkyemg" path="res://game/scenes/quit_game.gd" id="1_vdy4u"]
 
 [sub_resource type="Animation" id="Animation_q8cgk"]
 resource_name = "RESET"
@@ -76,8 +76,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x6bxr"]
 _data = {
-"RESET": SubResource("Animation_q8cgk"),
-"blackout": SubResource("Animation_j2xdq")
+&"RESET": SubResource("Animation_q8cgk"),
+&"blackout": SubResource("Animation_j2xdq")
 }
 
 [node name="QuitGame" type="Node"]

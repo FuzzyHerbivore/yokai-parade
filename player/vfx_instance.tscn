@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://h3ruips3t7l8"]
 
 [ext_resource type="Material" uid="uid://c68p80bnif4bc" path="res://assets/vfx/player_vfx.tres" id="1_awcbs"]
-[ext_resource type="Script" path="res://player/vfx_instance.gd" id="1_ul387"]
+[ext_resource type="Script" uid="uid://cschof2sqd50k" path="res://player/vfx_instance.gd" id="1_ul387"]
 [ext_resource type="Texture2D" uid="uid://lbun5m4epu5r" path="res://assets/vfx/vfx_animation_character.png" id="2_yam44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmtn4"]

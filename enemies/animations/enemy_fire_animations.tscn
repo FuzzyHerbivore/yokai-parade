@@ -1,9 +1,9 @@
 [gd_scene load_steps=51 format=3 uid="uid://ddyyhxxuwsxtk"]
 
-[ext_resource type="Script" path="res://enemies/enemy_animations.gd" id="1_ladii"]
+[ext_resource type="Script" uid="uid://c22fy4svmmejr" path="res://enemies/enemy_animations.gd" id="1_ladii"]
 [ext_resource type="Texture2D" uid="uid://ba1gmfx4honp5" path="res://enemies/animations/assets/enemy_fire_spritesheet.png" id="2_t1kpb"]
 [ext_resource type="Texture2D" uid="uid://dwqiklm7ujj6i" path="res://enemies/animations/assets/vfx_animation_enemy_fire.png" id="3_4dobx"]
-[ext_resource type="Shader" path="res://shader/pattern_overlay.gdshader" id="3_5ypg4"]
+[ext_resource type="Shader" uid="uid://cx0u1qca51680" path="res://shader/pattern_overlay.gdshader" id="3_5ypg4"]
 [ext_resource type="Texture2D" uid="uid://ba5pi8b15xb8a" path="res://assets/patterns/t_pattern_flowers.png" id="4_hkkv2"]
 [ext_resource type="AudioStream" uid="uid://ca278jlf75eu8" path="res://enemies/animations/assets/enemy_fire_attack.ogg" id="6_oti8d"]
 [ext_resource type="AudioStream" uid="uid://cdcsdc1bf8i7v" path="res://enemies/animations/assets/enemy_fire_take_damage.ogg" id="7_60ek0"]
@@ -11,6 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp3fu"]
 shader = ExtResource("3_5ypg4")
+shader_parameter/pattern_texture = ExtResource("4_hkkv2")
 shader_parameter/overlay_alpha = 1.0
 shader_parameter/pattern_scale = 1.835
 shader_parameter/tilemap_offset = Vector2(0, 0)
@@ -21,7 +22,6 @@ shader_parameter/world_scale = 1.0
 shader_parameter/pattern_multiplier = 1.376
 shader_parameter/texture_multiplier = 1.0
 shader_parameter/end_tint = Color(0, 0, 0, 1)
-shader_parameter/pattern_texture = ExtResource("4_hkkv2")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_68p7c"]
 animation = &"idling_left"
@@ -1003,19 +1003,19 @@ tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyi56"]
 _data = {
-"RESET": SubResource("Animation_36pp3"),
-"attacking_left": SubResource("Animation_822p2"),
-"attacking_right": SubResource("Animation_jny5y"),
-"idling_left": SubResource("Animation_vbn0e"),
-"idling_right": SubResource("Animation_o76pi"),
-"lunging_left": SubResource("Animation_nbxci"),
-"lunging_right": SubResource("Animation_al0ud"),
-"moving_left_down": SubResource("Animation_i3rq7"),
-"moving_left_up": SubResource("Animation_8cf70"),
-"moving_right_down": SubResource("Animation_eopb1"),
-"moving_right_up": SubResource("Animation_n076s"),
-"recovering_left": SubResource("Animation_pixkn"),
-"recovering_right": SubResource("Animation_2732v")
+&"RESET": SubResource("Animation_36pp3"),
+&"attacking_left": SubResource("Animation_822p2"),
+&"attacking_right": SubResource("Animation_jny5y"),
+&"idling_left": SubResource("Animation_vbn0e"),
+&"idling_right": SubResource("Animation_o76pi"),
+&"lunging_left": SubResource("Animation_nbxci"),
+&"lunging_right": SubResource("Animation_al0ud"),
+&"moving_left_down": SubResource("Animation_i3rq7"),
+&"moving_left_up": SubResource("Animation_8cf70"),
+&"moving_right_down": SubResource("Animation_eopb1"),
+&"moving_right_up": SubResource("Animation_n076s"),
+&"recovering_left": SubResource("Animation_pixkn"),
+&"recovering_right": SubResource("Animation_2732v")
 }
 
 [node name="EnemyFireAnimations" type="Node2D"]

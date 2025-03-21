@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://dvamy24u4rdys"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_daxbv"]
+[ext_resource type="Script" uid="uid://dd2ld6kyhdtlo" path="res://levels/level.gd" id="1_daxbv"]
 [ext_resource type="TileSet" uid="uid://b4k5ayqgk5hiq" path="res://levels/area_01/assets/decoration_tileset_area_01.tres" id="8_iox8e"]
 [ext_resource type="PackedScene" uid="uid://bomxlv8ndomnc" path="res://enemies/enemy_grounded.tscn" id="8_vvroe"]
 [ext_resource type="Resource" uid="uid://tvyt8dx4csl5" path="res://enemies/types/enemy_element_type_air.tres" id="9_5kbpl"]

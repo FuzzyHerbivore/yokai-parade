@@ -1,4 +1,5 @@
 syntax: glob
+.godot/**
 *.orig
 *.tmp
 .DS_Store

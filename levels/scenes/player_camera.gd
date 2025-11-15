@@ -16,8 +16,12 @@ func _ready():
 	initialize_caching()
 
 
-func _physics_process(delta):
-	look_offset(delta)
+func _physics_process(_delta):
+	look_offset()
+
+
+func _process(delta):
+	adjust_offset(delta)
 
 
 func initialize_caching():
@@ -26,14 +30,12 @@ func initialize_caching():
 	current_offset = offset_value
 
 
-func look_offset(delta):
+func look_offset():
 	var current_direction = sign(position.x - position_cache.x)
 
 	calc_distance_flip(current_direction)
 
 	calc_offset(current_direction)
-
-	adjust_offset(delta)
 
 
 func calc_distance_flip(current_direction):

@@ -27,7 +27,7 @@ The game scene and script are responsible for playing the music and being remote
 Everything is wired up by invoking methods from encapsulating to contained states and scenes, and signals in the other direction, in accordance with best practices of Godot.
 
 Oh and also mind the little animation that runs stutter-free during the level load screen by using ResourceLoader.load_threaded_request... unless you play the game in the browser, where I had to hide it because the HTML5
-exports of Godot don't support multi-threading.
+exports of Godot don't support multi-threading (Browsers only support multi-threading when using the `Web Worker` API).
 
 ### [Enemies](./enemies)
 Enemies are also basically state machines, implementing the same split as described above. There are two 'elemental' types of enemies, fire and air, and each has a walking and flying variant. Both variants function very differently,
